@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.venv/
+data/
+tests/
+.pytest_cache/
+**/__pycache__/
+docker-compose.yml
+docker/init.sql
+.git/

@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+
+# Secrets: only the example file is committed
+.env
+.env.*
+*.env
+!.env.example
+
+# Cloned docs repo and sync state
+data/

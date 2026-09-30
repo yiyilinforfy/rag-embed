@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: rag-postgres
+    environment:
+      POSTGRES_USER: rag
+      POSTGRES_PASSWORD: rag
+      POSTGRES_DB: rag
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Scripts here only run on the very first start (when pgdata is empty).
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag -d rag"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:
