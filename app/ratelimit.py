@@ -1,6 +1,19 @@
-"""Per-user limits for the ask endpoints: token bucket (rate + burst), daily quota, concurrent streams.
+"""限流：按钱包地址限制 /api/ask 的调用（令牌桶 + 每日上限 + 并发数）。
 
-In-memory, so it only holds within one process. With several workers / machines, move the counters to Redis.
+学习笔记
+- 为什么要限流：每次提问都要调用 DeepSeek（花钱）和 embedding，没有限流的话，一个脚本就能刷光余额。
+- 三条规则（默认值见 config.py）：
+  1. 令牌桶：桶容量 3（允许连发 3 次），每分钟补充 10 个令牌。短时间连问几句没问题，持续刷会被拦住。
+     对比其他算法：固定窗口在窗口交界处可能放进 2 倍流量；滑动窗口更平滑；
+     令牌桶允许短时间突发、长期限制速度，最适合聊天场景。
+  2. 每日上限：每个地址每天 200 次，零点重置。
+  3. 并发数：同一个地址同时最多 2 个流式回答（长连接），回答结束时释放；
+     客户端中途断开、没能释放的名额，5 分钟后自动回收。
+- 先检查全部规则再扣减额度：被拒绝的请求不消耗额度。
+  超限返回 429，并带 Retry-After 响应头（秒数），前端据此提示"N 秒后再试"。
+- 局限：计数存在进程内存里，进程重启就清零；多进程或多实例时各算各的，限流会失效，到那时换成 Redis。
+  所以线上只跑 1 个实例、1 个 worker。正式上线时还可以在 Nginx 或网关层再加一道限流。
+- 测试：tests/test_ratelimit.py 用假时钟验证突发、补充、并发回收、跨天重置。
 """
 
 import math

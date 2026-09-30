@@ -1,3 +1,18 @@
+"""数据模型：三张表 documents / chunks / users。
+
+学习笔记
+- documents：一篇 Markdown 文件一行。content_hash 是文件内容的 SHA-256，入库时用它判断文件有没有变（增量更新）。
+- chunks：检索的最小单位。原文 content 和向量 embedding 存在同一行，检索命中后直接拿到原文和出处。
+  - embedding 列是 vector(1024)（pgvector 提供的类型），1024 必须等于 bge-m3 的输出维度。
+  - source/title/heading/url 是冗余存储（documents 里也有），这样一行检索结果就能组装出引用信息，不用联表。
+  - url 带锚点（#xxx），对齐 VuePress 的标题 id 规则，点击能跳到文档里对应的小节。
+  - metadata（JSONB）存 lang、has_code、chars、part 等辅助信息，以后做"按条件过滤再检索"可以用。
+  - document_id 外键设了 ON DELETE CASCADE：删文档时它的 chunk 一起删，所以重建一篇文档就是"删旧插新"。
+- users：允许使用助手的钱包地址白名单（auth.py 鉴权用），is_active=False 可以停用某个地址。
+- 为什么用 PostgreSQL + pgvector，而不是专门的向量数据库：数据量小（几百行），一个数据库同时存业务数据和向量，
+  运维最简单，还能用普通 SQL 做过滤、联表、统计。
+"""
+
 from datetime import datetime
 
 from pgvector.sqlalchemy import Vector

@@ -1,4 +1,18 @@
-"""Load docs -> chunk -> embed -> save to PostgreSQL. Used by scripts/ingest.py and POST /api/ingest."""
+"""入库：读文档 → 切 chunk → 算向量 → 写入 PostgreSQL。scripts/ingest.py、/api/ingest、sync.py 都调用它。
+
+学习笔记
+- 流程位置：离线建索引的主流程，把 chunker 和 embedding 串起来。
+- 增量更新（不是每次全量重建）：
+  - 文件级：对比 documents.content_hash，内容没变的文件整篇跳过，不切分也不算向量。
+  - chunk 级：文件变了时，先把旧 chunk 的"文本 → 向量"存成字典；新切出来的 chunk 如果文本一样，就直接复用旧向量，
+    只给新增或修改过的 chunk 调用 embedding（embed_with_cache）。实测改一句话：31 个 chunk 只重算了 1 个。
+  - 删除：仓库里已经不存在的文件，从数据库里删掉。
+  - --force：跳过所有缓存、全部重算。换了切分策略或 embedding 模型时用。
+- 更新一篇文档的方式是"删旧文档（chunk 级联删除）→ 插入新文档"，每篇文档单独提交事务，
+  中途失败不会影响已经完成的文件，下次运行会从失败的地方继续。
+- 安全保护：一篇文档都没读到时直接报错。否则容器里克隆文档失败，会被当成"所有文档都被删了"，把整个索引清空。
+- 踩过的坑：删除对象并提交后再读 old.source 会报 ObjectDeletedError（对象已过期），所以遍历时直接用字典的 key。
+"""
 
 import time
 

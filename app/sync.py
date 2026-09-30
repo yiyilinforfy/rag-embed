@@ -1,6 +1,20 @@
-"""Pull the docs repo from GitHub and re-index whatever changed.
+"""文档同步：从 GitHub 拉取最新文档，再做增量入库。
 
-Triggered by scripts/sync_docs.py (cron), the periodic task in app.main, POST /api/sync, or the GitHub webhook.
+学习笔记
+- 为什么需要：文档会更新，索引要跟着更新。三层增量（提交号 / 文件哈希 / chunk 文本）让同步很便宜：
+  没有变化时一次同步只要几秒，不产生任何 embedding 调用。
+- 流程：git rev-parse HEAD（当前版本）→ git fetch origin dev → 对比 FETCH_HEAD → 有新提交就切过去 → ingest()。
+  即使没有新提交也会跑一次 ingest：没变化时很快，还能补上"上次拉了代码但入库失败"的情况。
+- 四种触发方式（最终都调用 sync_docs）：
+  1. 定时：main.py 里的后台任务，每小时检查一次距上次成功同步是否已满 SYNC_INTERVAL_MINUTES（线上是 7 天）。
+     上次成功的时间记在 data/.last_sync 文件里，所以进程重启不会重新计时。
+  2. 手动：POST /api/sync（需要 X-Admin-Token 请求头），或者命令行 scripts/sync_docs.py。
+  3. GitHub webhook：仓库一有推送，GitHub 主动 POST 到 /api/webhooks/github；
+     用 HMAC-SHA256 签名（verify_github_signature）确认请求确实来自 GitHub，而不是别人伪造的。
+  4. GitHub Actions：在文档仓库里加一个工作流，推送后用 curl 调用 /api/sync（效果和 webhook 一样，还能按目录过滤）。
+  webhook 和 Actions 都要求后端有公网地址。webhook 不属于 CI/CD，它只是"事件发生时通知你"的机制。
+- 锁：同一进程里同一时间只允许一个同步或入库在跑，避免定时任务和 webhook 撞在一起重复入库（撞上时返回 409）。
+- 文档仓库是私有的：容器里靠 DOCS_REPO_TOKEN（只读 token，通过 git 凭据助手传入，见 docker/entrypoint.sh）。
 """
 
 import hashlib

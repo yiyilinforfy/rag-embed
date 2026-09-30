@@ -1,3 +1,13 @@
+# 学习笔记：把后端打包成镜像，部署到 VKube container service
+# - 构建流程：Mac 上 buildx 交叉编译出 linux/amd64 镜像（服务器 CPU 架构和 Apple 芯片不同）→ 推送到 Docker Hub
+#   → container service 拉取运行，配置全部以环境变量注入（参考 .env.example）。
+# - 分层缓存：先只复制 pyproject.toml / uv.lock 安装依赖，再复制代码。改代码不会触发重新安装依赖，构建快很多。
+# - 镜像里不包含任何密钥（.dockerignore 排除了 .env*），也不包含文档：容器启动时由 entrypoint.sh 克隆文档。
+# - 安全：用非 root 用户 app 运行。
+# - HEALTHCHECK：平台据此判断容器是否健康。
+# - 只开 1 个 worker：限流计数存在进程内存里（见 app/ratelimit.py），多开 worker 限流会失效。
+# - --proxy-headers：容器前面有平台的反向代理（负责 HTTPS），让应用能拿到真实的协议和客户端 IP。
+#
 # Build for the server's CPU, not the Mac's:
 #   docker buildx build --platform linux/amd64 -t <dockerhub-user>/vkube-rag:0.1.0 --push .
 FROM python:3.12-slim

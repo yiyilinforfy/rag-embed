@@ -5,6 +5,10 @@ Run it before switching providers (e.g. local Ollama bge-m3 -> SiliconFlow BAAI/
 
 EMBEDDING_BASE_URL=https://api.siliconflow.cn/v1 EMBEDDING_API_KEY=sk-... EMBEDDING_MODEL=BAAI/bge-m3 \
     uv run python -m scripts.check_embedding
+
+学习笔记：换 embedding 服务商之前，先确认新接口算出的向量和库里的旧向量"是同一套"。
+余弦相似度接近 1（这里阈值是 0.98）就能直接复用旧向量；否则必须 ingest --force 全部重算，
+不然问题向量和文档向量不在同一个空间里，检索结果会是乱的。本地 Ollama 和硅基流动的 bge-m3 实测是 0.9999。
 """
 
 import argparse

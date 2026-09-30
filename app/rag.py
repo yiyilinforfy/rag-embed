@@ -1,4 +1,23 @@
-"""Retrieve relevant chunks, put them into the prompt, and let the LLM answer from them."""
+"""RAG 核心：检索相关 chunk → 放进 prompt → 让大模型基于资料回答。
+
+学习笔记
+- 一次提问的流程（prepare → 兜底 → 生成）：
+  1. trim_history：多轮对话只保留最近的历史（条数、单条长度、总长度三重限制），聊得再久，请求大小也有上限。
+  2. rewrite_question：有历史时，先让 LLM 把追问改写成独立的问题，再拿去检索。
+     例："那怎么删除它？" → "如何在 VKube 中删除安全组？"。直接拿追问去做向量检索，是找不到相关内容的。
+     第一问不改写（不增加延迟）；改写失败就退回原问题，不影响回答。
+  3. retrieve：向量检索 + MIN_SCORE 阈值过滤。
+  4. 兜底一：没有 chunk 超过阈值 → 直接返回 NO_ANSWER，不调 LLM（省钱，也防止模型瞎编）。
+  5. build_messages：历史消息 + 最后一条"模板（检索资料 + 原问题）"。
+     只有当前这一轮带检索资料，历史轮次不重复发送旧资料，prompt 大小可控。
+  6. 兜底二：PROMPT_TEMPLATE 第 4 条规则——资料不够就说文档没写，不要猜。
+- 模板用 str.replace 而不是 str.format：chunk 里有大量 JSON/YAML 的 { }，用 format 会报错。
+- 流式（stream_answer）的事件顺序：sources（参考来源 + 改写后的检索问题 query）→ 多个 token → end。
+  先推来源，前端能立刻显示"参考了哪些文档"。
+- 来源去重：一个长小节可能被切成多个 chunk，展示时按 URL 去重。
+- 可以改进：模板没要求模型标 [n] 引用，所以来源目前是"检索到的全部 chunk"；
+  可以加上引用规则、回答语言规则、防 prompt 注入规则。
+"""
 
 import logging
 import re

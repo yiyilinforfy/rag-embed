@@ -1,10 +1,22 @@
-"""Turn VuePress Markdown files into retrievable chunks.
+"""把 VuePress Markdown 文件切成可检索的 chunk（纯 Python，不需要任何模型）。
 
-Strategy:
-1. Split a file into sections at headings (ignoring "#" lines inside code blocks).
-2. If a heading together with all its sub-headings fits in max_chars, keep it as one chunk;
-   otherwise emit the heading's own text and repeat for each sub-heading.
-3. Split sections that are still too long by paragraphs / code blocks.
+学习笔记
+- 流程位置：离线建索引的第一步。切分质量决定了检索效果的上限：切坏了，后面的模型再好也找不到。
+- 为什么按标题切：文档本来就按标题组织，一个小节通常只讲一件事，天然是一个语义单元。
+- 策略（从粗到细）：
+  1. 按标题把文件切成小节（忽略代码块里的 "#" 行，否则 shell 注释会被当成标题）。
+  2. 一个标题连同它所有子标题，如果总长不超过 max_chars（1000 字），整棵子树合成一个 chunk；
+     否则先输出这个标题自己的正文，再对每个子标题递归处理。
+     踩过的坑：最早的版本把同级的多个 API 小节合并进同一个 chunk，检索时互相干扰；
+     改成"按子树合并"后，chunk 从 232 个降到 113 个（master 分支），检索也更准了。
+  3. 很短的父标题正文（<80 字）会并进第一个子 chunk，避免出现只有一句话的碎片。
+  4. 仍然太长的小节，按段落和代码块切；还不行就硬切；太小的碎片会合并回去。
+  5. 超长代码块（CLI 输出、大段 JSON）截断到 800 字：这类内容对检索帮助小，还会稀释向量的语义。
+- clean_markdown：去掉 <script>/<style> 标签和 ::: 容器标记，图片换成 [图片: alt]，链接只留文字，
+  这些都是对检索没用的噪声。
+- 锚点：slugify + unique_anchor 复刻 VuePress 1.x 的标题 id 规则（重复标题加 -2、-3），
+  这是对照线上文档站的 JS 代码核实过的，保证生成的 url 能跳到正确的小节。
+- 验证：scripts/preview_chunks.py 预览切分结果；tests/test_chunker.py 覆盖代码块里的 #、锚点、子树合并、代码截断。
 """
 
 import hashlib

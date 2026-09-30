@@ -4,6 +4,14 @@ For each question we know which doc file should answer it. hit@k = the file show
 Re-run this after changing the chunker, the embedding model or the search logic, and compare the numbers.
 
 uv run python -m scripts.eval_search
+
+学习笔记
+- 为什么要评测：改切分、换模型、调检索之后，"感觉变好了"不可靠，要用一套固定题目算出数字来比较。
+- 指标：
+  hit@1  正确文档排在第 1 位的比例；hit@5  正确文档出现在前 5 名的比例（RAG 默认取 5 条给 LLM，这个最关键）。
+  MRR    正确文档排名倒数的平均值（第 1 名得 1 分，第 2 名 0.5 分，第 3 名 0.33 分……），衡量"排得有多靠前"。
+- 历史结果：本地 Ollama hit@1 = 21/22，MRR = 0.970；线上 Supabase + 硅基流动 hit@1 = 20/22，hit@5 = 22/22，MRR = 0.947。
+- 局限：只评测"检索找得准不准"，不评测"回答写得对不对"。下一步可以加上回答质量的评测（忠于资料、答案正确）。
 """
 
 from app.search import search

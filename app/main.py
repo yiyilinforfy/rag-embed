@@ -1,7 +1,23 @@
-"""HTTP API for the RAG backend.
+"""HTTP API：FastAPI 应用，把前面所有模块组装成对外的接口。
 
-uv run uvicorn app.main:app --reload --port 8001
-Interactive docs: http://127.0.0.1:8001/docs
+学习笔记
+- 接口一览：
+  GET  /api/health           健康检查（公开）：文档数、chunk 数、当前使用的模型
+  POST /api/ask              一次性返回完整回答（需要钱包地址）
+  POST /api/ask/stream       SSE 流式回答（需要钱包地址），前端用的是这个
+  POST /api/ingest           只重新入库，不拉取代码（需要 X-Admin-Token）
+  POST /api/sync             git 拉取 + 增量入库（需要 X-Admin-Token）
+  POST /api/webhooks/github  GitHub 推送通知（校验 HMAC 签名，先返回 202，再在后台同步）
+- 一次提问的处理顺序：pydantic 校验参数 → current_user 鉴权 → acquire_ask_slot 限流 → rag.stream_answer → SSE。
+- SSE（Server-Sent Events）：响应类型是 text/event-stream，每个事件是 `data: <json>\n\n`。
+  注意：响应头一旦发出就不能再改状态码，所以流式过程中出的错只能作为 {"type": "error"} 事件放在流里发送。
+  限流放在开始流式之前检查，这样超限返回的是正常的 429，而不是流里的错误事件。
+- 请求体：question + 可选的 history（最多 50 条，role 只允许 user/assistant，防止伪造 system 消息改写规则）。
+- CORS：浏览器跨域调用时，后端要声明允许哪些来源（CORS_ORIGINS）；
+  expose_headers 让前端 JavaScript 能读到 Retry-After 响应头。
+- lifespan：应用启动时开一个后台任务，做定时文档同步（SYNC_INTERVAL_MINUTES > 0 时）。
+- 运行：本地 `uv run uvicorn app.main:app --reload --port 8001`，交互式文档在 http://127.0.0.1:8001/docs；
+  线上由 Dockerfile 启动（不带 --reload，只开 1 个 worker）。
 """
 
 import asyncio
