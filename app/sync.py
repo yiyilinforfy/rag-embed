@@ -3,7 +3,7 @@
 学习笔记
 - 为什么需要：文档会更新，索引要跟着更新。三层增量（提交号 / 文件哈希 / chunk 文本）让同步很便宜：
   没有变化时一次同步只要几秒，不产生任何 embedding 调用。
-- 流程：git rev-parse HEAD（当前版本）→ git fetch origin dev → 对比 FETCH_HEAD → 有新提交就切过去 → ingest()。
+- 流程：仓库不存在就先克隆（_ensure_clone）→ git rev-parse HEAD（当前版本）→ git fetch origin dev → 对比 FETCH_HEAD → 有新提交就切过去 → ingest()。
   即使没有新提交也会跑一次 ingest：没变化时很快，还能补上"上次拉了代码但入库失败"的情况。
 - 四种触发方式（最终都调用 sync_docs）：
   1. 定时：main.py 里的后台任务，每小时检查一次距上次成功同步是否已满 SYNC_INTERVAL_MINUTES（线上是 7 天）。
@@ -52,12 +52,27 @@ def sync_is_due(interval_minutes: int) -> bool:
     return time.time() - last >= interval_minutes * 60
 
 
-def _git(*args: str) -> str:
-    repo = get_settings().docs_repo_dir
-    result = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, timeout=120)
+def _run_git(args: list[str]) -> str:
+    result = subprocess.run(["git", *args], capture_output=True, text=True, timeout=120)
     if result.returncode != 0:
         raise SyncError(f"git {' '.join(args)} failed: {result.stderr.strip()}")
     return result.stdout.strip()
+
+
+def _git(*args: str) -> str:
+    return _run_git(["-C", str(get_settings().docs_repo_dir), *args])
+
+
+def _ensure_clone() -> None:
+    # The entrypoint's clone can fail (no token yet, network); without this, every later sync would fail too.
+    settings = get_settings()
+    if (settings.docs_repo_dir / ".git").exists():
+        return
+    settings.docs_repo_dir.parent.mkdir(parents=True, exist_ok=True)
+    _run_git(
+        ["clone", "--quiet", "--depth", "1", "--branch", settings.docs_branch,
+         settings.docs_repo_url, str(settings.docs_repo_dir)]
+    )
 
 
 def reindex(force: bool = False) -> dict:
@@ -75,6 +90,7 @@ def sync_docs(force: bool = False) -> dict:
     if not _lock.acquire(blocking=False):
         raise SyncBusy("another sync / ingest is running")
     try:
+        _ensure_clone()
         before = _git("rev-parse", "HEAD")
         _git("fetch", "--quiet", "origin", settings.docs_branch)
         after = _git("rev-parse", "FETCH_HEAD")

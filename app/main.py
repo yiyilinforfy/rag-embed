@@ -15,7 +15,8 @@
 - 请求体：question + 可选的 history（最多 50 条，role 只允许 user/assistant，防止伪造 system 消息改写规则）。
 - CORS：浏览器跨域调用时，后端要声明允许哪些来源（CORS_ORIGINS）；
   expose_headers 让前端 JavaScript 能读到 Retry-After 响应头。
-- lifespan：应用启动时开一个后台任务，做定时文档同步（SYNC_INTERVAL_MINUTES > 0 时）。
+- lifespan：应用启动时开一个后台任务：先等数据库就绪并建表（init_db，可以重复执行），
+  再做定时文档同步（SYNC_INTERVAL_MINUTES > 0 时）。全新的空数据库启动后会自动建表，第一次同步时自动入库。
 - 运行：本地 `uv run uvicorn app.main:app --reload --port 8001`，交互式文档在 http://127.0.0.1:8001/docs；
   线上由 Dockerfile 启动（不带 --reload，只开 1 个 worker）。
 """
@@ -36,7 +37,7 @@ from sqlalchemy import func, select, text
 
 from app.auth import AuthUser, current_user
 from app.config import get_settings
-from app.db import SessionLocal
+from app.db import SessionLocal, init_db
 from app.models import Chunk, Document
 from app.rag import answer_question, source_dicts, stream_answer
 from app.ratelimit import RateLimited, ask_limiter
@@ -45,6 +46,7 @@ from app.sync import SyncBusy, reindex, sync_docs, sync_is_due, verify_github_si
 logger = logging.getLogger(__name__)
 
 SYNC_CHECK_SECONDS = 3600
+DB_RETRY_SECONDS = 3
 
 
 def run_sync(source: str) -> None:
@@ -56,10 +58,22 @@ def run_sync(source: str) -> None:
         logger.exception("docs sync (%s) failed", source)
 
 
-async def periodic_sync(minutes: int) -> None:
-    # Check hourly instead of sleeping the whole interval: a restart would otherwise restart the countdown.
+async def wait_for_db() -> None:
+    # The database container in the same pod may still be starting; keep the API up and retry meanwhile.
     while True:
-        if sync_is_due(minutes):
+        try:
+            await run_in_threadpool(init_db)
+            return
+        except Exception as exc:
+            print(f"[startup] database not ready ({type(exc).__name__}), retrying in {DB_RETRY_SECONDS}s")
+            await asyncio.sleep(DB_RETRY_SECONDS)
+
+
+async def startup_tasks(sync_minutes: int) -> None:
+    await wait_for_db()
+    # Check hourly instead of sleeping the whole interval: a restart would otherwise restart the countdown.
+    while sync_minutes > 0:
+        if sync_is_due(sync_minutes):
             await run_in_threadpool(run_sync, "periodic")
         await asyncio.sleep(SYNC_CHECK_SECONDS)
 
@@ -67,11 +81,9 @@ async def periodic_sync(minutes: int) -> None:
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     # Runs once per worker process; with several workers prefer cron + scripts/sync_docs.py.
-    minutes = get_settings().sync_interval_minutes
-    task = asyncio.create_task(periodic_sync(minutes)) if minutes > 0 else None
+    task = asyncio.create_task(startup_tasks(get_settings().sync_interval_minutes))
     yield
-    if task:
-        task.cancel()
+    task.cancel()
 
 
 app = FastAPI(title="VKube RAG Backend", lifespan=lifespan)

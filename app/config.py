@@ -54,6 +54,7 @@ class Settings(BaseSettings):
     llm_api_key: str = ""
     llm_model: str = "deepseek-chat"
 
+    docs_repo_url: str = "https://github.com/virtualeconomy/vcloud-doc.git"
     docs_repo_dir: Path = PROJECT_ROOT / "data" / "vcloud-doc"
     docs_branch: str = "dev"
     docs_dir: Path = PROJECT_ROOT / "data" / "vcloud-doc" / "docs"
