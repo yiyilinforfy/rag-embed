@@ -9,7 +9,9 @@
 - get_settings() 用 lru_cache 缓存，整个进程只读一次配置：改了 .env 要重启进程才生效。
 - 几组关键参数：
   embedding_*      换 embedding 服务商时改这里，但模型必须和建索引时一致（用 scripts/check_embedding.py 验证）
-  top_k/min_score  检索取几条、低于多少分算无关（0.45 是实测校准出来的）
+  top_k/min_score  检索取几条；MIN_SCORE 比向量余弦（进 LLM 前）
+  rerank_*         Reranker：开关、模型、候选数；RERANK_MIN_SCORE 比重排分（进 LLM 前第二道闸）
+  section_dedupe   同一 source + heading 只保留一个 chunk 的策略（auto：不重排时开，重排时关）
   history_*        多轮对话发给 LLM 的历史预算
   rate_limit_*     按钱包地址限流的参数
   sync_* / admin_token / github_webhook_secret   文档同步相关
@@ -19,8 +21,9 @@
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
-from pydantic import field_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -53,6 +56,9 @@ class Settings(BaseSettings):
     llm_base_url: str = "https://api.deepseek.com/v1"
     llm_api_key: str = ""
     llm_model: str = "deepseek-chat"
+    # Ollama OpenAI-compat (/v1) ignores "think"; use reasoning_effort="none" to disable Qwen3 thinking.
+    # Leave empty for DeepSeek and other providers that do not accept the field.
+    llm_reasoning_effort: str = ""
 
     docs_repo_url: str = "https://github.com/virtualeconomy/vcloud-doc.git"
     docs_repo_dir: Path = PROJECT_ROOT / "data" / "vcloud-doc"
@@ -69,9 +75,36 @@ class Settings(BaseSettings):
     github_webhook_secret: str = ""
 
     top_k: int = 5
-    # Chunks scoring below this are treated as unrelated. Measured with bge-m3 on these docs:
-    # on-topic questions score ~0.64-0.77, clearly off-topic ones ~0.31-0.42.
-    min_score: float = 0.45
+    # Vector cosine gate applied AFTER Top-K (see search.apply_score_gates).
+    # Calibrated on bge-m3 + these docs: on-topic ~0.64-0.77, clear off-topic ~0.31-0.42.
+    # Never compared with BM25 or reranker scores.
+    min_score: float = Field(default=0.45, ge=0.0, le=1.0)
+
+    # Reranker: re-scores the vector candidates in one batch call to a Jina/Cohere-style
+    # POST {base_url}/rerank endpoint (SiliconFlow serves BAAI/bge-reranker-v2-m3 this way).
+    rerank_enabled: bool = False
+    rerank_base_url: str = "https://api.siliconflow.cn/v1"
+    rerank_api_key: str = ""
+    # SiliconFlow's free tier; the "Pro/..." variant of the same model is billed per token.
+    rerank_model: str = "BAAI/bge-reranker-v2-m3"
+    # Set true only after deciding to pay for a "Pro/..." reranker model.
+    rerank_allow_paid_model: bool = False
+    # Vector candidates sent to the reranker; the final number of results is still top_k.
+    rerank_candidates: int = Field(default=20, ge=1, le=100)
+    rerank_timeout_seconds: float = Field(default=10.0, gt=0)
+    # On reranker failure: "vector" logs it and returns the plain vector ranking; "error" fails the request.
+    rerank_fallback: Literal["vector", "error"] = "vector"
+    # Second gate AFTER Top-K, on rerank_score (bge-reranker-v2-m3). 0 = disabled.
+    # Calibrated on hybrid eval (103 cases): clear OOS max-rr often <0.03; answerable p10≈0.34
+    # but a long tail exists (~0.005). 0.05 blocks ~4/8 OOS with ~3/95 false refuses — tune via eval.
+    rerank_min_score: float = Field(default=0.05, ge=0.0, le=1.0)
+    # Keep one chunk per (source, heading)? auto = on for plain vector search, off when the reranker orders results.
+    section_dedupe: Literal["auto", "on", "off"] = "auto"
+
+    # Hybrid retrieval: vector Top-N ∪ BM25 Top-N → (optional) Reranker → Top-K.
+    # Off by default so existing deployments keep the vector-only path until explicitly enabled.
+    hybrid_enabled: bool = False
+    bm25_candidates: int = Field(default=20, ge=1, le=100)
 
     # Multi-turn: only the most recent part of the conversation is sent to the LLM.
     history_max_messages: int = 6
@@ -86,6 +119,18 @@ class Settings(BaseSettings):
 
     # Frontends allowed to call the API from the browser (VKube web dev server by default).
     cors_origins: list[str] = ["http://localhost:9527", "http://127.0.0.1:9527"]
+
+    @model_validator(mode="after")
+    def rerank_needs_a_key(self) -> "Settings":
+        # Fail at startup instead of falling back on every request with a 401.
+        if self.rerank_enabled and not self.rerank_api_key:
+            raise ValueError("RERANK_ENABLED=true requires RERANK_API_KEY")
+        if self.rerank_model.startswith("Pro/") and not self.rerank_allow_paid_model:
+            raise ValueError(
+                f"RERANK_MODEL={self.rerank_model} is a paid SiliconFlow model; "
+                "use BAAI/bge-reranker-v2-m3 or set RERANK_ALLOW_PAID_MODEL=true"
+            )
+        return self
 
 
 @lru_cache

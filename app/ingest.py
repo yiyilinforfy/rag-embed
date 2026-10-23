@@ -101,4 +101,16 @@ def ingest(force: bool = False) -> dict:
             print(f"deleted {source}")
         session.commit()
 
+    # Keep the in-memory BM25 corpus aligned with whatever just landed in Postgres.
+    try:
+        from app.bm25_index import rebuild_bm25_index
+
+        stats["bm25_chunks"] = rebuild_bm25_index()
+    except Exception:
+        # Ingest itself succeeded; sparse search will lazy-rebuild or degrade on next query.
+        import logging
+
+        logging.getLogger(__name__).exception("BM25 rebuild after ingest failed")
+        stats["bm25_chunks"] = 0
+
     return stats

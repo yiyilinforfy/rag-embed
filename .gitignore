@@ -11,3 +11,7 @@ __pycache__/
 
 # Cloned docs repo and sync state
 data/
+
+# Eval run outputs and labeling scratch files
+evals/runs/
+evals/drafts/

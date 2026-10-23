@@ -1,0 +1,1870 @@
+[
+  {
+    "id": "cli-install",
+    "category": "direct",
+    "question": "怎么安装 vkube 命令行工具",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "需要 Python 版本大于等于 3.7",
+      "用 `pip3 install vkube` 安装",
+      "可用 `vkube version` 查看版本，用 `pip3 install --upgrade vkube` 升级"
+    ]
+  },
+  {
+    "id": "cli-workflow-auto-deploy",
+    "category": "direct",
+    "question": "怎么用工作流自动部署我的服务",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 1
+      },
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 如何触发工作流",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "在项目根目录创建 `.github/workflows/deploy.yaml`，并用 vkube-cli-action 指向 `VKubefile.yaml`",
+      "在 GitHub Secrets 中配置镜像仓库凭证与 `VKUBE_TOKEN`",
+      "推送到目标分支、提交 PR 或手动触发均可启动部署工作流"
+    ]
+  },
+  {
+    "id": "dev-lua-script-libs",
+    "category": "direct",
+    "question": "Lua 脚本功能使用提供了哪些库",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "内置 7 个主要库：string、math、base、VsysService、VsysHttp、VsysRefund、SystemUtils",
+      "VsysHttp 提供 get、post、postwosign 等方法",
+      "VsysRefund 提供 refundVsys 与 refundToken；SystemUtils 的 preventDefault 可将 UserService 初始设为 ServicePending"
+    ]
+  },
+  {
+    "id": "guide-early-terminate",
+    "category": "direct",
+    "question": "订单可以提前解约吗",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/advance-termination.md",
+        "heading": "订单提前解约",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "可以在用户服务界面通过 Refund Service 对运行中的服务发起退款",
+      "步骤是先 Show Running User Service，再选 Refund Service，输入服务序号后确认"
+    ]
+  },
+  {
+    "id": "guide-pay-pending-order",
+    "category": "direct",
+    "question": "购买流程里怎么支付未付款订单",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Main Services 进入 Order Service，用 Show Pending Order 查看未支付订单",
+      "选择 Pay An Order，输入订单序号、支付方式和数额，再输入 y 确认支付"
+    ]
+  },
+  {
+    "id": "guide-service-expiry",
+    "category": "direct",
+    "question": "服务到期时间是怎么计算的",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/service-expired.md",
+        "heading": "服务结束计算",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "平台根据订单是否有 serviceExpiredDate 和 duration 决定期限计算方式",
+      "默认付款后即开始计时；若供应商调用 preventDefault，则需用户启动服务后才开始计时",
+      "按小时数字输入时时长等于结束时间减起始时间；按字符串日期输入时结束时间就是用户输入的时间"
+    ]
+  },
+  {
+    "id": "log-add-datasource",
+    "category": "direct",
+    "question": "日志查询要怎么添加数据源",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 添加数据源",
+        "grade": 2
+      },
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "在 Grafana 数据源页面选择 Loki data source",
+      "数据源连接配置地址为 https://<your-grafana-account>.grafana.net/connections/add-new-connection"
+    ]
+  },
+  {
+    "id": "log-bind-service",
+    "category": "direct",
+    "question": "怎么把服务绑定到日志抓取",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/log-hosting/bind-containers.md",
+        "heading": "日志抓取管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "将容器服务与日志托管服务绑定后，系统会抓取该容器服务下所有容器的日志并托管到云端",
+      "容器服务和日志托管服务都必须属于当前用户，否则绑定会失败"
+    ]
+  },
+  {
+    "id": "nw-topup",
+    "category": "direct",
+    "question": "node watcher 服务怎么充值",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Purchase 页面对账户扣款模式服务点击 Topup 进入充值",
+      "最低充值额度为 1 美元，生成订单后到 My Orders 完成支付",
+      "订单状态为 Filed 表示支付完成，可在 Node Watcher 页面查看余额"
+    ]
+  },
+  {
+    "id": "sup-duration-service",
+    "category": "direct",
+    "question": "商品服务期限是怎么确定的",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "默认在付款后运行 start Lua 脚本并创建 UserService，状态为 ServiceRunning 开始计费",
+      "调用 preventDefault 时 UserService 初始为 ServicePending，不计费，需资源节点再通知开始计时",
+      "SDK 节点每小时检查期限，到期将状态改为 ServiceDone 并运行 stop 脚本"
+    ]
+  },
+  {
+    "id": "sup-manage-product",
+    "category": "direct",
+    "question": "管理已上架的商品可以做什么",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可用供应商 cli 命令 `python vcloud.py service --template YOUR-YAML-FILE` 上传更新后的模版",
+      "除 service 与 service category 名称外可更新已上架信息；改名会生成新条目且旧信息不删除",
+      "provider 与 walletAddress 注册后暂时无法更新；删除服务功能正在开发中"
+    ]
+  },
+  {
+    "id": "sup-price-auditing",
+    "category": "direct",
+    "question": "费用核算怎么做",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/price-auditing.md",
+        "heading": "费用核算",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "结算货币为 VSYS Coin 以及供应商定义的 VSYS Chain Token",
+      "订单数额 = 服务时间 t × 基础价格 p × 打折系数 r",
+      "用户主动退款：退款 Token 数量 =（剩余时长 × 单位时间价值 − 0.1）× 汇率 y，其中 0.1 为交易手续费"
+    ]
+  },
+  {
+    "id": "sup-refund-when",
+    "category": "direct",
+    "question": "什么情况下可以退款",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务供应商资源节点资源不足时，用户部署或使用会自动执行退款",
+      "用户想提前结束订单时，可通过用户 cli 客户端发起退款请求",
+      "一个订单只能执行一次退款，退款后服务停止使用"
+    ]
+  },
+  {
+    "id": "svc-config-batch-update",
+    "category": "direct",
+    "question": "如何批量更新服务里的配置文件",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 对服务内配置文件的批量更新",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "更新托管配置时开启覆盖并重启引用服务的选项",
+      "引用该托管配置的服务会同步更新配置并重启 Pod",
+      "批量更新可能有约一分钟延迟，且服务会重启"
+    ]
+  },
+  {
+    "id": "svc-example-simple-deploy",
+    "category": "direct",
+    "question": "简单部署使用怎么操作",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 简单部署使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "购买资源并付款后获取 Access Token（Secret），在 containers 中导入后即可部署",
+      "部署时需填写 Image、Name、Ram Unit 以及 Container Port 与 Host Port",
+      "部署成功后可通过 `http://HostIP:HostPort/` 访问服务"
+    ]
+  },
+  {
+    "id": "svc-sg-create",
+    "category": "direct",
+    "question": "怎么创建安全组",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 创建安全组",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "在侧边栏进入 Security Group 管理界面",
+      "点击 Create Security Group 创建安全组",
+      "安全组是区域内资源，只能加入同一区域的服务"
+    ]
+  },
+  {
+    "id": "vk-access-token-create-use",
+    "category": "direct",
+    "question": "访问令牌怎么创建和使用",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/accessToken.md",
+        "heading": "令牌",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在左侧导航进入 Access Token 页面，点击 Add，填写 UserServiceID 并选择过期时间后 Confirm 创建",
+      "创建后可复制访问令牌，在 Containers 页面 Import 导入服务",
+      "访问令牌可由所有者分配给他人协同管理，并可激活、停用、设置过期或删除；过期令牌无法作为服务凭证使用"
+    ]
+  },
+  {
+    "id": "vk-container-alias",
+    "category": "direct",
+    "question": "Alias功能怎么用，同一region里怎么用别名访问服务",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Alias 给服务起别名，同一 region 内其他服务可用「别名:端口」访问",
+      "需配置 Alias、Alias Port、Container Port 和 Protocol（TCP/UDP）",
+      "浏览器无法通过别名访问网页服务"
+    ]
+  },
+  {
+    "id": "vk-rollback-record",
+    "category": "direct",
+    "question": "回滚功能怎么记录和恢复部署配置",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "部署时可勾选 Record 并填写 tag，或对运行中服务用 Actions 的 Record Deployment 记录配置",
+      "Redeploy 时打开 Record/Deployment History，可 Preview、Apply 或 Remove 记录",
+      "Apply 可将历史配置应用到当前重新部署"
+    ]
+  },
+  {
+    "id": "vk-subdomain-access",
+    "category": "direct",
+    "question": "Subdomain Access子域名访问怎么配置",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "部署时在 Path Routing 中 Add Routing，配置 Container Port、Path 和可选的 Rewrite",
+      "子域名由平台自动分配，无需自备域名，且走 HTTPS",
+      "部署成功后在 view containers 中查看 subdomain，用域名加 Path 访问服务"
+    ]
+  },
+  {
+    "id": "cli-workflow-github-push",
+    "category": "paraphrase",
+    "question": "我往 GitHub 推代码之后能自动发布新版本吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 如何触发工作流",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "配置好 GitHub Actions 工作流后，推送到目标分支会触发部署",
+      "向目标分支提交 PR 也会触发工作流",
+      "触发分支可按需改成 main、master、dev 等"
+    ]
+  },
+  {
+    "id": "guide-cli-below-min-version",
+    "category": "paraphrase",
+    "question": "启动客户端时提示版本太旧不能继续用，该怎么办",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 版本检查",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "若 CLI 版本低于最小支持版本，必须退出并更新后才能继续使用",
+      "可用 pip install -U v-cloud-market-cli-user 更新客户端"
+    ]
+  },
+  {
+    "id": "guide-find-bought-service",
+    "category": "paraphrase",
+    "question": "买完云服务后在哪里能看到登录信息",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/use-service.md",
+        "heading": "使用服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在主界面进入 User Service，选择 Show Usable User Service 查看可用服务",
+      "选择 User Service Usage Info 可查看 Service Login Information"
+    ]
+  },
+  {
+    "id": "log-resource-unit-size",
+    "category": "paraphrase",
+    "question": "买日志托管时一个资源单位能存多少日志",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/log-hosting/README.md",
+        "heading": "介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "每一个 Resource-Unit 对应 5Gi 的日志存储空间"
+    ]
+  },
+  {
+    "id": "nw-free-quota",
+    "category": "paraphrase",
+    "question": "监控链上事件没充钱也能用吗，额度怎么算",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/node-watcher/README.md",
+        "heading": "功能介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "新用户注册后有 1000 次免费额度，之后每月 1 号也会获得 1000 次免费额度",
+      "免费额度未用完时优先扣免费额度，用完后需充值才能继续使用",
+      "每次 webhook 收费为 1 美分"
+    ]
+  },
+  {
+    "id": "sup-billing-start-delay",
+    "category": "paraphrase",
+    "question": "用户付完款后不想立刻开始计费，要等资源真正就绪再计时，该怎么做",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      },
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "在 start Lua 脚本中调用 SystemUtils 的 preventDefault()",
+      "此时创建的 UserService 初始状态为 ServicePending，不会开始计费",
+      "资源就绪后由资源节点请求 SDK 节点开始 UserService 计时，状态变为 ServiceRunning"
+    ]
+  },
+  {
+    "id": "sup-register-service-yaml",
+    "category": "paraphrase",
+    "question": "作为供应商要把自己的服务登记到平台上，信息要写成什么格式怎么提交",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务信息需写成 yaml 格式模版",
+      "通过供应商 cli 客户端把模版传到供应商节点",
+      "节点验证后再传到平台节点解析并注册"
+    ]
+  },
+  {
+    "id": "sup-wallet-change",
+    "category": "paraphrase",
+    "question": "我已经注册成供应商了，还能改收款钱包地址吗",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "供应商信息一旦提交注册暂时无法更新",
+      "provider 和 walletAddress 不可更新，因为用于鉴定和区分不同供应商"
+    ]
+  },
+  {
+    "id": "svc-faq-os",
+    "category": "paraphrase",
+    "question": "VKube 支持哪些操作系统",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > Which operating systems does VKube support?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKube 支持 Ubuntu 操作系统"
+    ]
+  },
+  {
+    "id": "svc-hosted-config-deploy",
+    "category": "paraphrase",
+    "question": "部署的时候能不能直接选用我已经托管好的配置",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 部署服务时使用托管配置文件",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "部署时可点 From hosted config，按 id 或 name 搜索并选用托管配置",
+      "选用后可做仅针对本次部署的临时编辑，不会改动托管原文件",
+      "使用托管配置后，可通过更新托管文件批量更新多个服务的配置"
+    ]
+  },
+  {
+    "id": "svc-private-image",
+    "category": "paraphrase",
+    "question": "私有仓库里的镜像怎么拉到平台上跑",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "支持 Docker Hub 与 ghcr，镜像名前加 `docker.io/` 或 `ghcr.io/`",
+      "勾选私有镜像后填写用户名和 Access Token",
+      "推荐用只读权限的 Access Token 授权"
+    ]
+  },
+  {
+    "id": "svc-sg-intranet-only",
+    "category": "paraphrase",
+    "question": "怎么让几个服务之间只能走内网互相访问",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 将服务引入或移出安全组",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "把需要互通的服务加入同一个安全组",
+      "组内服务只允许同组内网访问，不允许公网入站",
+      "组内服务仍可对外发起连接，组外或公网入站会被阻断",
+      "组内服务可通过 alias 做内网连接"
+    ]
+  },
+  {
+    "id": "vk-bind-custom-domain",
+    "category": "paraphrase",
+    "question": "怎么给容器绑定我自己的域名",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名绑定",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "先把域名的 A Record 指向服务所在机器的 nodeIP/Host IP",
+      "再在 VKUBE 中绑定域名、容器端口，并可选择是否启用 HTTPS（Letsencrypt）",
+      "绑定后可通过用户域名在公网访问已部署服务"
+    ]
+  },
+  {
+    "id": "vk-browser-terminal",
+    "category": "paraphrase",
+    "question": "能不能在浏览器里直接打开容器的终端",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "可以使用内置 Webterminal，直接在浏览器打开运行中 Container 的终端，无需本地配置 SSH",
+      "服务与目标 Container 需处于运行状态；在 Actions 中点 Open terminal，Connected 后即可输入命令"
+    ]
+  },
+  {
+    "id": "vk-expired-service-reuse",
+    "category": "paraphrase",
+    "question": "服务过期了部署配置还能留下来吗，怎么用来快速开新服务",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务过期后部署信息仍会保留",
+      "可用 Export Deployment Data 导出 yaml 与 config Files，或复制 token",
+      "部署新服务时可通过 clone 或 Clone Service by Token 复用过期服务配置"
+    ]
+  },
+  {
+    "id": "vk-service-to-service-whitelist",
+    "category": "paraphrase",
+    "question": "怎么限制只有指定的几个服务能访问我的容器",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "使用 Policy 白名单：只有规则中的服务才能访问当前服务",
+      "通过 Add Rules 添加 Single Service、Services of Owner 或 Specific Service of Owner",
+      "不添加任何 Rule 直接 Create Policy，则禁止所有服务访问"
+    ]
+  },
+  {
+    "id": "vk-stop-billing-unchanged",
+    "category": "paraphrase",
+    "question": "我把服务停了一段时间，到期时间会顺延吗",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop 不会停止计费，也不会延长过期时间",
+      "停止后可用 Start 重新启动，但 End Time 保持不变"
+    ]
+  },
+  {
+    "id": "cli-image-registry",
+    "category": "exact_term",
+    "question": "VKubefile.yaml 里的 imageRegistry 填什么",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 基础配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "`imageRegistry` 是必填项",
+      "目前支持填写 `docker` 或 `ghcr`",
+      "选定后推送镜像只能推到对应的镜像仓库"
+    ]
+  },
+  {
+    "id": "cli-registry-image-path",
+    "category": "exact_term",
+    "question": "registryImagePath 和 build 可以一起写吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 注意事项",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 镜像配置",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "`registryImagePath` 与 `build` 互斥，不能同时使用",
+      "使用 `build` 时必须提供 `imageName` 和 `tag`"
+    ]
+  },
+  {
+    "id": "cli-vkube-config-w",
+    "category": "exact_term",
+    "question": "vkube config -w 怎么用",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 简介",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "用 `vkube config -w DockerhubToken=...` 或 `GHCRToken=...` 写入镜像仓库凭证",
+      "部署前需先配置 DockerhubToken 或 GHCRToken，再写 VKubefile.yaml 并用 `vkube deploy` 部署"
+    ]
+  },
+  {
+    "id": "dev-refundvsys-fn",
+    "category": "exact_term",
+    "question": "refundVsys 函数的参数是什么、做什么用",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "签名为 refundVsys(int amount, string recipient, string orderID)",
+      "将订单 orderID 退款数额 amount 原路返回到 vsys 账户地址 recipient"
+    ]
+  },
+  {
+    "id": "dev-service-refund-api",
+    "category": "exact_term",
+    "question": "POST /api/v1/order/serviceRefund/:id 什么时候调用，请求体 stopService 是什么意思",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > Order 退款 API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "当用户申请的资源在资源节点上不足时，资源节点调用该 API 退款",
+      "路径中的 id 为订单 ID",
+      "请求体字段 stopService（bool）表示退款时是否执行停止资源的 lua 脚本"
+    ]
+  },
+  {
+    "id": "guide-install-claude-skill",
+    "category": "exact_term",
+    "question": "怎么在 Claude Code 里安装 vcloud skill",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "仅安装到 Claude Code 使用命令：vcloud skill install --target claude",
+      "安装路径为 ~/.claude/skills/vcloud-cli/"
+    ]
+  },
+  {
+    "id": "guide-pip-install-cli",
+    "category": "exact_term",
+    "question": "pip 安装用户 cli 的包名是什么，测试网怎么启动",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "安装命令为 pip install v-cloud-market-cli-user",
+      "主网使用 vcloud，测试网使用 vcloud -t"
+    ]
+  },
+  {
+    "id": "log-secret-header",
+    "category": "exact_term",
+    "question": "Grafana 里配置日志数据源时 HTTP headers 要加哪个字段",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Authentication method 设为 No Authentication",
+      "在 HTTP headers 中添加首部字段 Secret，值为 Log Host 服务的验证令牌"
+    ]
+  },
+  {
+    "id": "nw-topic-name-structure",
+    "category": "exact_term",
+    "question": "node watcher 的 topic 名称是什么结构",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > Topic Name 结构",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Topic Name 是以 /chain/vsys、/network、/event_type、/transaction_type 等路径段组成的过滤路径",
+      "合约执行事件可包含 contract_id、contract_type、function_index/function、contract_sender、contract_recipient 等段",
+      "普通支付事件使用 transaction_type/Payment，以及 sender、recipient；新增区块事件仅需 event_type/BlockAppended"
+    ]
+  },
+  {
+    "id": "sup-duration-to-price",
+    "category": "exact_term",
+    "question": "yaml 模版里 services 的 durationToPrice 各字段什么意思",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "price（float64，必填）是服务一小时单位价格",
+      "chargingOptions（dict，必填）是该服务用到的收费 options",
+      "duration（dict，必填）是购买服务时间对应的打折系数"
+    ]
+  },
+  {
+    "id": "sup-service-function-api",
+    "category": "exact_term",
+    "question": "serviceFunctionApi 里的 start、stop、refund 分别在什么时候跑，输入前要注意什么",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "start：购买后服务启动获取资源时运行",
+      "stop：服务到期或用户提前结束订单关闭资源时运行",
+      "refund：用户提前结束订单的退款脚本",
+      "本地编辑的 lua 需 URL 编码后再作为 string 写入对应字段"
+    ]
+  },
+  {
+    "id": "sup-vsys-token-rate",
+    "category": "exact_term",
+    "question": "SDK 配置里的 vsysTokenExchangeRate 是干什么的",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vsysTokenExchangeRate 为 float，必填",
+      "表示用户主动退款时所用的 VSYS 转 token 的汇率"
+    ]
+  },
+  {
+    "id": "svc-alias-network",
+    "category": "exact_term",
+    "question": "Alias 网络怎么让两个服务互通",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两个服务必须部署在同一 region",
+      "在 Actions 中为服务添加 Alias 别名",
+      "同 region 内其他服务可用别名（如 `mydb:27017`）访问，无需自有域名"
+    ]
+  },
+  {
+    "id": "svc-port-specification",
+    "category": "exact_term",
+    "question": "portSpecification 有哪两种选择",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > portSpecification",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可选 User Specified Service Port：用户自己指定 host 暴露端口，且不能与现有端口冲突",
+      "可选 System Random Map Port：由 VKube 随机分配 host 暴露端口"
+    ]
+  },
+  {
+    "id": "vk-exact-mount-tls-path",
+    "category": "exact_term",
+    "question": "Mount certificates inside the container 打开后证书挂载到哪个路径",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "开启后证书与私钥按域名挂载到 /vkube/tls/<domain>/",
+      "证书文件为 tls.crt，私钥文件为 tls.key",
+      "证书由 VKUBE 维护，程序读取上述路径即可"
+    ]
+  },
+  {
+    "id": "vk-exact-open-terminal",
+    "category": "exact_term",
+    "question": "Actions 里的 Open terminal 按钮怎么用",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务与目标 Container 需处于运行状态",
+      "展开 Actions 点击 Open terminal，打开 Runtime Terminals 并自动连接",
+      "显示 Connected 后即可执行命令；可 Reconnect 重连，用 Close 结束会话"
+    ]
+  },
+  {
+    "id": "vk-exact-path-routing-rewrite",
+    "category": "exact_term",
+    "question": "Path Routing 里的 Rewrite 选项勾上会怎样",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "勾选 Rewrite 会在转发前去掉第一阶 Path",
+      "例如 Path 为 /api/v1、访问 /api/v1/detail 时，容器收到的是 /v1/detail"
+    ]
+  },
+  {
+    "id": "vk-exact-vkube-ssh-pub-key",
+    "category": "exact_term",
+    "question": "环境变量 VKUBE_SSH_PUB_KEY 是干什么的",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "启用 sshd 时填写的 SSH Public Key 会通过环境变量 VKUBE_SSH_PUB_KEY 传入容器",
+      "用于公钥认证的 SSH 远程连接"
+    ]
+  },
+  {
+    "id": "guide-wallet-topup-or-renew",
+    "category": "multi_doc",
+    "question": "钱包余额不够了怎么续费",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > How do I top up on VKube?",
+        "grade": 2
+      },
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 为账户充值",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 服务续费",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "可以先给 VKube 账户充值：把 VSYS 转到平台钱包，或在对应服务购买页用 Topup 充值",
+      "已有用户服务要延长使用时间时，在用户服务界面选择 Renew Service 并支付续费订单"
+    ]
+  },
+  {
+    "id": "sup-resource-shortage",
+    "category": "multi_doc",
+    "question": "用户开通服务时我这边机器资源不够了会怎样",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "资源不足时资源节点会向 SDK 节点发起退款请求",
+      "UserService 会被标记为 ServiceAbort，服务终止"
+    ]
+  },
+  {
+    "id": "svc-faq-resource-unit",
+    "category": "multi_doc",
+    "question": "资源单位是什么意思",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is a Resource Unit?",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "按所选 Resource Unit 计费，最低约每小时 $0.0025",
+      "n 个 Resource Unit 对应 n Gi 内存和 n×8 Gi 持久存储",
+      "可选 1、2、4、8、16 个 Resource Unit",
+      "x-Unit-Resource 还对应最多 x 个主机端口映射"
+    ]
+  },
+  {
+    "id": "vk-ssh-connect",
+    "category": "multi_doc",
+    "question": "如何通过ssh远程连接到容器",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/ssh.md",
+        "heading": "SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "需在 Actions 中开启 Tool Injection 并选择 sshd",
+      "SSH 仅支持公钥/私钥认证，公钥会写入容器环境变量",
+      "配置成功后按 Access Info 中的 SSH Command，用本地私钥替换 $YOUR-PRIVATE-KEY 即可连接"
+    ]
+  },
+  {
+    "id": "dev-lua-disabled-syntax",
+    "category": "english",
+    "question": "Which Lua syntax or libraries are disabled in supplier scripts?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > Lua 脚本中禁用语法",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "禁用 while、coroutine、以及 _G、collectgarbage、dofile、load、loadstring 等",
+      "禁用 io、os、debug、package、pcall、xpcall、module 等库或函数"
+    ]
+  },
+  {
+    "id": "dev-sdk-docker-start",
+    "category": "english",
+    "question": "How do I start the supplier SDK server with Docker?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 1. 部署SDK服务端 > 1.2 Docker 命令启动",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "需先在本地安装并启动 Docker",
+      "在 v-cloud-merchant 根目录执行 docker build -t <YOUR-IMAGE-TAG-NAME> -f ./docker/dockerfile",
+      "再执行 docker run -d -t <YOUR-IMAGE-TAG-NAME> 运行镜像"
+    ]
+  },
+  {
+    "id": "guide-english-cli-testnet",
+    "category": "english",
+    "question": "How do I install the V Cloud CLI with pip and run it on testnet?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用 pip install v-cloud-market-cli-user 安装",
+      "测试网启动命令是 vcloud -t"
+    ]
+  },
+  {
+    "id": "nw-english-webhook-price",
+    "category": "english",
+    "question": "How much does each Node Watcher webhook cost, and what free quota do I get?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/node-watcher/README.md",
+        "heading": "功能介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "每次 webhook 收费 1 美分",
+      "新用户有 1000 次免费额度，之后每月 1 号再获得 1000 次"
+    ]
+  },
+  {
+    "id": "svc-faq-cost-english",
+    "category": "english",
+    "question": "How much does VKube cost?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > How much does VKube cost?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "每个创建的服务最低费用为每小时 $0.0025",
+      "创建并付清订单后不会额外收费",
+      "按实际使用付费，无最低消费或预付款要求"
+    ]
+  },
+  {
+    "id": "svc-faq-what-is-vkube",
+    "category": "english",
+    "question": "What is VKube?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is VKube by V Systems?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKube 是基于 Kubernetes 的容器服务，用于在云上运行容器化应用",
+      "用户无需自行安装和运维 Kubernetes 控制面或工作节点",
+      "可通过 Web 平台或 market-cli 命令行部署和管理服务"
+    ]
+  },
+  {
+    "id": "vk-en-app-catalog-deploy",
+    "category": "english",
+    "question": "How do I deploy an app from the App Catalog?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > 从应用市场部署应用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 App Catalog 点击应用的 Deploy，可选自动部署（购买新服务并自动部署）或手动部署到已有容器",
+      "也可在容器 Deploy 面板打开 App Catalog，点 Use this configuration 再 Deploy",
+      "需要持久化的镜像需确认目标 Pod 支持 Persistent Storage"
+    ]
+  },
+  {
+    "id": "vk-en-email-notify-crash",
+    "category": "english",
+    "question": "How can I get email notifications when my container crashes?",
+    "history": [],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Contact",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Notice",
+        "grade": 1
+      },
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 绑定邮箱",
+        "grade": 1
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用 Contact 为该服务绑定邮箱，异常与 Notice 新消息会发到该邮箱",
+      "绑定需填写邮箱并完成验证码校验（Verify Code）",
+      "服务级邮箱优先于用户级默认邮箱"
+    ]
+  },
+  {
+    "id": "cli-workflow-secrets-followup",
+    "category": "multi_turn",
+    "question": "那个 secrets 具体要配哪些",
+    "history": [
+      {
+        "role": "user",
+        "content": "怎么用工作流自动部署我的服务"
+      },
+      {
+        "role": "assistant",
+        "content": "可以在仓库里加 GitHub Actions 工作流，用 vkube-cli-action 读取 VKubefile.yaml；再配好镜像仓库和 VKube 相关 secrets，推代码或开 PR 就会自动部署。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "`imageRegistry` 为 ghcr 时需添加 `GHCR_TOKEN`",
+      "`imageRegistry` 为 docker 时需添加 `DOCKERHUB_TOKEN` 和 `DOCKERHUB_USERNAME`",
+      "必须添加 `VKUBE_TOKEN`，且不必再把 vkubeToken 写进 VKubefile.yaml"
+    ]
+  },
+  {
+    "id": "dev-lua-start-followup",
+    "category": "multi_turn",
+    "question": "那个 start 函数的入参里都有哪些字段",
+    "history": [
+      {
+        "role": "user",
+        "content": "供应商可以写哪几种 Lua 脚本函数"
+      },
+      {
+        "role": "assistant",
+        "content": "可以提供 start、stop 和 refund 三种函数，分别在服务启动、关闭和退款时调用；若不提供则走系统默认流程。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > 编写 Lua脚本函数",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "start 的 inputTable 含 id（订单 ID）、duration（订单期限）、createdAt（创建时间）",
+      "还可包含 options（订单选择的服务选项）"
+    ]
+  },
+  {
+    "id": "guide-multiturn-skill-path",
+    "category": "multi_turn",
+    "question": "装完它会放到哪个目录",
+    "history": [
+      {
+        "role": "user",
+        "content": "怎么在 Claude Code 里安装 vcloud skill"
+      },
+      {
+        "role": "assistant",
+        "content": "运行 vcloud skill install --target claude，即可把 vcloud-cli skill 安装到 Claude Code。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Claude Code 的安装目录是 ~/.claude/skills/vcloud-cli/"
+    ]
+  },
+  {
+    "id": "log-multiturn-labels",
+    "category": "multi_turn",
+    "question": "它支持哪些 label 来过滤",
+    "history": [
+      {
+        "role": "user",
+        "content": "日志托管服务配好 Grafana 数据源之后怎么查日志"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Grafana 数据源列表里选中已配置的数据源，进入 Explore 页面即可按日志 label 查询。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 查询日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "支持的日志标签包括 node、region、app（容器服务 ID）、container、tenant（日志托管服务 ID）",
+      "设置 tenant 后可查询该托管服务下的所有日志"
+    ]
+  },
+  {
+    "id": "sup-refund-followup-result",
+    "category": "multi_turn",
+    "question": "那两种情况下退款结果有什么不一样",
+    "history": [
+      {
+        "role": "user",
+        "content": "什么情况下可以退款"
+      },
+      {
+        "role": "assistant",
+        "content": "两种情况可以退款：一是供应商资源节点资源不足时系统自动退款；二是用户想提前结束订单时通过用户 cli 发起退款。一个订单只能退一次，退款后服务停止。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "资源不足退款：扣除 0.1 交易费后用 VSYS Coin 退回用户所缴金额，服务状态 ServiceAbort，订单状态 OrderRefund",
+      "用户主动提前结束：扣除 0.1 交易费后按供应商 Token 与汇率退剩余时间价值；余额不够则不退也不额外收费",
+      "用户主动退款后服务状态为 ServiceAbort，订单状态为 OrderRefund"
+    ]
+  },
+  {
+    "id": "svc-sg-gateway-followup",
+    "category": "multi_turn",
+    "question": "那里面的网关服务是干什么的",
+    "history": [
+      {
+        "role": "user",
+        "content": "怎么让几个服务之间只能走内网互相访问"
+      },
+      {
+        "role": "assistant",
+        "content": "可以把这些服务加入同一个安全组。组内服务只允许同组内网互相访问，公网或组外的入站会被阻断，组内仍可通过 alias 通信。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 网关服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "把组内服务设为网关后，即使在安全组中也可接收公网或组外入站",
+      "一个安全组可以有多个网关服务",
+      "设置或取消网关是热更新，无需重启，但可能有几分钟延迟"
+    ]
+  },
+  {
+    "id": "vk-mt-ssh-then-rsync",
+    "category": "multi_turn",
+    "question": "那能不能用它把本地文件同步进容器",
+    "history": [
+      {
+        "role": "user",
+        "content": "如何通过ssh远程连接到容器"
+      },
+      {
+        "role": "assistant",
+        "content": "可以在 Actions 里打开 Tool Injection，启用 sshd 并填写 SSH 公钥；配置成功后按 Access Info 里的 SSH 命令，用本地私钥连接容器。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/ssh.md",
+        "heading": "SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "rsync 必须先启用 sshd 才能使用",
+      "按 Access Info 中的 Rsync Command，替换私钥路径以及本地/远端路径即可同步文件"
+    ]
+  },
+  {
+    "id": "vk-mt-token-then-expire",
+    "category": "multi_turn",
+    "question": "那个过期了还能继续用吗",
+    "history": [
+      {
+        "role": "user",
+        "content": "访问令牌怎么创建和使用"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Access Token 页面点 Add，填写 UserServiceID 和过期时间后创建；创建后可复制令牌，到 Containers 页面 Import 导入对应服务。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/accessToken.md",
+        "heading": "令牌",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "过期的访问令牌不能作为服务凭证使用，无法正常工作"
+    ]
+  },
+  {
+    "id": "oos-aws-price",
+    "category": "out_of_scope",
+    "question": "AWS EC2 t3.medium 现在多少钱一小时",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-billing-invoice",
+    "category": "out_of_scope",
+    "question": "怎么下载 VKube 的月度发票 PDF",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-gpu-support",
+    "category": "out_of_scope",
+    "question": "VKube 支持挂载 NVIDIA GPU 吗",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-k8s-helm",
+    "category": "out_of_scope",
+    "question": "怎么在 Kubernetes 里用 Helm 部署一个 chart",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-red-braised-pork",
+    "category": "out_of_scope",
+    "question": "红烧肉怎么做",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-stock-price",
+    "category": "out_of_scope",
+    "question": "V Systems 的币价现在是多少",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-weather",
+    "category": "out_of_scope",
+    "question": "今天上海天气怎么样",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "oos-windows-container",
+    "category": "out_of_scope",
+    "question": "怎么在 VKube 上跑 Windows 容器",
+    "relevant": [],
+    "key_points": []
+  },
+  {
+    "id": "kw-refundtoken",
+    "category": "exact_term",
+    "question": "refundToken 函数的参数是什么、退的是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "签名为 refundToken(int amount, string recipient, string orderID)",
+      "将订单 orderID 的退款数额 amount 以 token 形式退到地址 recipient"
+    ]
+  },
+  {
+    "id": "kw-postwosign",
+    "category": "exact_term",
+    "question": "VsysHttp 里的 postwosign 做什么",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "签名为 postwosign(string url, lua.LTable body)",
+      "发送 post 请求，body 转 json，但不对内容做签名"
+    ]
+  },
+  {
+    "id": "kw-prevent-default",
+    "category": "exact_term",
+    "question": "SystemUtils.preventDefault 调用后 UserService 初始状态是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "调用 preventDefault 后，创建的 UserService 初始状态为 ServicePending"
+    ]
+  },
+  {
+    "id": "kw-userservice-start-from",
+    "category": "exact_term",
+    "question": "查询订单变量里的 userServiceStartFrom 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 查询订单变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "userServiceStartFrom 类型为 number",
+      "表示订单中 user service 的查询起始时间"
+    ]
+  },
+  {
+    "id": "kw-service-activated-ts",
+    "category": "exact_term",
+    "question": "order 字段 serviceActivatedTS 表示什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > list中order的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "serviceActivatedTS 是 number 类型",
+      "表示 user service 状态启用时间"
+    ]
+  },
+  {
+    "id": "kw-service-statuses",
+    "category": "exact_term",
+    "question": "查询订单变量 serviceStatuses[] 用来干什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 查询订单变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "serviceStatuses[] 类型为 string[]",
+      "表示包含这些 user service 状态的订单"
+    ]
+  },
+  {
+    "id": "kw-contract-receipient",
+    "category": "exact_term",
+    "question": "node watcher 过滤字段 contract_receipient 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "contract_receipient 表示合约转账接收人",
+      "属于合约调用相关的过滤字段建议"
+    ]
+  },
+  {
+    "id": "kw-vkube-ttyd-password",
+    "category": "exact_term",
+    "question": "环境变量 VKUBE_TTYD_PASSWORD 是干什么的",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "TTYD Password 会通过环境变量 VKUBE_TTYD_PASSWORD 传入 container",
+      "密码需满足大小写、数字、特殊字符且不少于 8 个字符"
+    ]
+  },
+  {
+    "id": "kw-use-main-interface",
+    "category": "exact_term",
+    "question": "python use_main_interface.py 和加 -t 分别怎么用",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用代码安装cli 客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "主网用 python use_main_interface.py",
+      "测试网用 python use_main_interface.py -t"
+    ]
+  },
+  {
+    "id": "kw-system-random-map-port",
+    "category": "exact_term",
+    "question": "portSpecification 选 System Random Map Port 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > portSpecification",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "System Random Map Port 表示由 VKube 系统为 container service 随机选择 host 上暴露的端口号"
+    ]
+  },
+  {
+    "id": "kw-vcloud-py-help",
+    "category": "exact_term",
+    "question": "供应商 cli 里 python vcloud.py --help 做什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 2. 安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "运行 python vcloud.py --help 可查看不同的服务"
+    ]
+  },
+  {
+    "id": "kw-nohup-go-main",
+    "category": "exact_term",
+    "question": "怎么用 nohup go run main.go 后台启动 SDK",
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 1. 部署SDK服务端 > 1.1 Golang 命令启动",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 v-cloud-merchant 根目录可执行 go run main.go",
+      "后台运行用 nohup go run main.go &"
+    ]
+  },
+  {
+    "id": "kw-specific-service-owner",
+    "category": "exact_term",
+    "question": "Policy 里 Specific Service of Owner 要填什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Specific Service of Owner 需要填写 User Service ID 和 Address",
+      "允许指定服务 ID 且属于该 Address 的服务访问"
+    ]
+  },
+  {
+    "id": "kw-services-of-onwer",
+    "category": "exact_term",
+    "question": "Policy 选项 Services of Onwer 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Services of Onwer 填写 Address",
+      "允许该 Address 名下的一类服务访问设置了该 Policy 的服务"
+    ]
+  },
+  {
+    "id": "kw-one-host-port",
+    "category": "exact_term",
+    "question": "部署弹窗里 1 host port available 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "1 host port available 指还可继续添加的 host port 数量",
+      "可用端口数量由 Service Option 中 Number Of Port 决定"
+    ]
+  },
+  {
+    "id": "kw-runtime-terminals",
+    "category": "exact_term",
+    "question": "Runtime Terminals 面板是什么，什么时候出现",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "点击 Open terminal 后系统打开 Runtime Terminals 面板并自动连接 Container",
+      "状态显示 Connected 后即可执行命令；可 Reconnect 或 Close"
+    ]
+  },
+  {
+    "id": "kw-ghcr-private",
+    "category": "exact_term",
+    "question": "Github Container Registry(ghcr) 私有镜像在 VKUBE 怎么用",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "镜像名前加 ghcr.io/，勾选私有镜像并填写用户名和 Access Token",
+      "推荐用只读权限的 Access Token"
+    ]
+  },
+  {
+    "id": "kw-recover-wallet",
+    "category": "exact_term",
+    "question": "菜单 [1]Recover Wallet From Seed 做什么",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 准备v账户 > 1. 使用seed导入已有v账户",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 1 选择 Recover Wallet From Seed 可用 seed 导入已有 v 账户",
+      "需输入地址数量、钱包密码和 wallet seed"
+    ]
+  },
+  {
+    "id": "kw-show-cart",
+    "category": "exact_term",
+    "question": "[S]Show Cart Table 对应什么操作",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 进入购物车",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "添加云服务到购物车后可直接选 [S]Show Cart Table 显示购物车"
+    ]
+  },
+  {
+    "id": "kw-tail-log",
+    "category": "exact_term",
+    "question": "[T]Tail Service Log 怎么查看服务日志",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查看服务日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 t 选择 [T]Tail Service Log",
+      "按提示输入 User Service INDEX；多容器时再选子容器；Enter 停止显示"
+    ]
+  }
+]

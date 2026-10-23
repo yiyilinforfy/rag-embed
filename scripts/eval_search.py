@@ -1,17 +1,9 @@
-"""Check retrieval quality with a fixed question set.
+"""旧的文档级检索评测（22 题）。新的完整评测见 evals/：
 
-For each question we know which doc file should answer it. hit@k = the file shows up in the top k results.
-Re-run this after changing the chunker, the embedding model or the search logic, and compare the numbers.
+    uv run python -m evals.run --retrieval-only
+    uv run python -m evals.run
 
-uv run python -m scripts.eval_search
-
-学习笔记
-- 为什么要评测：改切分、换模型、调检索之后，"感觉变好了"不可靠，要用一套固定题目算出数字来比较。
-- 指标：
-  hit@1  正确文档排在第 1 位的比例；hit@5  正确文档出现在前 5 名的比例（RAG 默认取 5 条给 LLM，这个最关键）。
-  MRR    正确文档排名倒数的平均值（第 1 名得 1 分，第 2 名 0.5 分，第 3 名 0.33 分……），衡量"排得有多靠前"。
-- 历史结果：本地 Ollama hit@1 = 21/22，MRR = 0.970；线上 Supabase + 硅基流动 hit@1 = 20/22，hit@5 = 22/22，MRR = 0.947。
-- 局限：只评测"检索找得准不准"，不评测"回答写得对不对"。下一步可以加上回答质量的评测（忠于资料、答案正确）。
+本脚本保留是为了和历史数字对比（本地 hit@1 = 21/22，MRR = 0.970）。
 """
 
 from app.search import search
@@ -20,7 +12,6 @@ TOP_K = 5
 
 # (question, files that count as a correct answer)
 QUESTIONS: list[tuple[str, tuple[str, ...]]] = [
-    # Worded close to the doc headings.
     ("怎么用工作流自动部署我的服务", ("zh/vkube_cli/workflows.md",)),
     ("如何通过ssh远程连接到容器", ("zh/VKservice/ssh.md",)),
     ("怎么创建安全组", ("zh/VKservice/securityGroup.md",)),
@@ -36,7 +27,6 @@ QUESTIONS: list[tuple[str, tuple[str, ...]]] = [
     ("怎么在 Claude Code 里安装 vcloud skill", ("zh/guide/vcloud-skills.md",)),
     ("怎么安装 vkube 命令行工具", ("zh/vkube_cli/get-started.md",)),
     ("What is VKube?", ("zh/VKservice/FAQ.md",)),
-    # Paraphrased: avoids the words used in the headings.
     ("怎么让几个服务之间只能走内网互相访问", ("zh/VKservice/securityGroup.md",)),
     ("我往 GitHub 推代码之后能自动发布新版本吗", ("zh/vkube_cli/workflows.md",)),
     ("VKube 支持哪些操作系统", ("zh/VKservice/FAQ.md",)),
@@ -66,6 +56,7 @@ def main() -> None:
 
     n = len(QUESTIONS)
     print(f"\nhit@1 = {hits_at_1}/{n}   hit@{TOP_K} = {hits_at_k}/{n}   MRR = {sum(reciprocal_ranks) / n:.3f}")
+    print("(完整评测：uv run python -m evals.run --retrieval-only)")
 
 
 if __name__ == "__main__":

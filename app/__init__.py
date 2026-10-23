@@ -42,7 +42,8 @@
                  建索引和查询必须用同一个模型，否则两边的向量没法比较。
     余弦距离     pgvector 的 `<=>` 运算符：0 = 方向相同，1 = 无关，2 = 相反。本项目 score = 1 - distance。
     Top-K        取最相似的 K 个 chunk（默认 5）。
-    MIN_SCORE    相似度阈值 0.45。实测 bge-m3 在这些文档上：相关问题 0.64~0.77，无关问题 0.31~0.42。
+    MIN_SCORE         向量余弦门闸 0.45（进 LLM 前）。相关约 0.64~0.77，明显无关约 0.31~0.42。
+    RERANK_MIN_SCORE  重排分门闸默认 0.05（进 LLM 前第二道）；0 关闭。专治余弦沾边但 rerank 很低的 OOS。
     两层兜底     ① 分数不够 → 不调 LLM，直接说没找到；
                  ② 分数够但资料答不了 → prompt 规则要求 LLM 如实说"文档没有提供足够信息"。
     分工         bge-m3 只负责"文字 → 向量"；比较和排序是数据库（pgvector）做的；DeepSeek 只负责"读资料写答案"。
@@ -85,11 +86,26 @@
     配置：本地开发用 .env（Docker 里的 PostgreSQL + 本机 Ollama），线上配置在 .env.production，都不提交到 git。
 
 
-七、已知局限和下一步（适合继续学习的方向）
-    检索     混合检索（向量 + 全文检索 BM25，用 RRF 合并排名）；Reranker（bge-reranker-v2-m3 重新打分）
+七、评测（evals/）
+    83 道题，覆盖 direct / paraphrase / exact_term / multi_doc / english / multi_turn / out_of_scope。
+    Chunk 级相关性标注（source + heading + grade）+ 参考答案要点（key_points）。
+    检索指标：doc_hit / hit / recall / precision / mrr / ndcg / context_recall。
+    答案质量：LLM-as-judge 判正确性、忠实度、拒答；--compare 做回归。
+    策略对比：uv run python -m evals.run --strategies baseline,rerank --retrieval-only
+    详见 evals/README.md。
+
+七-b、Reranker（可选）
+    向量召回 Top-20 → SiliconFlow BAAI/bge-reranker-v2-m3 批量打分 → Top-5。
+    RERANK_ENABLED=false 时保持原流程；SECTION_DEDUPE=auto 在重排时关闭章节唯一性限制。
+    MIN_SCORE 只比向量余弦；RERANK_MIN_SCORE 只比 rerank_score。Rerank 失败默认降级为向量排序。
+
+
+八、已知局限和下一步（适合继续学习的方向）
+    检索     混合检索已落地：向量 Top-20 ∪ 内存 BM25 Top-20 → Reranker；精确术语（如 refundVsys）可召回
+             后续可选：RRF（无 Reranker 时）、拒答阈值用 Rerank 分做独立实验
+             超范围：RERANK_MIN_SCORE 可抬 blocked_rate_oos；GPU/Helm/Windows 等 rerank 仍高的需分类器/生成侧拒答
     切分     父子 chunk（用小块检索、返回所在的大块）；给小块补充上下文
-    生成     prompt 要求 [n] 引用标注、回答语言规则、防 prompt 注入
-    评测     扩大题库；评测回答质量（是否忠于资料、有没有答对）
+    生成     回答语言规则；流式接口按 [n] 引用过滤来源（现在来源在回答之前推送，没法过滤）
     鉴权     从"地址白名单"升级为"钱包签名验证"（地址是公开的，现在可以被冒充）
     扩容     多实例时限流计数换成 Redis；数据量大时给向量建 HNSW 索引
     Agent    Agentic RAG：检索效果不好时让 Agent 改写重搜、拆分问题，或调用 VKube API 查询真实状态
