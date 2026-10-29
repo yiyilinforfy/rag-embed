@@ -1,0 +1,5399 @@
+{
+  "created_at": "2026-10-28T08:20:59.808387+00:00",
+  "settings": {
+    "top_k": 5,
+    "min_score": 0.45,
+    "rerank_min_score": 0.02,
+    "embedding_model": "bge-m3",
+    "llm_model": "deepseek-chat",
+    "rerank_enabled": true,
+    "rerank_model": "BAAI/bge-reranker-v2-m3",
+    "rerank_candidates": 20,
+    "section_dedupe": "auto",
+    "route_mode": "rules",
+    "hybrid_enabled": true,
+    "with_answer": true,
+    "strategies": null,
+    "interrupted": false,
+    "dataset": "evals/gen50/dataset.json"
+  },
+  "summary": {
+    "n": 50,
+    "errors": [],
+    "overall": {
+      "context_hit": 0.8421052631578947,
+      "context_precision": 0.3418918918918919,
+      "context_recall": 0.8421052631578947,
+      "doc_hit@1": 0.7368421052631579,
+      "doc_hit@5": 0.9210526315789473,
+      "doc_mrr": 0.8087719298245615,
+      "hit@1": 0.7105263157894737,
+      "hit@5": 0.8947368421052632,
+      "mrr": 0.7824561403508772,
+      "ndcg@5": 0.798691678602743,
+      "precision@5": 0.2578947368421053,
+      "recall@5": 0.8947368421052632,
+      "blocked_rate_oos": 0.8333333333333334,
+      "route_refuse_rate_oos": 0.16666666666666666,
+      "route_false_refuse_rate": 0.0,
+      "pass_rate": 0.5526315789473685,
+      "correctness": 0.7982456140350876,
+      "faithfulness": 0.7058823529411765,
+      "refusal_rate_oos": 1.0,
+      "false_refusal_rate": 0.10526315789473684
+    },
+    "by_category": {
+      "direct": {
+        "n": 8,
+        "context_hit": 1.0,
+        "context_precision": 0.325,
+        "context_recall": 1.0,
+        "doc_hit@1": 1.0,
+        "doc_hit@5": 1.0,
+        "doc_mrr": 1.0,
+        "hit@1": 1.0,
+        "hit@5": 1.0,
+        "mrr": 1.0,
+        "ndcg@5": 1.0,
+        "precision@5": 0.325,
+        "recall@5": 1.0,
+        "route_counts": {
+          "RETRIEVE": 8
+        },
+        "pass_rate": 0.75,
+        "correctness": 1.0
+      },
+      "english": {
+        "n": 4,
+        "context_hit": 0.75,
+        "context_precision": 0.2375,
+        "context_recall": 0.75,
+        "doc_hit@1": 0.5,
+        "doc_hit@5": 0.75,
+        "doc_mrr": 0.625,
+        "hit@1": 0.5,
+        "hit@5": 0.75,
+        "mrr": 0.625,
+        "ndcg@5": 0.6577324383928643,
+        "precision@5": 0.15000000000000002,
+        "recall@5": 0.75,
+        "route_counts": {
+          "RETRIEVE": 4
+        },
+        "pass_rate": 0.25,
+        "correctness": 0.625
+      },
+      "exact_term": {
+        "n": 8,
+        "context_hit": 0.875,
+        "context_precision": 0.29583333333333334,
+        "context_recall": 0.875,
+        "doc_hit@1": 0.625,
+        "doc_hit@5": 0.875,
+        "doc_mrr": 0.7125,
+        "hit@1": 0.625,
+        "hit@5": 0.875,
+        "mrr": 0.7125,
+        "ndcg@5": 0.7268112677245632,
+        "precision@5": 0.225,
+        "recall@5": 0.875,
+        "route_counts": {
+          "RETRIEVE": 8
+        },
+        "pass_rate": 0.625,
+        "correctness": 0.875
+      },
+      "multi_doc": {
+        "n": 4,
+        "context_hit": 1.0,
+        "context_precision": 0.4083333333333333,
+        "context_recall": 1.0,
+        "doc_hit@1": 0.75,
+        "doc_hit@5": 1.0,
+        "doc_mrr": 0.875,
+        "hit@1": 0.75,
+        "hit@5": 1.0,
+        "mrr": 0.875,
+        "ndcg@5": 0.8557852243534045,
+        "precision@5": 0.4,
+        "recall@5": 1.0,
+        "route_counts": {
+          "RETRIEVE": 4
+        },
+        "pass_rate": 0.5,
+        "correctness": 0.625
+      },
+      "multi_turn": {
+        "n": 6,
+        "context_hit": 0.5,
+        "context_precision": 0.33999999999999997,
+        "context_recall": 0.5,
+        "doc_hit@1": 0.5,
+        "doc_hit@5": 0.8333333333333334,
+        "doc_mrr": 0.6166666666666667,
+        "hit@1": 0.5,
+        "hit@5": 0.8333333333333334,
+        "mrr": 0.6166666666666667,
+        "ndcg@5": 0.6696304268009999,
+        "precision@5": 0.2333333333333333,
+        "recall@5": 0.8333333333333334,
+        "route_counts": {
+          "RETRIEVE": 5,
+          "MULTI": 1
+        },
+        "pass_rate": 0.16666666666666666,
+        "correctness": 0.5
+      },
+      "out_of_scope": {
+        "n": 12,
+        "blocked_rate": 0.8333333333333334,
+        "route_refuse_rate": 0.16666666666666666,
+        "route_counts": {
+          "REFUSE": 2,
+          "RETRIEVE": 10
+        },
+        "refusal_rate": 1.0
+      },
+      "paraphrase": {
+        "n": 8,
+        "context_hit": 0.875,
+        "context_precision": 0.425,
+        "context_recall": 0.875,
+        "doc_hit@1": 0.875,
+        "doc_hit@5": 1.0,
+        "doc_mrr": 0.9166666666666666,
+        "hit@1": 0.75,
+        "hit@5": 0.875,
+        "mrr": 0.7916666666666666,
+        "ndcg@5": 0.8079925541645816,
+        "precision@5": 0.225,
+        "recall@5": 0.875,
+        "route_counts": {
+          "RETRIEVE": 8
+        },
+        "pass_rate": 0.75,
+        "correctness": 0.9166666666666666
+      }
+    },
+    "latency": {
+      "mean": 3.1216000000000004,
+      "p50": 3.18,
+      "p95": 5.46,
+      "vector_ms_mean": 145.964,
+      "bm25_ms_mean": 19.325,
+      "rerank_ms_mean": 697.3562499999999,
+      "rerank_fallback_rate": 0.0,
+      "overlap_mean": 5.02,
+      "candidate_mean": 31.94
+    }
+  },
+  "results": [
+    {
+      "id": "gen-direct-001",
+      "category": "direct",
+      "question": "怎么创建安全组",
+      "search_query": "怎么创建安全组",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组"
+        ],
+        "context_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组"
+        ],
+        "scores": [
+          0.751,
+          0.753,
+          0.674,
+          0.643,
+          0.619
+        ],
+        "rerank_scores": [
+          0.9986,
+          0.9945,
+          0.7993,
+          0.7522,
+          0.6113
+        ],
+        "bm25_scores": [
+          6.1215,
+          7.2152,
+          7.2185,
+          5.1977,
+          6.7573
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 2472.0,
+        "bm25_ms": 847.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 665.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 6.79,
+      "answer": {
+        "answer": "# 创建安全组\n\n1. 在侧边栏中选中 **Security Group** 进入安全组界面。该界面会显示当前网络组所属区域等信息，下方列出该区域中的所有网络组及其元信息，并支持按网络组 ID 和名称搜索 [1]。\n\n![网络安全组管理界面](https://docs.vcloud.systems/kube/security_group_title.png)\n\n2. 点击右上角的 **Create Security Group** 按钮创建网络组 [1]。\n\n![创建安全组按钮](https://docs.vcloud.systems/kube/security_group_create.png)\n\n3. 选择区域。注意：网络组是**区域内资源**，只能将同一区域的服务加入网络组中，因此请务必选择正确的区域；区域通过点击区域选择框进行选择 [1]。\n\n创建完成后，可在网络组界面点击 **View Details** 打开详情栏，在其中浏览和管理该网络组下的服务，包括添加服务、移除服务或将服务设置为网关服务 [5]。\n\n> 补充说明：安全组是一种内网访问控制机制，用于限制服务之间的网络访问范围，将服务加入同一安全组即可实现组内互访与逻辑隔离，不涉及端口、协议或 IP 白名单配置 [3]。\n\n![将服务引入或移出安全组](https://docs.vcloud.systems/kube/security_group_add_service.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-direct-002",
+      "category": "direct",
+      "question": "订单怎么提前解约",
+      "search_query": "订单怎么提前解约",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/guide/buying-process.md :: 购买流程 > 从购物车中移除订单"
+        ],
+        "context_keys": [
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/guide/buying-process.md :: 购买流程 > 从购物车中移除订单"
+        ],
+        "scores": [
+          0.774,
+          0.586,
+          0.554,
+          0.547,
+          0.619
+        ],
+        "rerank_scores": [
+          0.9952,
+          0.5171,
+          0.3203,
+          0.1479,
+          0.0599
+        ],
+        "bm25_scores": [
+          11.9549,
+          null,
+          null,
+          1.9009,
+          null
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 76.3,
+        "bm25_ms": 0.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 589.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.86,
+      "answer": {
+        "answer": "在 VKube 中，提前解约订单是通过用户 CLI 客户端发起退款请求来完成的。步骤如下：\n\n1. 在用户服务界面，输入 `1` 选择 `[1]Show Running User Service` [1]\n2. 输入 `f` 选择 `[F]Refund Service` [1]\n3. 输入要退款的服务序号，最后回车停止输入 [1]\n4. 最后输入 `y` 确认，即可完成这些选中服务的退款 [1]\n\n示例输出（服务列表会显示每个服务的 `Refundable` 是否可退款）：\n\n```shell\n                                              Running User Service Information Table\n╭───────┬──────────────────────────┬───────────────────┬─────────────────────┬─────────────────┬─────────────────────┬────────────┬───────────┬─────────────┬───────╮\n│ Index │     User Service ID      │   Service Type    │     Start Time      │ Duration (HOUR) │   Expiration Time   │ Refundable │  Status   │ Description │ Label │\n├───────┼──────────────────────────┼───────────────────┼─────────────────────┼─────────────────┼─────────────────────┼────────────┼───────────┼─────────────┼───────┤\n│   0   │ 62d76c52b3fwadadwa6e61fc │ Container Service │ 2022-11-24 10:10:00 │        5        │ 2022-11-24 15:10:00 │    True    │ Activated │      -      │ prod  │\n...\n```\n\n需要注意的几点：\n\n- 一个订单只能执行一次退款，一旦退款，服务将停止使用 [2]。\n- 用户主动提前结束订单时，服务供应商会扣除 0.1 的交易费用，并按供应商定义的 Token 和汇率返还用户剩余时间的价值；如果余额不够则不会退款，也不会额外收费 [2]。\n- 退款后服务状态为 `ServiceAbort`，订单状态为 `OrderRefund` [2]。\n- 只有购买的服务允许退款时才能发起退款请求 [3]。\n\n[Video Guide](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": [
+            "[Video Guide](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen-direct-003",
+      "category": "direct",
+      "question": "怎么查看服务日志",
+      "search_query": "怎么查看服务日志",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 查询日志",
+          "zh/VKservice/getting-started.md :: 快速上手"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 查询日志",
+          "zh/VKservice/getting-started.md :: 快速上手"
+        ],
+        "scores": [
+          0.782,
+          0.71,
+          0.701,
+          0.657,
+          0.634
+        ],
+        "rerank_scores": [
+          0.9992,
+          0.9726,
+          0.8615,
+          0.791,
+          0.7074
+        ],
+        "bm25_scores": [
+          6.7014,
+          7.6127,
+          4.9308,
+          3.7175,
+          3.8823
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 27,
+        "vector_ms": 87.0,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 13,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 595.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 5.46,
+      "answer": {
+        "answer": "VKube 提供两种查看服务日志的方式：**命令行实时查看**和**日志托管（Grafana）查询**。\n\n## 方式一：命令行查看服务日志\n\n1. 在用户服务界面，选择 `[1]Show Running User Service`，可以看到正在运行的服务列表 [1]。\n2. 输入 `t` 选择 `[T]Tail Service Log` 查看服务日志 [1]。\n3. 根据提示 `Please enter the User Service INDEX:` 输入要查看日志的服务的序号 [1]。\n4. 如果当前服务包含多个子容器，需要根据提示选择某个子容器，并按回车确定 [1]。\n5. 按 Enter 停止显示日志 [1]。\n\n服务列表的示例输出如下 [2]：\n\n```shell\n                                              Running User Service Information Table\n╭───────┬──────────────────────────┬───────────────────┬─────────────────────┬─────────────────┬─────────────────────┬────────────┬───────────┬─────────────┬───────╮\n│ Index │     User Service ID      │   Service Type    │     Start Time      │ Duration (HOUR) │   Expiration Time   │ Refundable │  Status   │ Description │ Label │\n├───────┼──────────────────────────┼───────────────────┼─────────────────────┼─────────────────┼─────────────────────┼────────────┼───────────┼─────────────┼───────┤\n│   0   │ 62d76c52b3fwadadwa6e61fc │ Container Service │ 2022-11-24 10:10:00 │        5        │ 2022-11-24 15:10:00 │    True    │ Activated │      -      │ prod  │\n```\n\n## 方式二：日志托管 + Grafana 查询\n\n**1. 绑定容器服务**\n\n将容器服务和日志托管服务绑定后，系统会开始抓取该容器服务下所有容器的日志内容并发送到云端托管。容器服务和日志托管服务必须都属于该用户，否则会绑定失败 [3]。\n\n![Log hosting service mangagement](https://docs.vcloud.systems/log-hosting/bind-svc.png)\n\n**2. 查看抓取状态**\n\n在 VKube 网页平台的 My Services 页面点击 `Manage` 按钮，弹窗中有两个标签页 [3]：\n- `Scraping Services`：正在抓取日志的服务\n- `Hosted Services`：存储了历史日志的、已停止抓取或已到期的容器服务\n\n![find log host service](https://docs.vcloud.systems/log-hosting/service-page.png)\n\n在服务管理页面还可以复制日志托管服务的身份验证令牌（Token）以及用于配置 Grafana 或访问日志服务的 URL 地址 [3]。\n\n![Log hosting service mangagement](https://docs.vcloud.systems/log-hosting/svc-manage.png)\n\n**3. 在 Grafana 中查询日志**\n\n登录 Grafana 后进入数据源连接列表页面 `https://<your-grafana-account>.grafana.net/connections/datasources`，选择配置好的数据源 `vkube-log`，点击 `Explore` 进入日志查询页面 [4]。\n\n![Data source selection](https://docs.vcloud.systems/log-hosting/grafana-select-cnn.png)\n\n可以通过日志 label 查询对应日志，支持的标签有 [4]：\n- `node`\n- `region`\n- `app`（容器服务的 ID）\n- `container`（日志所属的容器）\n- `tenant`（日志托管服务的 ID，设置为查询条件后查询所有日志）\n\n此外还支持查询包含或不包含某些内容的日志、满足某个正则表达式的日志等操作 [4]。\n\n![Search log](https://docs.vcloud.systems/log-hosting/grafana-search-log.png)\n\n[Video Guide](https://www.youtube.com/watch?v=ZAM2HRHrpUg)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-direct-004",
+      "category": "direct",
+      "question": "怎么做域名绑定",
+      "search_query": "怎么做域名绑定",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名绑定",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名解绑",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名绑定"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名绑定",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名解绑",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名绑定"
+        ],
+        "scores": [
+          0.773,
+          0.688,
+          0.646,
+          0.686,
+          0.631
+        ],
+        "rerank_scores": [
+          0.9984,
+          0.8892,
+          0.715,
+          0.6218,
+          0.4462
+        ],
+        "bm25_scores": [
+          4.7216,
+          3.3336,
+          3.3192,
+          6.0568,
+          7.0541
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 29,
+        "vector_ms": 100.2,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 11,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 768.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 5.21,
+      "answer": {
+        "answer": "# 域名绑定步骤\n\n## 前提准备\n\n1. 从服务状态信息中获取目标 `User Service` 的 `Host IP` 和 `Container Port` [1]。\n2. 前往域名服务商，在 DNS 设置中把该用户服务对应的 `Host IP` 设置为域名的 `A Record`，等待配置生效 [1][2]。\n\n## 通过命令行绑定\n\n1. 在用户服务界面，选择 `[1]Show Running User Service` [1]。\n2. 输入 `b` 选择 `[B]Domain Name`，并输入要查询的服务序号，查看该服务已绑定的域名 [1]。\n3. 输入 `b` 选择 `[B]Bind Domain Name`，根据提示 `Please input the domain name` 输入要绑定的（子）域名 [1]。\n4. 根据提示 `Please enter the container port` 输入域名要映射到的 `Container Port` [1]。\n5. 根据提示 `Do you want to use https` 选择是否使用 https [1]。\n\n> 注意：同一云服务下绑定的同一域名的 `use https` 只能在初次绑定时设置，必须先全部解绑才能重新设置 [1]。当前云服务最多支持绑定 10 个域名 [1]。\n\n## 通过界面绑定（Basic 模式）\n\n在域名管理对话框中填写 `Domain`（如 www.example.com）、`Container Port`（如 80），并选择是否使用 `HTTPS`（勾选后系统会自动申请并绑定 Letsencrypt 免费证书），然后确认添加 [2]。\n\n![域名管理对话框（Basic 模式）](https://docs.vcloud.systems/kube/domain_basic_detail.png)\n\n## 其他模式\n\n- **Advance 模式**：支持 AWS Route53 和 Cloudflare，需要提供对应平台的 Credentials 以验证域名所有权并生成证书；此模式支持通配符域名，Cloudflare 下还可兼容 Proxy DNS 模式 [3]。\n- **Mount 模式**：若容器内程序需要直接读取域名证书，可开启 `Mount certificates inside the container` 开关，证书会挂载到 `/vkube/tls/<domain>/tls.crt`，私钥挂载到 `/vkube/tls/<domain>/tls.key` [3]。\n\n## 解绑域名\n\n1. 选择 `[1]Show Running User Service` [4]。\n2. 输入 `b` 选择 `[B]Domain Name` 并输入服务序号查询已绑定域名 [4]。\n3. 输入 `u` 选择 `[U]Unbind Domain Name`，按提示输入要解绑的域名序号（用逗号或空格分隔）[4]。\n4. 根据提示 `Are you sure you want to unbind the domain` 输入 `y` 确认 [4]。\n\n[Video Guide](https://www.youtube.com/watch?v=L36XNrIegLo)\n\n![Bind Domains](https://docs.vcloud.systems/kube/domain_advance.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-direct-047",
+      "category": "direct",
+      "question": "供应商的 vcloud.py 怎么启动",
+      "search_query": "供应商的 vcloud.py 怎么启动",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/README.md :: 快速上手 > 2. 安装cli客户端",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例",
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/guide/getting-started.md :: 快速上手 > 使用代码安装cli 客户端",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 开始User Service计时"
+        ],
+        "context_keys": [
+          "zh/supplier/README.md :: 快速上手 > 2. 安装cli客户端",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例",
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/guide/getting-started.md :: 快速上手 > 使用代码安装cli 客户端",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 开始User Service计时"
+        ],
+        "scores": [
+          0.695,
+          0.639,
+          0.571,
+          0.637,
+          0.617
+        ],
+        "rerank_scores": [
+          0.9413,
+          0.6936,
+          0.5431,
+          0.5232,
+          0.4957
+        ],
+        "bm25_scores": [
+          12.3961,
+          4.6238,
+          6.8458,
+          7.0677,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 87.7,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 732.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.68,
+      "answer": {
+        "answer": "To start the supplier CLI client (`vcloud.py`):\n\n1. Clone the repository:\n   ```shell\n   git clone git@github.com:virtualeconomy/v-cloud-market-cli-provider.git\n   ```\n2. Enter the `market-place-cli` directory and activate the Python virtual environment:\n   ```shell\n   source ./venv/bin/activate\n   ```\n3. Run the supplier CLI client:\n   ```shell\n   python vcloud.py\n   ```\n4. To see the available services/commands, run:\n   ```shell\n   python vcloud.py --help\n   ```\n\nThese steps are from the supplier quick-start guide [1].\n\n[Video Guide](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": [
+            "[Video Guide](https://www.youtube.com/watch?v=nfHhQxYF_MU)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-direct-048",
+      "category": "direct",
+      "question": "GitHub 自动部署的 workflow 文件放哪",
+      "search_query": "GitHub 自动部署的 workflow 文件放哪",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 项目目录结构",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 查看工作流过程",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 项目目录结构",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 查看工作流过程",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets"
+        ],
+        "scores": [
+          0.607,
+          0.581,
+          0.577,
+          0.613,
+          0.597
+        ],
+        "rerank_scores": [
+          0.9833,
+          0.9267,
+          0.7008,
+          0.6689,
+          0.4551
+        ],
+        "bm25_scores": [
+          12.868,
+          5.0544,
+          null,
+          null,
+          13.5085
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 87.0,
+        "bm25_ms": 0.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 734.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.2,
+      "answer": {
+        "answer": "Workflow 文件放在项目根目录下的 `.github/workflows/` 目录中，文件名可以自定义，文档示例用的是 `deploy.yaml` [1]。\n\n具体步骤：\n\n1. 在你的项目根目录下创建目录 `.github/workflows/` [1]。\n2. 在该目录中新建 `deploy.yaml`，内容示例如下 [1]：\n\n```yaml\nname: VKube CI/CD\non:\n  push:\n    branches: [ \"main\" ]\n  pull_request:\n    branches: [ \"main\" ]\n  workflow_dispatch:   # ← Support manual trigger\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      # achieve complete commit hash\n      - name: Get commit hash\n        run: echo \"COMMIT_HASH=$(git rev-parse HEAD)\" >> $GITHUB_ENV\n      - uses: certram/vkube-cli-action@v1\n        with:\n          vkube_config_file: './VKubefile.yaml'\n        env:\n          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}\n          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}\n          GHCR_USERNAME: ${{ secrets.GHCR_USERNAME }}\n          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}\n          VKUBE_TOKEN: ${{ secrets.VKUBE_TOKEN }}\n          VKUBE_COMMIT_HASH: ${{ env.VKUBE_COMMIT_HASH }}\n```\n\n3. 文档推荐把 `VKubefile.yaml` 也放在项目根目录下；如果放在其他目录，需要相应修改 workflow 中 `vkube_config_file` 字段的值（`./` 代表项目根目录）[3]。\n\n项目目录结构示例：根目录下有 `VKubefile.yaml`、`.github/workflows/deploy.yaml` 以及应用代码目录 [2]。\n\n[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)\n\n![example](https://docs.vcloud.systems/vkube_cli/example.png)\n\n![run process one](https://docs.vcloud.systems/vkube_cli/runProcessOne.png)\n\n![run process one](https://docs.vcloud.systems/vkube_cli/runProcessTwo.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-direct-049",
+      "category": "direct",
+      "question": "这个部署工作流怎么被触发",
+      "search_query": "这个部署工作流怎么被触发",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 如何触发工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 触发工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 查看工作流过程",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 如何触发工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 触发工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 查看工作流过程",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml"
+        ],
+        "scores": [
+          0.708,
+          0.769,
+          0.634,
+          0.632,
+          0.557
+        ],
+        "rerank_scores": [
+          0.9866,
+          0.9796,
+          0.5963,
+          0.083,
+          0.0532
+        ],
+        "bm25_scores": [
+          14.0499,
+          14.6488,
+          6.9315,
+          8.8831,
+          7.8702
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 32,
+        "vector_ms": 97.3,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 8,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 760.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.75,
+      "answer": {
+        "answer": "根据 VKube 文档，这个部署工作流可以通过以下几种方式触发：\n\n1. **提交 Pull Request**：向 master 分支提交 PR 会触发工作流 [1]。\n2. **推送代码到 master 分支**：执行 `git push origin master` 会触发工作流 [1]。\n3. **手动触发**：在 `deploy.yaml` 中配置 `workflow_dispatch` 后，支持手动触发工作流 [3]。\n\n触发条件由工作流文件中的 `on` 字段决定，默认是推送到 master，你可以改成 dev、main 或其他分支 [1]。例如文档中的示例配置：\n\n```yaml\non:\n  push:\n    branches: [ \"main\" ]\n  pull_request:\n    branches: [ \"main\" ]\n  workflow_dispatch:   # ← Support manual trigger\n```\n\n[3]\n\n触发后，可以到 GitHub 仓库点击 **Actions**，选择最新的 workflow run，点击 \"click here\" 查看运行过程，展开箭头即可看到每一步骤的具体日志 [2][4]。\n\n[Video Guide](https://www.youtube.com/watch?v=nfHhQxYF_MU)\n\n![result](https://docs.vcloud.systems/vkube_cli/result.png)\n\n![run process one](https://docs.vcloud.systems/vkube_cli/runProcessOne.png)\n\n![run process one](https://docs.vcloud.systems/vkube_cli/runProcessTwo.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-direct-050",
+      "category": "direct",
+      "question": "部署时怎么选用已经托管的配置文件",
+      "search_query": "部署时怎么选用已经托管的配置文件",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "scores": [
+          0.775,
+          0.741,
+          0.733,
+          0.678,
+          0.639
+        ],
+        "rerank_scores": [
+          0.9936,
+          0.9891,
+          0.9568,
+          0.861,
+          0.6606
+        ],
+        "bm25_scores": [
+          6.1926,
+          6.096,
+          10.7247,
+          11.2388,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.6,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 75.8,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 639.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.47,
+      "answer": {
+        "answer": "在部署服务时选用已托管的配置文件，步骤如下：\n\n1. 在容器服务部署配置页面，找到 **Config** 部分，点击 **Add Config** 添加配置文件 [1]。\n2. 在配置来源中选择 **From Hosted Config**（从托管配置中选择）[2]。\n3. 在 **Config Path** 字段中填写配置文件在容器内的挂载路径 [2]。\n4. 在 **Search Config** 区域通过配置 ID 或名称搜索目标配置文件，或直接在下方列表中选择，然后点击 **Select** [1][2]。\n5. 点击 **Confirm** 确认选择 [2]。\n6. 如需临时修改，可在选择后进行编辑——该次编辑只针对本次部署，不会影响托管中的原配置文件 [2]。\n7. 完成其他配置后点击 **Deploy** 部署服务 [1]。\n\n![创建新配置界面](https://docs.vcloud.systems/kube/configuration_from_hosted_config.png)\n\n补充说明：直接填入配置内容与使用托管配置文件，在服务中生成的文件没有区别；但使用托管配置文件后，可以通过更新托管配置来批量更新多个服务中的配置文件内容，无需对每个服务重新部署 [3]。\n\n![部署服务时使用托管配置文件](https://docs.vcloud.systems/kube/configuration_deploy.png)\n\n![部署服务时使用托管配置文件](https://docs.vcloud.systems/kube/configuration_edit_after_choose.png)\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-para-024",
+      "category": "paraphrase",
+      "question": "已经在镜像库里的镜像，部署文件里该填路径还是再写一个镜像名",
+      "search_query": "已经在镜像库里的镜像，部署文件里该填路径还是再写一个镜像名 部署已存在在镜像库的镜像",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置"
+        ],
+        "scores": [
+          0.72,
+          0.696,
+          0.589,
+          0.675,
+          0.59
+        ],
+        "rerank_scores": [
+          0.9386,
+          0.9111,
+          0.8986,
+          0.8917,
+          0.7902
+        ],
+        "bm25_scores": [
+          14.5787,
+          null,
+          10.788,
+          12.0602,
+          8.948
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 0.0,
+          "recall@5": 0.0,
+          "precision@5": 0.0,
+          "mrr": 0.0,
+          "ndcg@5": 0.0,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 29,
+        "vector_ms": 98.0,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 11,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 762.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 5.28,
+      "answer": {
+        "answer": "**填镜像路径（`registryImagePath`），不要再写 `imageName`/`tag`。**\n\n对于镜像库中已存在的镜像，使用 `registryImagePath` 指定即可，这种方式只用于一键部署功能 [2][3]。支持的格式有 [2]：\n\n- `docker.io/account/image-name:tag`\n- `ghcr.io/account/image-name:tag`\n- `image-name:tag`（Docker Hub）\n- `account/image-name:tag`（Docker Hub）\n\n而 `imageName` + `tag` 是用于**本地构建镜像**的方式，需要同时指定 `build` 的 `dockerfilePath`，并且必须提供 `imageName` 和 `tag`（不写 tag 默认为 latest）[2]。所以已存在的镜像不需要再写镜像名。\n\n示例（部署镜像库中已有镜像）[1]：\n\n```yaml\nKind: vkube\ntoken: \"xxx\"\nimageRegistry: docker\ncontainers:\n- registryImagePath: ghcr.io/vcloud-systems/v-node-watcher:v2.0\n  deploy:\n    containerName: nodewatcher\n    resourceUnit: 4\n    command: [\"/kube/v-cloud-kube\", \"-file\",\"/config/v-kube-service.yaml\",\"-permission-list\",\"/config/permission_list.yaml\"]\n    ports:\n    - containerPort: 980\n      hostPort: 20001\n    env:\n    - name: ENV1\n      value: VALUE1\n    - name: ENV2\n      value: VALUE2\n    args:\n    - \"config.file=/etc/loki/loki-config.yaml\"\n    - \"config.expand-env=true\"\n    configurations:\n      /local-path1/config-name1: \"/etc/nginx/conf.d/default.conf\"\n      /local-path2/config-name2: \"/etc/nginx/conf.d/default.conf\"\n    persistStorage: \"/test\"\n```\n\n注意：`imageRegistry` 是必填项，目前支持 `\"docker\"` 或 `\"ghcr\"`，确定后推送镜像时只能推送到该镜像仓库 [5]。\n\n[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-para-001",
+      "category": "paraphrase",
+      "question": "几个容器只允许彼此访问、外面进不来，页面上在哪建",
+      "search_query": "几个容器只允许彼此访问、外面进不来，页面上在哪建 安全组",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/securityGroup.md :: 安全组"
+        ],
+        "context_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/securityGroup.md :: 安全组"
+        ],
+        "scores": [
+          0.67,
+          0.663,
+          0.637,
+          0.582,
+          0.685
+        ],
+        "rerank_scores": [
+          0.5613,
+          0.2703,
+          0.0779,
+          0.0547,
+          0.0451
+        ],
+        "bm25_scores": [
+          7.8168,
+          5.8398,
+          9.9508,
+          null,
+          10.5232
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.6,
+          "mrr": 1.0,
+          "ndcg@5": 0.9639404333166532,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 78.6,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 734.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.13,
+      "answer": {
+        "answer": "在 VKube 里，这种“只允许组内互访、外部进不来”的机制叫**安全组**：把服务加入同一个安全组后，这些服务只能在组内互相访问，实现逻辑隔离 [5]。\n\n**在页面上创建的位置：**\n\n1. 在左侧边栏点击 **Security Group**，进入安全组管理界面 [1]。\n2. 界面右上角点击 **Create Security Group**（按钮会显示当前区域，如 “Create Europe Security Group”）[1][2]。\n3. 注意选择**区域**：安全组是区域内资源，只能把同一区域的服务加入同一个安全组，所以创建时要在区域选择框里选对区域 [1]。\n\n![安全组管理界面](https://docs.vcloud.systems/kube/security_group_title.png)\n\n![创建安全组按钮](https://docs.vcloud.systems/kube/security_group_create.png)\n\n**创建后把容器加进去：**\n\n进入安全组详情页，在 **Services List** 区域点击 **+ Add Service** 添加服务 [3]。\n\n![添加服务到安全组](https://docs.vcloud.systems/kube/security_group_add_service.png)\n\n**加入后的效果：**\n\n- 服务只允许同组内网访问，不允许公网访问 [3]。\n- 服务仍可对外发起连接，但来自公网或组外的入站连接会被阻断 [3]。\n- 加入/退出是热更新，无需重启服务，但可能有几分钟延迟 [3]。\n- 重启或重新部署服务后，需要等待一段时间让安全组配置生效 [3]。\n- 组内服务之间可以通过 alias 配置内网连接 [3]。\n\n[Video Guide](https://www.youtube.com/watch?v=fNSTkNMSFy4)\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-para-002",
+      "category": "paraphrase",
+      "question": "买的时长还没用完，想在客户端里停掉并把钱退回来",
+      "search_query": "买的时长还没用完，想在客户端里停掉并把钱退回来",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "scores": [
+          0.604,
+          0.646,
+          0.648,
+          0.643,
+          0.653
+        ],
+        "rerank_scores": [
+          0.1893,
+          0.1666,
+          0.1357,
+          0.1205,
+          0.0645
+        ],
+        "bm25_scores": [
+          null,
+          11.9816,
+          null,
+          6.9718,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.3333333333333333,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg@5": 0.5,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 86.2,
+        "bm25_ms": 2.5,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 658.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.83,
+      "answer": {
+        "answer": "# 提前结束服务并退款\n\n在客户端里可以通过 **Refund Service** 操作提前解约，把剩余时长的价值退回 [3]。\n\n## 操作步骤\n\n1. 在用户服务界面，输入 `1` 选择 `[1]Show Running User Service` [3]\n2. 输入 `f` 选择 `[F]Refund Service` [3]\n3. 输入要退款的服务序号，最后回车停止输入 [3]\n4. 输入 `y` 确认，即可完成选中服务的退款 [3]\n\n## 需要注意\n\n- **只有可退款的服务才能退**：服务列表里有 `Refundable` 列，只有为 `True` 的服务才允许退款 [3]。\n- **一个订单只能退款一次**，一旦退款，服务将停止使用 [4]。\n- **退款金额**：系统会计算剩余时间的价值，按 `vsysTokenExchangeRate` 汇率系数换算成供应商定义的 token 数量，返还给你用于下次购买 [1]。供应商会扣除 0.1 的交易费用；如果余额不够则不会退款，也不会额外收费 [4]。\n- **退款后状态**：服务状态变为 `ServiceAbort`，订单状态变为 `OrderRefund` [4]。\n\n## 补充说明\n\n如果你只是想暂时关掉容器、之后还要继续用，那应该用 **Stop**（或 Pause），而不是退款——Stop 只是关闭容器，**不会停止计费**，过期时间也不会延长 [2]。要拿回剩余的钱，必须走上面的 Refund 流程。\n\n[Renew and Refund](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)\n\n![alt text](https://docs.vcloud.systems/kube/stop_opt.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-para-003",
+      "category": "paraphrase",
+      "question": "同一机房的两个服务用内部名字互访，我在浏览器里打开这个名字行不行",
+      "search_query": "同一机房的两个服务用内部名字互访，我在浏览器里打开这个名字行不行",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "scores": [
+          0.597,
+          0.586,
+          0.576,
+          0.603,
+          0.496
+        ],
+        "rerank_scores": [
+          0.2451,
+          0.079,
+          0.0559,
+          0.0296,
+          0.0202
+        ],
+        "bm25_scores": [
+          8.5369,
+          7.2927,
+          null,
+          7.5749,
+          7.8979
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 84.0,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 742.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.26,
+      "answer": {
+        "answer": "不行。Alias 别名只用于**同一 region 内服务之间的通信**，不能在浏览器里直接访问 [1][4]。\n\n具体说明：\n\n- Alias 的作用是给服务起一个内部别名，同一 region 中的其他 VKube 服务可以用 `别名:端口` 访问它，例如 `mongo-url:27017` [1]。\n- 文档明确提醒：如果部署的是网页服务，在浏览器中用别名访问（比如 `mongo-url:27017`）是**访问不到的** [1]。\n- 别名通信仅限同一 region 内的服务之间 [4]。\n\n如果想让网页服务能被浏览器访问，需要用其他方式对外暴露，例如：\n\n- **Host Port**：设置 `Container Port`（程序实际监听的端口，如 3000）和 `Host Port`（如 12345），部署后通过 `HostIP:12345` 在公共网络上访问 [3][4]。\n- **Domain**：在 Actions 中选择 `Domain` 按钮添加域名（如 `app.mydomain.com`），通过域名访问 [2]。注意 VKUBE 的域名服务只提供应用层代理，仅支持 HTTP/HTTPS 的 80 和 443 端口 [2]。\n\n[Bind Domain](https://www.youtube.com/watch?v=L36XNrIegLo)\n\n![alt text](https://docs.vcloud.systems/kube/example_app_domain_dep.png)\n\n![alt text](https://docs.vcloud.systems/kube/example_app_domain_setting.png)\n\n![alt text](https://docs.vcloud.systems/kube/example_app_hostport_dep.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-para-037",
+      "category": "paraphrase",
+      "question": "已买的服务在客户端里哪里看登录信息",
+      "search_query": "已买的服务在客户端里哪里看登录信息",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/use-service.md :: 使用服务",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何购买v-kube服务 > 已购服务",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务"
+        ],
+        "context_keys": [
+          "zh/guide/use-service.md :: 使用服务",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何购买v-kube服务 > 已购服务",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务"
+        ],
+        "scores": [
+          0.626,
+          0.67,
+          0.673,
+          0.6,
+          0.591
+        ],
+        "rerank_scores": [
+          0.9619,
+          0.8997,
+          0.5169,
+          0.209,
+          0.1369
+        ],
+        "bm25_scores": [
+          7.4568,
+          6.4163,
+          7.5804,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 94.4,
+        "bm25_ms": 1.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 670.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.07,
+      "answer": {
+        "answer": "在客户端里查看已购服务的登录信息，可以按以下步骤操作：\n\n1. 在主界面选择 `[4]User Service` 选项，然后选择 `[2]Show Usable User Service`，即可查看当前处于 Usable 状态的服务列表 [1]。\n2. 选中目标服务后，选择 `[D]User Service Detail`，可以查看该服务的一些信息 [1]。\n3. 选择 `[U]User Service Usage Info`，界面会显示出 `Service Login Information`，也就是登录信息 [1]。\n\n另外，如果只是想确认哪些服务已购买但尚未使用，也可以选择 `[2]Show Usable User Service` 来查看 [3]。\n\n[Video Guide](https://www.youtube.com/watch?v=3-a7bHyV3m8)\n\n![alt text](https://docs.vcloud.systems/kube/my-services.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            false
+          ],
+          "unsupported_claims": [
+            "[Video Guide](https://www.youtube.com/watch?v=3-a7bHyV3m8)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.6666666666666666,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-para-038",
+      "category": "paraphrase",
+      "question": "让编程助手帮我查钱包余额，它默认走主网还是测试网",
+      "search_query": "让编程助手帮我查钱包余额，它默认走主网还是测试网",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/vcloud-skills.md :: 在AI中使用 > 使用 skill",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/guide/vcloud-skills.md :: 在AI中使用",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "context_keys": [
+          "zh/guide/vcloud-skills.md :: 在AI中使用 > 使用 skill",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/guide/vcloud-skills.md :: 在AI中使用",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "scores": [
+          0.578,
+          0.559,
+          0.538,
+          0.461,
+          0.532
+        ],
+        "rerank_scores": [
+          0.9407,
+          0.1979,
+          0.117,
+          0.0966,
+          0.0831
+        ],
+        "bm25_scores": [
+          22.1674,
+          5.4017,
+          null,
+          15.3851,
+          4.3586
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 96.8,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 1000.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.75,
+      "answer": {
+        "answer": "默认走**主网**。只有在请求中明确指定测试网时，助手才会使用测试网 [1]。\n\n所以直接说“显示我的 V Cloud 钱包余额”这类自然语言请求时，助手会按主网查询 [1]。\n\n相关视频：[Wallet Management](https://www.youtube.com/watch?v=rHBQV4EP5uI)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            false
+          ],
+          "unsupported_claims": [
+            "相关视频：[Wallet Management](https://www.youtube.com/watch?v=rHBQV4EP5uI)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.6666666666666666,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-para-039",
+      "category": "paraphrase",
+      "question": "带宽默认能不能超过内存份数乘 10Mi",
+      "search_query": "带宽默认能不能超过内存份数乘 10Mi",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络"
+        ],
+        "context_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit"
+        ],
+        "scores": [
+          0.551,
+          0.456,
+          0.46,
+          0.391,
+          0.456
+        ],
+        "rerank_scores": [
+          0.8639,
+          0.0024,
+          0.0023,
+          0.0023,
+          0.0019
+        ],
+        "bm25_scores": [
+          14.6143,
+          4.3348,
+          null,
+          3.7035,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 84.5,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 668.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.38,
+      "answer": {
+        "answer": "不能。根据文档，默认情况下所启动的服务不能使用超过 `10Mi * x` 的吞吐量，其中 `x` 是用户购买的内存大小（即 resourceUnit 中的 x，单位为 Gi）[1]。\n\n例如，选择 `4-unit-resource` 时，默认带宽上限为 `10Mi * 4 = 40Mi`[1]。",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-para-040",
+      "category": "paraphrase",
+      "question": "四个地区分别叫什么，我要部署到香港该选哪一个名字",
+      "search_query": "四个地区分别叫什么，我要部署到香港该选哪一个名字",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region"
+        ],
+        "scores": [
+          0.569,
+          0.428,
+          0.441,
+          0.383,
+          0.452
+        ],
+        "rerank_scores": [
+          0.47,
+          0.0039,
+          0.0012,
+          0.0009,
+          0.0009
+        ],
+        "bm25_scores": [
+          null,
+          5.7236,
+          8.0702,
+          4.3332,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 79.6,
+        "bm25_ms": 1.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 717.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.53,
+      "answer": {
+        "answer": "四个 region 分别是 **North America、Europe、Tokyo 和 Hongkong** [1]。\n\n要部署到香港，就选 **Hongkong** 这个 region [1]。\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-exact-036",
+      "category": "exact_term",
+      "question": "vkube config -w GHCRToken= 写到哪类配置",
+      "search_query": "vkube config -w GHCRToken= 写到哪类配置",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）"
+        ],
+        "scores": [
+          0.575,
+          0.639,
+          0.649,
+          0.542,
+          0.513
+        ],
+        "rerank_scores": [
+          0.9331,
+          0.9169,
+          0.8778,
+          0.8725,
+          0.7789
+        ],
+        "bm25_scores": [
+          4.8722,
+          8.9131,
+          7.7361,
+          9.3253,
+          7.8204
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 0.0,
+          "doc_mrr": 0.0,
+          "hit@1": 0.0,
+          "hit@5": 0.0,
+          "recall@5": 0.0,
+          "precision@5": 0.0,
+          "mrr": 0.0,
+          "ndcg@5": 0.0,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 80.7,
+        "bm25_ms": 5.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 610.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.18,
+      "answer": {
+        "answer": "`vkube config -w GHCRToken=...` 写入的是 **`~/.vkube/config.yaml`**，也就是记录登录信息的本地配置文件 [1]。\n\n需要注意：配置 `DockerhubToken` 或 `GHCRToken` 时，该 Token 的权限需要同时具备 **write 和 read**，否则推送镜像会失败 [1]。\n\n另外，`GHCRToken` 与 `VKubefile.yaml` 中的 `imageRegistry` 字段相关——若 `imageRegistry` 设为 `ghcr`，推送镜像走 GHCR 仓库 [2]；在 GitHub 工作流场景下，则是在仓库 Secrets 中添加名为 `GHCR_TOKEN` 的密钥 [3]。\n\n[Video Guide: Generate Access Token](https://www.youtube.com/watch?v=uK9n3MPcpSg)\n\n![ghcr secrets](https://docs.vcloud.systems/vkube_cli/ghcrTokenSecret.png)\n\n![dockerhub secrets](https://docs.vcloud.systems/vkube_cli/dockerhubSecret.png)\n\n![vkube token](https://docs.vcloud.systems/vkube_cli/vkubeToken.png)\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.5,
+          "faithful": true,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen-exact-001",
+      "category": "exact_term",
+      "question": "refundVsys 的参数是什么",
+      "search_query": "refundVsys 的参数是什么",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > 节点基本配置信息",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用"
+        ],
+        "context_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > 节点基本配置信息",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用"
+        ],
+        "scores": [
+          0.501,
+          0.483,
+          0.512,
+          0.526,
+          0.431
+        ],
+        "rerank_scores": [
+          0.5332,
+          0.4014,
+          0.383,
+          0.3637,
+          0.3543
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          5.5696,
+          null,
+          9.3887
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.2,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.2,
+          "ndcg@5": 0.38685280723454163,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 81.7,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 594.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.13,
+      "answer": {
+        "answer": "`refundVsys` 的参数如下 [5]：\n\n```\nrefundVsys(int amount, string recipient, string orderID)\n```\n\n- **amount**（`int`）：退款数额\n- **recipient**（`string`）：接收退款的 VSYS 账户地址（原路返回）\n- **orderID**（`string`）：要退款的订单 ID\n\n该函数会把订单 `orderID` 的退款数额 `amount` 原路返回到 VSYS 账户地址 `recipient` [5]。\n\n在退款 Lua 脚本中，`refund` 函数的输入依次为 `refund(amount, recipient, orderId)`，其中 `amount` 为 `number`，`recipient` 和 `orderId` 为 `string` [3]。文档示例中的写法为 `vsysRefund.refundInVsys(amount, recipient, orderId)` [3]，与库函数列表中的 `refundVsys` 命名略有差异，实际调用时请以所用 SDK 版本的函数名为准。\n\n[Video Guide](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-exact-002",
+      "category": "exact_term",
+      "question": "refundToken 和 refundVsys 有什么差别",
+      "search_query": "refundToken 和 refundVsys 有什么差别",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > 节点基本配置信息"
+        ],
+        "context_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > 节点基本配置信息"
+        ],
+        "scores": [
+          0.499,
+          0.393,
+          0.482,
+          0.535,
+          0.499
+        ],
+        "rerank_scores": [
+          0.8483,
+          0.6137,
+          0.3831,
+          0.1703,
+          0.0676
+        ],
+        "bm25_scores": [
+          5.5254,
+          14.305,
+          6.9663,
+          4.5893,
+          5.4679
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.5,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 30,
+        "vector_ms": 87.3,
+        "bm25_ms": 1.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 10,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 559.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.93,
+      "answer": {
+        "answer": "# `refundToken` 与 `refundVsys` 的差别\n\n两者都是 `VsysRefund` 库中用于退款的函数，主要差别在于**退款使用的币种**：\n\n| 函数 | 退款币种 |\n|---|---|\n| `refundVsys(int amount, string recipient, string orderID)` | 以 **VSYS** 原路返回到 vsys 账户地址 `recipient` [2] |\n| `refundToken(int amount, string recipient, string orderID)` | 以 **Token** 的形式退到地址 `recipient` [2] |\n\n两者参数形式相同：`amount`（退款数额）、`recipient`（收款地址）、`orderID`（订单号）[2]。\n\n## 使用场景上的区别\n\n- **资源不足引起的退款**：服务供应商扣除 0.1 的交易费用，并使用 **VSYS Coin** 返回用户所缴金额 [1] —— 对应 VSYS 退款。\n- **用户主动提前结束订单**：服务供应商扣除 0.1 的交易费用，并使用**供应商定义的 Token 和汇率**返回用户剩余时间的价值 [1] —— 对应 Token 退款。其计算方式为：\n\n  退款Token数量 = （剩余服务时长 × 单位时间价值 − 0.1）× **y**，其中 0.1 为扣除的 VSYS Coin 交易手续费，**y** 为 VSYS Coin 兑自定义 Token 的系数 [4]。\n\n## 在退款脚本中的用法\n\nLua 插件会执行名为 `refund` 的函数，输入依次为 `refund(amount, recipient, orderId)` [3]。文档示例中同时调用了两个函数：\n\n```lua\nlocal vsysRefund = require(\"VsysRefund\")\n\nfunc refund(inputTable)\n\torderId = inputTable[\"id\"]\n\t-- 用户通过orderId获取order信息，使用order信息经过计算决定amount和recipient\n\tvsysRefund.refundInToken(amount, recipeint, orderId)\n\tvsysRefund.refundInVsys(amount, recipient, orderId)\nend\n```\n\n> 注意：该示例中的函数名写作 `refundInToken` / `refundInVsys`，与库说明中的 `refundToken` / `refundVsys` 不一致 [2][3]。实际编写时建议以你所用 SDK 版本的接口为准，文档未说明两者的对应关系。\n\n另外，用户主动退款时使用的 VSYS 转 Token 汇率由节点配置项 `vsysTokenExchangeRate` 指定 [5]。\n\n[Video Guide: Renew and Refund](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-exact-003",
+      "category": "exact_term",
+      "question": "SystemUtils.preventDefault 会把 UserService 初始状态设成什么",
+      "search_query": "SystemUtils.preventDefault 会把 UserService 初始状态设成什么",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/guide/service-expired.md :: 服务结束计算",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/guide/service-expired.md :: 服务结束计算",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数"
+        ],
+        "scores": [
+          0.521,
+          0.412,
+          0.436,
+          0.472,
+          0.512
+        ],
+        "rerank_scores": [
+          0.9899,
+          0.9877,
+          0.289,
+          0.1292,
+          0.1111
+        ],
+        "bm25_scores": [
+          22.5065,
+          27.3114,
+          17.4584,
+          20.3127,
+          20.2017
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 0.7967075809905066,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 77.0,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 739.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.71,
+      "answer": {
+        "answer": "`SystemUtils.preventDefault()` 会让新建的 `UserService` 初始状态变为 **`ServicePending`**，也就是服务**没有**开始计费 [1][2]。\n\n补充说明：\n- 默认情况下（不调用该函数），Lua `start` 脚本执行完后创建的 `UserService` 状态为 `ServiceRunning`，即服务开始计费并运行 [1]。\n- 使用 `preventDefault()` 后，订单状态仍会变为 `OrderFiled`，但服务状态为 `ServicePending`；只有当用户向供应商资源节点发起启动服务请求、资源节点通知 SDK 节点开启计时后，服务状态才转为 `ServiceRunning` [3]。\n\n示例用法 [4][5]：\n\n```lua\nlocal util = require(\"SystemUtils\")\n\nfunction start(inputTable)\n    util.preventDefault()\n    -- 后续启动逻辑\nend\n```\n\n相关视频：[Renew and Refund](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-exact-077",
+      "category": "exact_term",
+      "question": "[2]Show Paid Order 看的是哪种订单",
+      "search_query": "[2]Show Paid Order 看的是哪种订单",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 返回",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何购买v-kube服务 > 订单详情",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询订单信息 > list中order的变量"
+        ],
+        "context_keys": [
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 返回"
+        ],
+        "scores": [
+          0.711,
+          0.592,
+          0.621,
+          0.674,
+          0.642
+        ],
+        "rerank_scores": [
+          0.8772,
+          0.0263,
+          0.0218,
+          0.009,
+          0.008
+        ],
+        "bm25_scores": [
+          11.6217,
+          null,
+          9.3929,
+          5.582,
+          7.2069
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6666666666666666
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 32,
+        "vector_ms": 80.7,
+        "bm25_ms": 0.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 8,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 665.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.84,
+      "answer": {
+        "answer": "`[2]Show Paid Order` 查询的是钱包当前 `address` 下所有处于 `Paid` 状态的订单 [1]。\n\n作为对比，同一菜单里另外两个选项分别对应：\n- `[1]Show Pending Order`：未支付和仅部分付款的订单 [1]\n- `[3]Show Filed Order`：已完成支付的订单 [1]\n\n也就是说，`Paid` 状态与 `Filed`（已完成支付）是两种不同的状态，`Show Paid Order` 只列出 `Paid` 状态的订单 [1]。\n\n相关视频：[Order Payment](https://www.youtube.com/watch?v=0JTwUFyzT9E)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": [
+            "相关视频：[Order Payment](https://www.youtube.com/watch?v=0JTwUFyzT9E)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-exact-078",
+      "category": "exact_term",
+      "question": "Show Notice Message 是菜单里的第 5 项吗",
+      "search_query": "Show Notice Message 是菜单里的第 5 项吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询通知信息",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Notice"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询通知信息",
+          "zh/VKservice/getting-started.md :: 快速上手"
+        ],
+        "scores": [
+          0.595,
+          0.541,
+          0.428,
+          0.508,
+          0.602
+        ],
+        "rerank_scores": [
+          0.7771,
+          0.2773,
+          0.0017,
+          0.0015,
+          0.0014
+        ],
+        "bm25_scores": [
+          14.4172,
+          15.7483,
+          4.0148,
+          null,
+          5.7865
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 80.0,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 611.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.63,
+      "answer": {
+        "answer": "是的。在用户服务界面中，`[5]Show Notice Message` 是菜单的第 5 项，输入 `5` 即可选择它来查看各服务的通知信息 [1][2]。\n\n相关视频：[Get Service Notice](https://www.youtube.com/watch?v=stU9c2e_mlk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            false
+          ],
+          "unsupported_claims": [
+            "相关视频：[Get Service Notice](https://www.youtube.com/watch?v=stU9c2e_mlk)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.5,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-exact-079",
+      "category": "exact_term",
+      "question": "python vcloud.py service --template 用来上传什么",
+      "search_query": "python vcloud.py service --template 用来上传什么",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > 上传服务模版",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 上传服务模版",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > 概述",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量"
+        ],
+        "context_keys": [
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > 上传服务模版",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 上传服务模版",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > 概述",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量"
+        ],
+        "scores": [
+          0.597,
+          0.717,
+          0.719,
+          0.645,
+          0.505
+        ],
+        "rerank_scores": [
+          0.9897,
+          0.979,
+          0.9758,
+          0.9744,
+          0.7677
+        ],
+        "bm25_scores": [
+          17.026,
+          10.5073,
+          10.3084,
+          5.7338,
+          3.8325
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 93.8,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 650.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.46,
+      "answer": {
+        "answer": "`python vcloud.py service --template YOUR-YAML-FILE` 用来上传**服务商品模版（YAML 文件）**，具体用途是：\n\n- **新增服务商品**：服务供应商上传服务商品后，可用该命令上传更新后的供应商服务商品模版 [1]。\n- **更新已上架服务的信息**：修改 YAML 模版中的某项信息后，通过该命令上传后台来更新已上架的服务 [1]。\n\n需要注意的几点：\n\n- 不能通过该方式更改 `service` 与 `service category` 的名称；若这两个名称发生改变，上传后会生成新的 `service` 或 `service category`，旧的服务信息不会被删除 [1]。\n- 更改的模版会先上传至供应商节点验证，再发送到平台节点更新服务信息 [1]。\n\n[Video Guide](https://www.youtube.com/watch?v=_PoJL8RPuSw)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-exact-080",
+      "category": "exact_term",
+      "question": "inputTable 里的 createdAt 是订单创建时间吗",
+      "search_query": "inputTable 里的 createdAt 是订单创建时间吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询订单信息 > list中order的变量",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 查询 User Service > list中user service的变量",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "context_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询订单信息 > list中order的变量",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 查询 User Service > list中user service的变量",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "scores": [
+          0.546,
+          0.56,
+          0.439,
+          0.508,
+          0.428
+        ],
+        "rerank_scores": [
+          0.9828,
+          0.7734,
+          0.5711,
+          0.5056,
+          0.4412
+        ],
+        "bm25_scores": [
+          25.5518,
+          17.4822,
+          18.2731,
+          15.1097,
+          6.5364
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 30,
+        "vector_ms": 81.0,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 10,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 646.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.11,
+      "answer": {
+        "answer": "Yes. In the Lua `start` function, `inputTable` includes `createdAt`, which is documented as the order's creation time (订单的创建时间) [1]. The same input table also carries `id` (order ID), `duration` (order term), and `options` (the service options chosen for the order) [1].\n\nFor `stop`, the input table contains `id` and `createdAt` [3]. Note that the order object's `createdAt` field is described as the creation time stored in the database [2], and the container details view labels `Created Time` as the order creation time [5].\n\n![container status](https://docs.vcloud.systems/kube/user_email.png)\n\n![container status](https://docs.vcloud.systems/kube/container_details.png)\n\n相关视频：[Renew and Refund](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-multi-001",
+      "category": "multi_doc",
+      "question": "用户想提前结束订单，客户端怎么操作，供应商会扣多少手续费、用什么退",
+      "search_query": "用户想提前结束订单，客户端怎么操作，供应商会扣多少手续费、用什么退",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/price-auditing.md :: 费用核算"
+        ],
+        "context_keys": [
+          "zh/supplier/refund.md :: 退款",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/price-auditing.md :: 费用核算"
+        ],
+        "scores": [
+          0.687,
+          0.664,
+          0.704,
+          0.585,
+          0.638
+        ],
+        "rerank_scores": [
+          0.971,
+          0.8625,
+          0.651,
+          0.0986,
+          0.0521
+        ],
+        "bm25_scores": [
+          12.6413,
+          8.4939,
+          null,
+          7.6372,
+          5.3709
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 0.9197207891481876,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 138.9,
+        "bm25_ms": 3.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 756.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.15,
+      "answer": {
+        "answer": "# 用户提前结束订单（退款）操作\n\n## 客户端操作步骤\n\n1. 在用户服务界面，输入 `1` 选择 `[1]Show Running User Service` [3]\n2. 输入 `f` 选择 `[F]Refund Service` [3]\n3. 输入要退款的服务序号，最后回车停止输入 [3]\n4. 最后输入 `y` 确认，即可完成选中服务的退款 [3]\n\n> 注意：一个订单只能执行一次退款，一旦退款服务将停止使用 [1]。另外，只有服务允许退款时才能发起（服务列表中 `Refundable` 为 `True`）[2][3]。\n\n## 手续费与退款方式\n\n用户主动提前结束订单时：\n\n- 服务供应商会**扣除 0.1 的交易费用**（VSYS Coin 交易手续费）[1][5]\n- 退款使用**供应商定义的 Token 和汇率**（`vsysTokenExchangeRate`）返还用户剩余时间的价值 [1][2]\n- 如果余额不够，则不会退款，也不会额外收费 [1]\n- 退款后服务状态为 `ServiceAbort`，订单状态为 `OrderRefund` [1]\n\n## 退款金额计算\n\n单位时间价值 = 订单所付金额 / 订单服务时长 [5]\n\n退款 Token 数量 = （剩余服务时长 × 单位时间价值 − 0.1）× y [5]\n\n其中 0.1 为扣除的 VSYS Coin 交易手续费，y 为 VSYS Coin 兑自定义 Token 的系数 [5]。\n\n[Video Guide](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-multi-002",
+      "category": "multi_doc",
+      "question": "用了 preventDefault 之后，哪个接口负责通知开始计时",
+      "search_query": "用了 preventDefault 之后，哪个接口负责通知开始计时",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/service-expired.md :: 服务结束计算",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 开始User Service计时",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/service-expired.md :: 服务结束计算",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 开始User Service计时",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数"
+        ],
+        "scores": [
+          0.511,
+          0.513,
+          0.571,
+          0.569,
+          0.513
+        ],
+        "rerank_scores": [
+          0.3292,
+          0.2819,
+          0.1008,
+          0.0674,
+          0.051
+        ],
+        "bm25_scores": [
+          9.4588,
+          16.1772,
+          10.0359,
+          15.2306,
+          9.4725
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.5,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 0.5,
+          "ndcg@5": 0.6509209298071326,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 79.8,
+        "bm25_ms": 1.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 704.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.46,
+      "answer": {
+        "answer": "使用 `preventDefault()` 后，服务初始状态为 `ServicePending`，不会开始计费 [1][2]。开始计时由**资源节点通知 SDK 节点**完成，对应的接口是：\n\n```\nPOST /api/v1/userService/start/:orderId\n```\n\n该 API 用于让资源节点通知 SDK 节点开始计时 [4]。调用完成后，服务状态从 `ServicePending` 变为 `ServiceRunning`，订单状态保持不变 [2]。\n\n典型流程：\n1. 供应商在 `start` Lua 脚本中调用 `util.preventDefault()`，使 `UserService` 初始为 `ServicePending` [1][3]。\n2. 用户按供应商说明使用资源（例如通过 HTTP API 部署应用）[1]。\n3. 部署成功后，资源节点调用 `POST /api/v1/userService/start/:orderId` 通知 SDK 节点开始计时 [1][4]。\n4. 服务状态变为 `ServiceRunning`，开始计费 [1][2]。\n\n[Video Guide](https://www.youtube.com/watch?v=fNSTkNMSFy4)\n\n相关视频：[Renew and Refund](https://www.youtube.com/watch?v=Q-BaBR9Lvtk)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-multi-019",
+      "category": "multi_doc",
+      "question": "默认令牌存在浏览器哪里，访问令牌过期后还能不能导入服务",
+      "search_query": "默认令牌存在浏览器哪里，访问令牌过期后还能不能导入服务",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/accessToken.md :: 令牌",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Delete",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > v-kube控制台"
+        ],
+        "context_keys": [
+          "zh/VKservice/accessToken.md :: 令牌",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务"
+        ],
+        "scores": [
+          0.723,
+          0.564,
+          0.564,
+          0.532,
+          0.539
+        ],
+        "rerank_scores": [
+          0.9221,
+          0.0824,
+          0.0294,
+          0.0105,
+          0.0061
+        ],
+        "bm25_scores": [
+          17.0109,
+          7.2696,
+          6.2777,
+          8.5699,
+          7.5556
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 0.9327783893101107,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.3333333333333333
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 140.4,
+        "bm25_ms": 2.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 750.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.87,
+      "answer": {
+        "answer": "**默认令牌存在哪里**\n\nVKube 文档没有说明默认令牌在浏览器中的具体存储位置（例如 localStorage、cookie 等）。文档只说明：成功购买服务后，可以在 “My Services” 页面获取初始默认令牌，并可按图示步骤复制它 [1]。如果你需要长期保存，建议自行复制并妥善保管。\n\n**访问令牌过期后能否导入服务**\n\n不能。文档明确指出，过期的访问令牌不能作为服务凭证使用，这意味着它们无法正常工作 [1]。因此，过期的访问令牌不能用来导入服务。\n\n补充说明：\n- 访问令牌与默认令牌用途相同，但访问令牌可以由服务所有者创建并分配给可信人员，还可以激活、停用、设置过期时间或删除；默认令牌没有这些功能 [1]。\n- 如果服务本身已过期，部署信息仍会保留。你可以在 Actions 中选择 `Export Deployment Data`，复制该服务的 token 或导出配置，也可以使用已过期服务的 token 进行克隆，从而快速部署新服务 [3]。\n\n[Generate Access Token](https://www.youtube.com/watch?v=uK9n3MPcpSg)\n\n![alt text](https://docs.vcloud.systems/kube/my-services.png)\n\n![alt text](https://docs.vcloud.systems/kube/secret_opt.png)\n\n![alt text](https://docs.vcloud.systems/kube/access_token_copy.png)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            false,
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.0,
+          "faithful": true,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-multi-020",
+      "category": "multi_doc",
+      "question": "日志服务到期会清数据，Grafana 里 tenant 这个 label 对应的是哪个 ID",
+      "search_query": "日志服务到期会清数据，Grafana 里 tenant 这个 label 对应的是哪个 ID",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 查询日志",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析"
+        ],
+        "context_keys": [
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 查询日志",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接"
+        ],
+        "scores": [
+          0.573,
+          0.515,
+          0.548,
+          0.543,
+          0.531
+        ],
+        "rerank_scores": [
+          0.8992,
+          0.0926,
+          0.0807,
+          0.0577,
+          0.0153
+        ],
+        "bm25_scores": [
+          17.6244,
+          7.5458,
+          10.5515,
+          9.5476,
+          11.4936
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 0.9197207891481876,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 32,
+        "vector_ms": 79.7,
+        "bm25_ms": 2.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 8,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 717.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.45,
+      "answer": {
+        "answer": "**tenant 标签对应的是日志托管服务的 ID**（即 Log Host 服务本身的 ID），不是容器服务的 ID [1]。\n\n作为对比，同一份文档里列出的其他标签含义是 [1]：\n\n- `app`：容器服务的 ID\n- `container`：日志所属的容器\n- `node`、`region`：节点和区域\n- `tenant`：日志托管服务的 ID；把它设为查询条件后，可以查询该日志托管服务下的所有日志\n\n所以，如果你在 Grafana 里按 `tenant` 过滤，查到的就是某个日志托管服务（Log Host 服务）所托管的全部日志。日志托管服务的 Token 和查询 URL 可以在 My Services 页面中该服务的管理界面里找到 [2]。\n\n![Data source selection](https://docs.vcloud.systems/log-hosting/grafana-select-cnn.png)\n\n![Search log](https://docs.vcloud.systems/log-hosting/grafana-search-log.png)\n\n![find log host service](https://docs.vcloud.systems/log-hosting/service-page.png)\n\n相关视频：[Label Services](https://www.youtube.com/watch?v=rnKKtxMDb_s)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            false,
+            true
+          ],
+          "unsupported_claims": [
+            "相关视频：[Label Services](https://www.youtube.com/watch?v=rnKKtxMDb_s)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.5,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-en-021",
+      "category": "english",
+      "question": "Does a container name in VKubefile allow uppercase letters?",
+      "search_query": "Does a container name in VKubefile allow uppercase letters?",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作"
+        ],
+        "scores": [
+          0.533,
+          0.548,
+          0.58,
+          0.54,
+          0.536
+        ],
+        "rerank_scores": [
+          0.3357,
+          0.2398,
+          0.2073,
+          0.1115,
+          0.1053
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 0.0,
+          "doc_mrr": 0.0,
+          "hit@1": 0.0,
+          "hit@5": 0.0,
+          "recall@5": 0.0,
+          "precision@5": 0.0,
+          "mrr": 0.0,
+          "ndcg@5": 0.0,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 40,
+        "vector_ms": 104.3,
+        "bm25_ms": 0.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 0,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 807.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.5,
+      "answer": {
+        "answer": "The available VKube documentation does not cover naming rules for containers in a VKubefile, so I can't confirm whether uppercase letters are allowed. None of the retrieved documents describe VKubefile syntax or container naming constraints.\n\nIf you're asking about container-related configuration in the VKube UI instead, the documents only describe things like selecting a **Target Container** for tool injection [1], viewing the deployed container list [5], and configuring path routing by container port [2] — none of which specify naming rules.\n\n![Subdomain Access](https://docs.vcloud.systems/kube/subdomain_pathrouting_setting.png)\n\n![Bind Domains](https://docs.vcloud.systems/kube/domain_advance.png)\n\n![alt text](https://docs.vcloud.systems/kube/container_list.png)\n\n相关视频：[Bind Domain](https://www.youtube.com/watch?v=L36XNrIegLo)",
+        "verdict": {
+          "refused": true,
+          "covered": [
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "correctness": 0.0,
+          "faithful": null,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen-en-001",
+      "category": "english",
+      "question": "How do I tail logs of a running user service in the CLI?",
+      "search_query": "How do I tail logs of a running user service in the CLI?",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 设置标签和描述",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询服务状态信息",
+          "zh/VKservice/getting-started.md :: 快速上手 > 获取服务访问API"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 设置标签和描述",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询服务状态信息",
+          "zh/VKservice/getting-started.md :: 快速上手 > 获取服务访问API"
+        ],
+        "scores": [
+          0.573,
+          0.56,
+          0.55,
+          0.511,
+          0.54
+        ],
+        "rerank_scores": [
+          0.9761,
+          0.4312,
+          0.2508,
+          0.1963,
+          0.1632
+        ],
+        "bm25_scores": [
+          11.9339,
+          null,
+          null,
+          6.759,
+          6.4956
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 38,
+        "vector_ms": 82.4,
+        "bm25_ms": 0.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 2,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 639.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.08,
+      "answer": {
+        "answer": "To tail the logs of a running service in the VKube CLI:\n\n1. In the user service interface, select `[1]Show Running User Service` to see the list of running services [1][2].\n2. Type `t` to select `[T]Tail Service Log` [1].\n3. At the prompt `Please enter the User Service INDEX:`, enter the index number of the service whose logs you want to view [1].\n4. If the service contains multiple sub-containers, select the sub-container when prompted and press Enter to confirm [1].\n5. Press Enter to stop displaying the logs [1].\n\n[Video Guide: Container Log](https://www.youtube.com/watch?v=ZAM2HRHrpUg)\n\n相关视频：[Add Service Description](https://www.youtube.com/watch?v=flghmlxmAcU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": [
+            "[Video Guide: Container Log](https://www.youtube.com/watch?v=ZAM2HRHrpUg)",
+            "相关视频：[Add Service Description](https://www.youtube.com/watch?v=flghmlxmAcU)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-en-024",
+      "category": "english",
+      "question": "Which Lua libraries are forbidden: can a supplier script call os or debug?",
+      "search_query": "Which Lua libraries are forbidden: can a supplier script call os or debug?",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/advanced.md :: 进阶 > Lua 脚本中禁用语法",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body"
+        ],
+        "context_keys": [
+          "zh/supplier/advanced.md :: 进阶 > Lua 脚本中禁用语法",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例"
+        ],
+        "scores": [
+          0.553,
+          0.463,
+          0.519,
+          0.418,
+          0.322
+        ],
+        "rerank_scores": [
+          0.3853,
+          0.0269,
+          0.0247,
+          0.0223,
+          0.0176
+        ],
+        "bm25_scores": [
+          16.8171,
+          null,
+          null,
+          5.3974,
+          7.6285
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.25
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 85.1,
+        "bm25_ms": 0.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 765.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.67,
+      "answer": {
+        "answer": "No — a supplier's Lua script cannot call `os` or `debug`. Both are on VKube's list of forbidden syntax in Lua scripts [1].\n\nThe full list of forbidden items is [1]:\n\n- `while`\n- `coroutine`\n- `_G`\n- `collectgarbage`\n- `dofile`\n- `getfenv`\n- `getmetatable`\n- `loadfile`\n- `load`\n- `loadstring`\n- `rawequal`\n- `rawget`\n- `rawset`\n- `setfenv`\n- `setmetatable`\n- `io`\n- `os`\n- `debug`\n- `newproxy`\n- `package`\n- `pcall`\n- `printregs`\n- `xpcall`\n- `module`\n\nNote that this list covers the standard libraries `io`, `os`, `debug`, and `package`, plus low-level functions like `rawget`/`rawset` and `setmetatable` [1]. The documentation only states that these are disabled; it does not describe what alternatives (if any) are available for tasks like logging or file access, so that part is not covered by the available VKube documentation.",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen2-en-025",
+      "category": "english",
+      "question": "How is a cart item turned into an order in the user CLI?",
+      "search_query": "How is a cart item turned into an order in the user CLI?",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/buying-process.md :: 购买流程 > 在购物车中创建订单",
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/guide/buying-process.md :: 购买流程 > 从购物车中移除订单",
+          "zh/VKservice/getting-started.md :: 快速上手 > 设置标签和描述"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/buying-process.md :: 购买流程 > 在购物车中创建订单"
+        ],
+        "scores": [
+          0.519,
+          0.574,
+          0.518,
+          0.548,
+          0.529
+        ],
+        "rerank_scores": [
+          0.0346,
+          0.0305,
+          0.0064,
+          0.0029,
+          0.0023
+        ],
+        "bm25_scores": [
+          null,
+          7.2939,
+          null,
+          8.1896,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.5,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 77.8,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 699.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.59,
+      "answer": {
+        "answer": "In the user CLI, you turn cart items into an order from the cart screen by selecting `[O]Make Order from Cart`, which creates an order from the cloud services currently in your cart [2].\n\nExample from the docs [2]:\n\n```shell\nPlease Select Your Choice: 1\n                                                                  Cart List\n╭───────┬────────────────────────────┬──────────────────┬───────────────────┬───────────────────────────┬──────────┬──────────────┬────────╮\n│ Index │         Service ID         │ Service Provider │   Service Name    │      Service Options      │ Duration │ Expired Date │ Amount │\n├───────┼────────────────────────────┼──────────────────┼───────────────────┼───────────────────────────┼──────────┼──────────────┼────────┤\n│   0   │ xxxxxxxx-xxxx-xxxx-xxxx-x… │  example-service │ Container Service │    persistStorage: Yes    │    12    │      -       │  1200  │\n```\n\nThe retrieved documentation only covers this cart-to-order step; it does not describe any further CLI steps after the order is created.\n\n[Video Guide](https://www.youtube.com/watch?v=MJkiOWGVR4o)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true,
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 0.5,
+          "faithful": true,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen-turn-003",
+      "category": "multi_turn",
+      "question": "https 之后还能改吗",
+      "search_query": "https 之后还能改吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名绑定",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件"
+        ],
+        "scores": [
+          0.527,
+          0.555,
+          0.55,
+          0.565,
+          0.524
+        ],
+        "rerank_scores": [
+          0.03,
+          0.0114,
+          0.0102,
+          0.0071,
+          0.0056
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          3.208
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.5,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 140.0,
+        "bm25_ms": 1.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 714.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 6.59,
+      "answer": {
+        "answer": "根据目前检索到的 VKube 文档，**无法确认**绑定域名时选择的 HTTPS 选项在之后是否还能修改——文档里没有关于修改已绑定域名 HTTPS 设置的说明 [1]。\n\n文档只提到，在 `Config` 中只能修改配置文件的内容，不能增删配置文件数量或修改路径、文件名；如需增删配置文件或改路径名称，要在 `Redeploy` 中处理 [1]。这与域名的 HTTPS 设置无关。\n\n建议直接在控制台的域名绑定页面查看是否有编辑入口，或联系 VKube 支持确认。\n\n![alt text](https://docs.vcloud.systems/kube/example_two_containers_nginx_config_dep.png)",
+        "verdict": {
+          "refused": true,
+          "covered": [
+            false,
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "correctness": 0.0,
+          "faithful": null,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-turn-005",
+      "category": "multi_turn",
+      "question": "那测试网的命令差在哪一个参数",
+      "search_query": "那测试网的命令差在哪一个参数",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "MULTI",
+        "source": "rules",
+        "reason": "follow_up_with_history",
+        "confidence": 0.75
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/guide/getting-started.md :: 快速上手 > 使用pip安装cli客户端"
+        ],
+        "context_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "scores": [
+          0.47,
+          0.462,
+          0.45,
+          0.395,
+          0.37
+        ],
+        "rerank_scores": [
+          0.0463,
+          0.0151,
+          0.0118,
+          0.0083,
+          0.0074
+        ],
+        "bm25_scores": [
+          6.289,
+          null,
+          null,
+          5.0926,
+          6.6284
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.2,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.2,
+          "ndcg@5": 0.38685280723454163,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 38,
+        "vector_ms": 159.3,
+        "bm25_ms": 11.5,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 2,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 819.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.77,
+      "answer": {
+        "answer": "现有 VKube 文档没有说明 CLI 如何切换主网/测试网，也没有列出 `vcloud` 命令的网络参数，因此无法确认测试网命令具体差在哪个参数。\n\n文档中唯一与主网/测试网相关的内容是 Topic 路径段：`/network/mainnet` 表示主网（不是测试网）[1]。但这属于 Node Watcher 的订阅 Topic 结构，不是 CLI 的网络切换参数，不能据此推断 CLI 的用法。\n\n建议查看 CLI 的 `--help` 输出或官方 CLI 文档来确认网络参数。",
+        "verdict": {
+          "refused": true,
+          "covered": [
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "correctness": 0.0,
+          "faithful": null,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-turn-006",
+      "category": "multi_turn",
+      "question": "关闭的那几天漏掉的通知还会补过来吗",
+      "search_query": "关闭的那几天漏掉的通知还会补过来吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询通知信息",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Notice",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Restart"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.599,
+          0.59,
+          0.527,
+          0.52,
+          0.488
+        ],
+        "rerank_scores": [
+          0.0016,
+          0.0011,
+          0.0005,
+          0.0004,
+          0.0003
+        ],
+        "bm25_scores": [
+          5.0795,
+          null,
+          5.5485,
+          4.0249,
+          4.8344
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": true,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 0.0,
+          "doc_mrr": 0.0,
+          "hit@1": 0.0,
+          "hit@5": 0.0,
+          "recall@5": 0.0,
+          "precision@5": 0.0,
+          "mrr": 0.0,
+          "ndcg@5": 0.0,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": null
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 182.2,
+        "bm25_ms": 3.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 677.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 1.72,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [
+            false,
+            false
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "correctness": 0.0,
+          "faithful": null,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-turn-034",
+      "category": "multi_turn",
+      "question": "确认清除时要输入 y 吗",
+      "search_query": "确认清除时要输入 y 吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名清除",
+          "zh/VKservice/getting-started.md :: 快速上手 > 绑定邮箱 > 解绑邮箱",
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/VKservice/getting-started.md :: 快速上手 > 重启服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名解绑"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名清除",
+          "zh/VKservice/getting-started.md :: 快速上手 > 绑定邮箱 > 解绑邮箱",
+          "zh/guide/buying-process.md :: 购买流程 > 支付订单",
+          "zh/VKservice/getting-started.md :: 快速上手 > 重启服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 域名解绑"
+        ],
+        "scores": [
+          0.528,
+          0.479,
+          0.418,
+          0.456,
+          0.43
+        ],
+        "rerank_scores": [
+          0.8341,
+          0.3673,
+          0.1309,
+          0.104,
+          0.0985
+        ],
+        "bm25_scores": [
+          9.165,
+          5.1889,
+          3.8763,
+          4.5851,
+          4.333
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 172.2,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 684.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.24,
+      "answer": {
+        "answer": "是的，需要输入 `y` 确认。\n\n清除全部域名的流程是：\n\n1. 在用户服务界面，选择 `[1]Show Running User Service` [1]\n2. 输入 `b` 选择 `[B]Domain Name`，并输入要查询的服务序号，查询该服务已绑定的域名 [1]\n3. 根据提示 `Are you sure you want to clean up all domain names for user service`，输入 `y` 确认清除当前服务的域名 [1]\n\n注意：这是清除该服务的**全部**域名；如果只想解绑部分域名，应使用 `[U]Unbind Domain Name`，按提示输入要解绑的域名序号（用逗号或空格分隔），再输入 `y` 确认 [5]。\n\n相关视频：[Create Account](https://www.youtube.com/watch?v=AxoUIXmSamo)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": [
+            "相关视频：[Create Account](https://www.youtube.com/watch?v=AxoUIXmSamo)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-turn-035",
+      "category": "multi_turn",
+      "question": "action 的版本标签是 v1 吗",
+      "search_query": "action 的版本标签是 v1 吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/guide/getting-started.md :: 快速上手 > 版本检查",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml"
+        ],
+        "scores": [
+          0.37,
+          0.411,
+          0.5,
+          0.504,
+          0.432
+        ],
+        "rerank_scores": [
+          0.2341,
+          0.2328,
+          0.0063,
+          0.0059,
+          0.0057
+        ],
+        "bm25_scores": [
+          6.7691,
+          7.6857,
+          null,
+          5.928,
+          3.7584
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 140.8,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 617.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.06,
+      "answer": {
+        "answer": "是的，文档中的示例使用的是 `certram/vkube-cli-action@v1`，版本标签为 `v1` [1]。\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": [
+            "相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)"
+          ]
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": false,
+          "pass": false
+        }
+      }
+    },
+    {
+      "id": "gen2-turn-040",
+      "category": "multi_turn",
+      "question": "同一台机器上两个容器走回环，最少要买几份资源",
+      "search_query": "同一台机器上两个容器走回环，最少要买几份资源",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络"
+        ],
+        "scores": [
+          0.603,
+          0.555,
+          0.555,
+          0.49,
+          0.536
+        ],
+        "rerank_scores": [
+          0.4619,
+          0.0955,
+          0.0779,
+          0.0154,
+          0.0132
+        ],
+        "bm25_scores": [
+          5.5757,
+          null,
+          null,
+          null,
+          4.0999
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.6,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 183.7,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 705.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.49,
+      "answer": {
+        "answer": "最少需要购买 **2 个 resource-unit**。\n\n原因：一个服务里要放两个容器，而一个容器至少需要一个 resource-unit，所以至少要买 2 个 resource-unit 的服务 [1]。\n\n补充几点文档中的相关说明：\n\n- 购买时选择把两个容器部署在同一个 pod 中，它们通过 localhost 网络通信 [1]。\n- 内存要按两个容器分别分配，例如示例中 mongo 容器申请 1Gi、app 容器申请 1Gi，合计正好用满 2 resource-unit 的 2Gi [2][3]。\n- 如果场景需要更多内存，可以购买超过 2 resource-unit 的服务 [1]。\n- 这种方式的代价是耦合：想单独重启 web app 时，db 服务也会一起重启 [2]。若想解耦，可以拆成两个服务，用 hostIP:port、domain 或 Alias 通信 [2]。\n\n[Video Guide](https://www.youtube.com/watch?v=pLRPtaZC7go)\n\n![alt text](https://docs.vcloud.systems/kube/example_two_containers_mongodb_dep.png)\n\n![alt text](https://docs.vcloud.systems/kube/example_two_containers_app_dep.png)\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": false,
+          "covered": [
+            true
+          ],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": false,
+          "correctness": 1.0,
+          "faithful": true,
+          "pass": true
+        }
+      }
+    },
+    {
+      "id": "gen-oos-001",
+      "category": "out_of_scope",
+      "question": "明天上海天气怎么样",
+      "search_query": "明天上海天气怎么样",
+      "strategy": "route_refuse",
+      "route": {
+        "strategy": "REFUSE",
+        "source": "rules",
+        "reason": "oos:(今天|明天).{0,4}天气|天气预报",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [],
+        "context_keys": [],
+        "scores": [],
+        "rerank_scores": [],
+        "bm25_scores": [],
+        "from_bm25": [],
+        "from_vector": [],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "route_refuse",
+        "section_dedupe": false,
+        "candidate_count": 0,
+        "vector_ms": 0.0,
+        "bm25_ms": null,
+        "bm25_hit_count": 0,
+        "vector_hit_count": 0,
+        "overlap_count": 0,
+        "bm25_build_ms": null,
+        "rerank_ms": null,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.0,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-002",
+      "category": "out_of_scope",
+      "question": "苹果公司股票现在多少钱",
+      "search_query": "苹果公司股票现在多少钱",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > 返回",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.396,
+          0.341,
+          0.384,
+          0.339,
+          0.349
+        ],
+        "rerank_scores": [
+          0.0007,
+          0.0003,
+          0.0001,
+          0.0001,
+          0.0001
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 96.1,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 11,
+        "vector_hit_count": 20,
+        "overlap_count": 0,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 545.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.65,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-003",
+      "category": "out_of_scope",
+      "question": "AWS 上 t3.micro 现在每小时多少美元",
+      "search_query": "AWS 上 t3.micro 现在每小时多少美元",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is a Resource Unit?",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建具体服务 > `durationToPrice`的变量",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > `durationToPrice`数组中的object变量",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.5,
+          0.509,
+          0.519,
+          0.487,
+          0.521
+        ],
+        "rerank_scores": [
+          0.0025,
+          0.0019,
+          0.0016,
+          0.0012,
+          0.001
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          8.2309,
+          8.6706,
+          4.0137
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 75.1,
+        "bm25_ms": 0.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 636.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.72,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-004",
+      "category": "out_of_scope",
+      "question": "红烧肉怎么做",
+      "search_query": "红烧肉怎么做",
+      "strategy": "route_refuse",
+      "route": {
+        "strategy": "REFUSE",
+        "source": "rules",
+        "reason": "oos:(红烧肉|宫保鸡丁|番茄炒蛋|怎么做菜|菜谱|食谱)",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [],
+        "context_keys": [],
+        "scores": [],
+        "rerank_scores": [],
+        "bm25_scores": [],
+        "from_bm25": [],
+        "from_vector": [],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "route_refuse",
+        "section_dedupe": false,
+        "candidate_count": 0,
+        "vector_ms": 0.0,
+        "bm25_ms": null,
+        "bm25_hit_count": 0,
+        "vector_hit_count": 0,
+        "overlap_count": 0,
+        "bm25_build_ms": null,
+        "rerank_ms": null,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.0,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-005",
+      "category": "out_of_scope",
+      "question": "帮我写一首关于春天的诗",
+      "search_query": "帮我写一首关于春天的诗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/guide/getting-started.md :: 快速上手 > 准备v账户 > 1. 使用seed导入已有v账户",
+          "zh/guide/getting-started.md :: 快速上手 > 解锁钱包",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/vkube_cli/get-started.md :: 快速上手"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.312,
+          0.264,
+          0.279,
+          0.27,
+          0.271
+        ],
+        "rerank_scores": [
+          0.0024,
+          0.002,
+          0.0005,
+          0.0005,
+          0.0004
+        ],
+        "bm25_scores": [
+          null,
+          1.6248,
+          1.6765,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 68.9,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 768.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.85,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-006",
+      "category": "out_of_scope",
+      "question": "今天美元兑人民币官方汇率是多少",
+      "search_query": "今天美元兑人民币官方汇率是多少",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > 返回",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "context_keys": [],
+        "scores": [
+          0.437,
+          0.434,
+          0.353,
+          0.392,
+          0.391
+        ],
+        "rerank_scores": [
+          0.0044,
+          0.0017,
+          0.0016,
+          0.0007,
+          0.0007
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          2.9204,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 38,
+        "vector_ms": 73.5,
+        "bm25_ms": 1.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 2,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 653.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.74,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen2-oos-042",
+      "category": "out_of_scope",
+      "question": "今天农历几月几号",
+      "search_query": "今天农历几月几号",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查看服务日志",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询服务状态信息",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询配置"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.433,
+          0.424,
+          0.423,
+          0.428,
+          0.395
+        ],
+        "rerank_scores": [
+          0.0035,
+          0.0033,
+          0.0029,
+          0.0028,
+          0.0021
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 20,
+        "vector_ms": 82.2,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 0,
+        "vector_hit_count": 20,
+        "overlap_count": 0,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 805.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.89,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen2-oos-043",
+      "category": "out_of_scope",
+      "question": "帮我推荐一款入门相机",
+      "search_query": "帮我推荐一款入门相机",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/README.md :: 快速上手 > 1. 部署SDK服务端 > 1.1 Golang 命令启动",
+          "zh/guide/README.md :: 介绍",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/guide/getting-started.md :: 快速上手 > 解锁钱包",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.412,
+          0.434,
+          0.37,
+          0.41,
+          0.418
+        ],
+        "rerank_scores": [
+          0.0005,
+          0.0002,
+          0.0001,
+          0.0001,
+          0.0001
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          2.8133,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 25,
+        "vector_ms": 99.0,
+        "bm25_ms": 1.0,
+        "bm25_hit_count": 6,
+        "vector_hit_count": 20,
+        "overlap_count": 1,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 484.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.6,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen2-oos-044",
+      "category": "out_of_scope",
+      "question": "怎么申投诉到 12315",
+      "search_query": "怎么申投诉到 12315",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询通知信息",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 获取 User Service",
+          "zh/VKservice/getting-started.md :: 快速上手 > 获取服务访问API"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.528,
+          0.478,
+          0.528,
+          0.485,
+          0.483
+        ],
+        "rerank_scores": [
+          0.0121,
+          0.0065,
+          0.0063,
+          0.0026,
+          0.0023
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 40,
+        "vector_ms": 85.3,
+        "bm25_ms": 0.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 0,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 974.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 1.07,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen2-oos-045",
+      "category": "out_of_scope",
+      "question": "海底捞人均大概多少",
+      "search_query": "海底捞人均大概多少",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How much does VKube cost?",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > 返回",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is a Resource Unit?",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?"
+        ],
+        "context_keys": [],
+        "scores": [
+          0.365,
+          0.379,
+          0.372,
+          0.403,
+          0.338
+        ],
+        "rerank_scores": [
+          0.0007,
+          0.0002,
+          0.0001,
+          0.0001,
+          0.0
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": true,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 20,
+        "vector_ms": 83.3,
+        "bm25_ms": 0.5,
+        "bm25_hit_count": 0,
+        "vector_hit_count": 20,
+        "overlap_count": 0,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 556.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 0.64,
+      "answer": {
+        "answer": "抱歉，文档中没有找到与这个问题相关的内容。你可以换个说法再问，或者直接查阅 https://docs.vcloud.systems/zh/",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen-oos-007",
+      "category": "out_of_scope",
+      "question": "Kubernetes 1.32 的发布说明在哪",
+      "search_query": "Kubernetes 1.32 的发布说明在哪",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 查看工作流过程",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Notice",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "scores": [
+          0.563,
+          0.48,
+          0.469,
+          0.47,
+          0.5
+        ],
+        "rerank_scores": [
+          0.1931,
+          0.0023,
+          0.0012,
+          0.0009,
+          0.0009
+        ],
+        "bm25_scores": [
+          7.0074,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 38,
+        "vector_ms": 79.3,
+        "bm25_ms": 0.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 2,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 680.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.83,
+      "answer": {
+        "answer": "The available VKube documentation does not cover Kubernetes 1.32 release notes. The only retrieved document is about VKube CLI deployment configuration (container name, resource units, port mappings, environment variables, and config file mounts) [1], and it contains nothing about Kubernetes release notes or where to find them.\n\nFor Kubernetes 1.32 release notes, you'd need to check the official Kubernetes project sources rather than VKube documentation.\n\n相关视频：[Deploy A Vkube Service](https://www.youtube.com/watch?v=nfHhQxYF_MU)",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    },
+    {
+      "id": "gen2-oos-017",
+      "category": "out_of_scope",
+      "question": "Windows 11 怎么关闭自动更新",
+      "search_query": "Windows 11 怎么关闭自动更新",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手 > 重新部署",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 绑定邮箱 > 解绑邮箱",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "context_keys": [
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "scores": [
+          0.447,
+          0.466,
+          0.447,
+          0.462,
+          0.506
+        ],
+        "rerank_scores": [
+          0.1901,
+          0.1477,
+          0.1411,
+          0.1405,
+          0.1313
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {}
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 26,
+        "vector_ms": 341.3,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 11,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 181.1,
+        "rerank_ms": 789.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 2.81,
+      "answer": {
+        "answer": "The retrieved VKube documentation doesn't cover this. It only describes VKube service operations (viewing services, updating container config, pausing/resuming services) [1][2][3], and contains nothing about Windows 11 settings or disabling automatic updates.\n\nFor Windows 11 automatic updates, you'd need to consult Microsoft's own documentation or support resources instead.\n\n相关视频：[Update Container's Config](https://www.youtube.com/watch?v=IQGJMfzhHls)",
+        "verdict": {
+          "refused": true,
+          "covered": [],
+          "unsupported_claims": []
+        },
+        "scores": {
+          "refused": true,
+          "pass": true,
+          "correctness": null,
+          "faithful": null
+        }
+      }
+    }
+  ]
+}

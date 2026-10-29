@@ -15,6 +15,7 @@ uv run python -m evals.label check                      # 校验 dataset.json，
 
 import argparse
 import sys
+from pathlib import Path
 
 from evals.dataset import DATASET_PATH, DatasetError, chunk_catalog, chunk_key, load_dataset, stale_labels
 
@@ -42,9 +43,9 @@ def show_search(question: str, depth: int) -> None:
         print(f"              {preview}")
 
 
-def check() -> None:
+def check(path: Path = DATASET_PATH) -> None:
     try:
-        cases = load_dataset()
+        cases = load_dataset(path)
     except DatasetError as exc:
         sys.exit(f"invalid dataset: {exc}")
     stale = stale_labels(cases, chunk_catalog())
@@ -53,7 +54,7 @@ def check() -> None:
     counts: dict[str, int] = {}
     for case in cases:
         counts[case.category] = counts.get(case.category, 0) + 1
-    print(f"{len(cases)} cases in {DATASET_PATH.name}: {counts}")
+    print(f"{len(cases)} cases in {path.name}: {counts}")
     if stale:
         sys.exit(f"{len(stale)} labels don't match the current chunking")
     print("all labels match the current chunking")
@@ -68,7 +69,8 @@ def main() -> None:
     search = sub.add_parser("search")
     search.add_argument("question")
     search.add_argument("-k", type=int, default=10)
-    sub.add_parser("check")
+    check_cmd = sub.add_parser("check")
+    check_cmd.add_argument("--dataset", type=Path, default=DATASET_PATH)
     args = parser.parse_args()
 
     if args.command == "chunks":
@@ -76,7 +78,7 @@ def main() -> None:
     elif args.command == "search":
         show_search(args.question, args.k)
     else:
-        check()
+        check(args.dataset)
 
 
 if __name__ == "__main__":

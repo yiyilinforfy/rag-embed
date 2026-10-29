@@ -5,13 +5,16 @@
   GET  /api/health           健康检查（公开）：文档数、chunk 数、当前使用的模型
   POST /api/ask              一次性返回完整回答（需要钱包地址）
   POST /api/ask/stream       SSE 流式回答（需要钱包地址），前端用的是这个
+  POST /api/feedback         对某次 ask_id 点赞/点踩（需要钱包地址）
   POST /api/ingest           只重新入库，不拉取代码（需要 X-Admin-Token）
   POST /api/sync             git 拉取 + 增量入库（需要 X-Admin-Token）
   POST /api/webhooks/github  GitHub 推送通知（校验 HMAC 签名，先返回 202，再在后台同步）
-- 一次提问的处理顺序：pydantic 校验参数 → current_user 鉴权 → acquire_ask_slot 限流 → rag.stream_answer → SSE。
+- 一次提问的处理顺序：鉴权 → 限流 → router（DIRECT/RETRIEVE/MULTI/REFUSE）→ rag.stream_answer → SSE。
 - SSE（Server-Sent Events）：响应类型是 text/event-stream，每个事件是 `data: <json>\n\n`。
+  事件顺序：meta(ask_id) → route → sources → token* → end（或 error）。
   注意：响应头一旦发出就不能再改状态码，所以流式过程中出的错只能作为 {"type": "error"} 事件放在流里发送。
   限流放在开始流式之前检查，这样超限返回的是正常的 429，而不是流里的错误事件。
+- 每问会写入 ask_events（见 docs/observability-design.md）；反馈写入 ask_feedback。
 - 请求体：question + 可选的 history（最多 50 条，role 只允许 user/assistant，防止伪造 system 消息改写规则）。
 - CORS：浏览器跨域调用时，后端要声明允许哪些来源（CORS_ORIGINS）；
   expose_headers 让前端 JavaScript 能读到 Retry-After 响应头。
@@ -27,6 +30,7 @@ import logging
 from collections.abc import Iterator
 from contextlib import asynccontextmanager
 from typing import Literal
+from uuid import UUID
 
 from fastapi import BackgroundTasks, Depends, FastAPI, Header, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
@@ -35,6 +39,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select, text
 
+from app.ask_log import AskLogContext, upsert_feedback
 from app.auth import AuthUser, current_user
 from app.config import get_settings
 from app.db import SessionLocal, init_db
@@ -130,13 +135,33 @@ class Source(BaseModel):
     score: float
 
 
+class RouteInfo(BaseModel):
+    strategy: str
+    source: str
+    reason: str
+    confidence: float
+
+
 class AskResponse(BaseModel):
     answer: str
     sources: list[Source]
+    route: RouteInfo | None = None
+    ask_id: str | None = None
+
+
+class FeedbackRequest(BaseModel):
+    ask_id: str
+    helpful: bool
+    reason: str | None = Field(default=None, max_length=64)
+    comment: str = Field(default="", max_length=2000)
 
 
 class IngestRequest(BaseModel):
     force: bool = False
+
+
+def _ask_log_for(user: AuthUser) -> AskLogContext:
+    return AskLogContext(user_id=user.id, wallet_address=user.address)
 
 
 @app.get("/api/health")
@@ -152,6 +177,12 @@ def health() -> dict:
         "chunks": chunks,
         "embedding_model": settings.embedding_model,
         "llm_model": settings.llm_model,
+        "aux_llm_model": settings.aux_llm_model or settings.llm_model,
+        "route_mode": settings.route_mode,
+        "route_llm_model": settings.route_llm_model
+        or settings.aux_llm_model
+        or settings.llm_model,
+        "query_expand_mode": settings.query_expand_mode,
     }
 
 
@@ -160,27 +191,38 @@ def ask(request: AskRequest, user: AuthUser = Depends(current_user)) -> AskRespo
     release = acquire_ask_slot(user)
     try:
         history = [m.model_dump() for m in request.history]
-        result = answer_question(request.question.strip(), request.top_k, history)
+        result = answer_question(
+            request.question.strip(), request.top_k, history, log=_ask_log_for(user)
+        )
     finally:
         release()
-    return AskResponse(answer=result.answer, sources=[Source(**s) for s in source_dicts(result.sources)])
+    route_info = RouteInfo(**result.route.as_dict()) if result.route else None
+    return AskResponse(
+        answer=result.answer,
+        sources=[Source(**s) for s in source_dicts(result.sources)],
+        route=route_info,
+        ask_id=result.ask_id,
+    )
 
 
 @app.post("/api/ask/stream")
 def ask_stream(request: AskRequest, user: AuthUser = Depends(current_user)) -> StreamingResponse:
-    """SSE stream. Each event is `data: <json>\\n\\n` with type sources | token | end | error."""
+    """SSE stream. Each event is `data: <json>\\n\\n` with type meta | route | sources | token | end | error."""
     history = [m.model_dump() for m in request.history]
     # Taken before the response starts, so a limit hit is a normal 429 rather than an in-stream error.
     release = acquire_ask_slot(user)
+    log = _ask_log_for(user)
 
     def events() -> Iterator[str]:
         try:
-            for event in stream_answer(request.question.strip(), request.top_k, history):
+            for event in stream_answer(
+                request.question.strip(), request.top_k, history, log=log
+            ):
                 yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
         except Exception as exc:
             # Headers are already sent at this point, so errors have to travel inside the stream.
             logger.exception("ask stream failed")
-            yield f"data: {json.dumps({'type': 'error', 'content': str(exc)}, ensure_ascii=False)}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'content': str(exc), 'ask_id': log.ask_id}, ensure_ascii=False)}\n\n"
         finally:
             release()
 
@@ -189,6 +231,25 @@ def ask_stream(request: AskRequest, user: AuthUser = Depends(current_user)) -> S
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
+
+
+@app.post("/api/feedback")
+def feedback(request: FeedbackRequest, user: AuthUser = Depends(current_user)) -> dict:
+    try:
+        UUID(request.ask_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail="ask_id must be a UUID") from exc
+    try:
+        return upsert_feedback(
+            ask_id=request.ask_id,
+            helpful=request.helpful,
+            user_id=user.id,
+            wallet_address=user.address,
+            reason=request.reason,
+            comment=request.comment,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
 @app.post("/api/ingest", dependencies=[Depends(require_admin)])

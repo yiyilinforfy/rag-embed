@@ -1,0 +1,20 @@
+apiVersion: 1
+
+# Default: local docker-compose Postgres. For Supabase, override in Grafana UI
+# (Connections → Data sources) or replace url/user/password/sslmode locally — do not commit secrets.
+datasources:
+  - name: RAG Postgres
+    uid: rag-postgres
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    user: rag
+    isDefault: true
+    editable: true
+    secureJsonData:
+      password: rag
+    jsonData:
+      database: rag
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false

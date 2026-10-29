@@ -1,0 +1,5761 @@
+{
+  "created_at": "2026-10-28T06:50:18.230045+00:00",
+  "settings": {
+    "top_k": 5,
+    "min_score": 0.45,
+    "rerank_min_score": 0.02,
+    "embedding_model": "bge-m3",
+    "llm_model": "deepseek-chat",
+    "rerank_enabled": true,
+    "rerank_model": "BAAI/bge-reranker-v2-m3",
+    "rerank_candidates": 20,
+    "section_dedupe": "auto",
+    "route_mode": "rules",
+    "hybrid_enabled": true,
+    "with_answer": false,
+    "strategies": [
+      "hybrid"
+    ],
+    "interrupted": false,
+    "dataset": "evals/gen500/dataset.json"
+  },
+  "summary": {
+    "n": 61,
+    "errors": [],
+    "overall": {
+      "context_hit": 0.9836065573770492,
+      "context_precision": 0.37568306010928965,
+      "context_recall": 0.9836065573770492,
+      "doc_hit@1": 0.9344262295081968,
+      "doc_hit@5": 1.0,
+      "doc_mrr": 0.9576502732240437,
+      "hit@1": 0.7868852459016393,
+      "hit@5": 0.9836065573770492,
+      "mrr": 0.8647540983606558,
+      "ndcg@5": 0.8941237480158292,
+      "precision@5": 0.239344262295082,
+      "recall@5": 0.9836065573770492,
+      "blocked_rate_oos": null,
+      "route_refuse_rate_oos": null,
+      "route_false_refuse_rate": 0.0
+    },
+    "by_category": {
+      "paraphrase": {
+        "n": 61,
+        "context_hit": 0.9836065573770492,
+        "context_precision": 0.37568306010928965,
+        "context_recall": 0.9836065573770492,
+        "doc_hit@1": 0.9344262295081968,
+        "doc_hit@5": 1.0,
+        "doc_mrr": 0.9576502732240437,
+        "hit@1": 0.7868852459016393,
+        "hit@5": 0.9836065573770492,
+        "mrr": 0.8647540983606558,
+        "ndcg@5": 0.8941237480158292,
+        "precision@5": 0.239344262295082,
+        "recall@5": 0.9836065573770492,
+        "route_counts": {
+          "RETRIEVE": 61
+        }
+      }
+    },
+    "latency": {
+      "mean": 3.5203278688524593,
+      "p50": 3.29,
+      "p95": 4.49,
+      "vector_ms_mean": 1570.467213114754,
+      "bm25_ms_mean": 133.9639344262295,
+      "rerank_ms_mean": 740.4360655737705,
+      "rerank_fallback_rate": 0.0,
+      "overlap_mean": 6.065573770491803,
+      "candidate_mean": 33.9344262295082
+    }
+  },
+  "results": [
+    {
+      "id": "gen-para-001",
+      "category": "paraphrase",
+      "question": "几个容器只允许彼此访问、外面进不来，页面上在哪建",
+      "search_query": "几个容器只允许彼此访问、外面进不来，页面上在哪建 安全组",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/securityGroup.md :: 安全组"
+        ],
+        "context_keys": [
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 创建安全组",
+          "zh/VKservice/securityGroup.md :: 安全组 > 将服务引入或移出安全组",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/securityGroup.md :: 安全组"
+        ],
+        "scores": [
+          0.67,
+          0.663,
+          0.637,
+          0.582,
+          0.685
+        ],
+        "rerank_scores": [
+          0.5531,
+          0.2717,
+          0.0793,
+          0.0538,
+          0.0443
+        ],
+        "bm25_scores": [
+          7.8168,
+          5.8398,
+          9.9508,
+          null,
+          10.5232
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.6,
+          "mrr": 1.0,
+          "ndcg@5": 0.9639404333166532,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 6272.4,
+        "bm25_ms": 4282.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 676.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 12.25
+    },
+    {
+      "id": "gen-para-002",
+      "category": "paraphrase",
+      "question": "买的时长还没用完，想在客户端里停掉并把钱退回来",
+      "search_query": "买的时长还没用完，想在客户端里停掉并把钱退回来",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+          "zh/guide/advance-termination.md :: 订单提前解约",
+          "zh/supplier/refund.md :: 退款",
+          "zh/VKservice/getting-started.md :: 快速上手 > 暂停服务"
+        ],
+        "scores": [
+          0.604,
+          0.646,
+          0.648,
+          0.643,
+          0.653
+        ],
+        "rerank_scores": [
+          0.1885,
+          0.1694,
+          0.1364,
+          0.1209,
+          0.0638
+        ],
+        "bm25_scores": [
+          null,
+          11.9816,
+          null,
+          6.9718,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.3333333333333333,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg@5": 0.5,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1373.3,
+        "bm25_ms": 2.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 792.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.2
+    },
+    {
+      "id": "gen-para-003",
+      "category": "paraphrase",
+      "question": "同一机房的两个服务用内部名字互访，我在浏览器里打开这个名字行不行",
+      "search_query": "同一机房的两个服务用内部名字互访，我在浏览器里打开这个名字行不行",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "scores": [
+          0.597,
+          0.586,
+          0.576,
+          0.603,
+          0.496
+        ],
+        "rerank_scores": [
+          0.2451,
+          0.079,
+          0.0564,
+          0.0296,
+          0.0202
+        ],
+        "bm25_scores": [
+          8.5369,
+          7.2927,
+          null,
+          7.5749,
+          7.8979
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1610.4,
+        "bm25_ms": 1.5,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 843.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.49
+    },
+    {
+      "id": "gen-para-004",
+      "category": "paraphrase",
+      "question": "不想在自己电脑装 ssh，能不能直接在网页里敲容器里的命令",
+      "search_query": "不想在自己电脑装 ssh，能不能直接在网页里敲容器里的命令",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection"
+        ],
+        "scores": [
+          0.641,
+          0.571,
+          0.602,
+          0.541,
+          0.57
+        ],
+        "rerank_scores": [
+          0.8209,
+          0.3245,
+          0.2275,
+          0.1631,
+          0.134
+        ],
+        "bm25_scores": [
+          9.7048,
+          5.9855,
+          10.5479,
+          null,
+          6.6
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 32,
+        "vector_ms": 1510.7,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 8,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 764.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.33
+    },
+    {
+      "id": "gen-para-005",
+      "category": "paraphrase",
+      "question": "容器打出来的日志想交到云上存，和跑容器的那套平台分开",
+      "search_query": "容器打出来的日志想交到云上存，和跑容器的那套平台分开",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析",
+          "zh/log-hosting/purchase-service.md :: 服务购买"
+        ],
+        "context_keys": [
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析",
+          "zh/log-hosting/purchase-service.md :: 服务购买"
+        ],
+        "scores": [
+          0.644,
+          0.582,
+          0.523,
+          0.567,
+          0.577
+        ],
+        "rerank_scores": [
+          0.6747,
+          0.6243,
+          0.1087,
+          0.1074,
+          0.0975
+        ],
+        "bm25_scores": [
+          7.4877,
+          6.5645,
+          4.8938,
+          9.7804,
+          7.2924
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1373.9,
+        "bm25_ms": 3.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 629.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.06
+    },
+    {
+      "id": "gen-para-006",
+      "category": "paraphrase",
+      "question": "链上有人给我打币的时候，能不能往我的服务推一条 HTTP",
+      "search_query": "链上有人给我打币的时候，能不能往我的服务推一条 HTTP Node Watcher 订阅 webhook",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 使用流程",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 订阅管理",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南"
+        ],
+        "context_keys": [
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 使用流程"
+        ],
+        "scores": [
+          0.759,
+          0.655,
+          0.57,
+          0.589,
+          0.64
+        ],
+        "rerank_scores": [
+          0.7975,
+          0.3805,
+          0.012,
+          0.0088,
+          0.0076
+        ],
+        "bm25_scores": [
+          14.7323,
+          8.5008,
+          11.2319,
+          8.896,
+          9.4591
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 30,
+        "vector_ms": 1509.9,
+        "bm25_ms": 1.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 10,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 823.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.53
+    },
+    {
+      "id": "gen-para-007",
+      "category": "paraphrase",
+      "question": "自动部署时不想把登录凭证写进 yaml，放到仓库的密钥里行不行",
+      "search_query": "自动部署时不想把登录凭证写进 yaml，放到仓库的密钥里行不行",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml"
+        ],
+        "scores": [
+          0.606,
+          0.536,
+          0.596,
+          0.583,
+          0.59
+        ],
+        "rerank_scores": [
+          0.147,
+          0.1362,
+          0.1057,
+          0.0886,
+          0.0747
+        ],
+        "bm25_scores": [
+          15.1235,
+          8.5634,
+          12.2006,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1396.8,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 645.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.22
+    },
+    {
+      "id": "gen-para-008",
+      "category": "paraphrase",
+      "question": "申请的内存用超了，进程会不会被干掉然后自己起来",
+      "search_query": "申请的内存用超了，进程会不会被干掉然后自己起来 resourceUnit",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络"
+        ],
+        "context_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络"
+        ],
+        "scores": [
+          0.652,
+          0.457,
+          0.507,
+          0.511,
+          0.43
+        ],
+        "rerank_scores": [
+          0.4075,
+          0.045,
+          0.0407,
+          0.0372,
+          0.0238
+        ],
+        "bm25_scores": [
+          13.221,
+          8.3043,
+          9.0808,
+          8.9072,
+          9.1202
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1682.3,
+        "bm25_ms": 2.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 760.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.58
+    },
+    {
+      "id": "gen-para-009",
+      "category": "paraphrase",
+      "question": "钱付完了先别开始算时长，等我真正把应用拉起来再计费",
+      "search_query": "钱付完了先别开始算时长，等我真正把应用拉起来再计费",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "multi_without_history → retrieve (product+multi_cue)",
+        "confidence": 0.8
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/service-expired.md :: 服务结束计算",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/developers/sdk_api.md :: V Cloud SDK API 指南 > User Service API > 开始User Service计时"
+        ],
+        "context_keys": [
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/guide/service-expired.md :: 服务结束计算"
+        ],
+        "scores": [
+          0.62,
+          0.645,
+          0.602,
+          0.608,
+          0.574
+        ],
+        "rerank_scores": [
+          0.0449,
+          0.0399,
+          0.0068,
+          0.0065,
+          0.0042
+        ],
+        "bm25_scores": [
+          4.7377,
+          null,
+          null,
+          null,
+          4.6929
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.5
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1399.1,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 749.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.21
+    },
+    {
+      "id": "gen-para-010",
+      "category": "paraphrase",
+      "question": "在网页上存配置文本，一个地址有没有总大小上限",
+      "search_query": "在网页上存配置文本，一个地址有没有总大小上限",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit"
+        ],
+        "context_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理"
+        ],
+        "scores": [
+          0.666,
+          0.525,
+          0.58,
+          0.549,
+          0.535
+        ],
+        "rerank_scores": [
+          0.7544,
+          0.0307,
+          0.0304,
+          0.0126,
+          0.0118
+        ],
+        "bm25_scores": [
+          5.363,
+          null,
+          null,
+          null,
+          10.7873
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6666666666666666
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1483.1,
+        "bm25_ms": 1.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 715.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.22
+    },
+    {
+      "id": "gen-para-011",
+      "category": "paraphrase",
+      "question": "GitHub 上的私有镜像要拉进平台，名字前面得加哪一段",
+      "search_query": "GitHub 上的私有镜像要拉进平台，名字前面得加哪一段",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像"
+        ],
+        "scores": [
+          0.616,
+          0.562,
+          0.586,
+          0.538,
+          0.6
+        ],
+        "rerank_scores": [
+          0.963,
+          0.1515,
+          0.0445,
+          0.0308,
+          0.0307
+        ],
+        "bm25_scores": [
+          18.477,
+          6.9113,
+          6.9313,
+          11.1378,
+          15.8164
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1399.7,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 667.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.17
+    },
+    {
+      "id": "gen-para-012",
+      "category": "paraphrase",
+      "question": "一个订单里塞两个容器、它们走 127.0.0.1 说话，下单时资源份数怎么选",
+      "search_query": "一个订单里塞两个容器、它们走 127.0.0.1 说话，下单时资源份数怎么选",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务",
+          "zh/VKservice/getting-started.md :: 快速上手 > 启动服务"
+        ],
+        "scores": [
+          0.638,
+          0.646,
+          0.612,
+          0.572,
+          0.628
+        ],
+        "rerank_scores": [
+          0.3869,
+          0.1432,
+          0.1117,
+          0.0928,
+          0.0866
+        ],
+        "bm25_scores": [
+          6.5689,
+          7.559,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1389.7,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 697.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.12
+    },
+    {
+      "id": "gen-para-013",
+      "category": "paraphrase",
+      "question": "自己搞不定的时候邮件找谁，大概多久有人回",
+      "search_query": "自己搞不定的时候邮件找谁，大概多久有人回 FAQ feature request support email",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > I have a feature request or suggestions",
+          "zh/VKservice/getting-started.md :: 快速上手 > 绑定邮箱 > 绑定用户邮箱",
+          "zh/VKservice/getting-started.md :: 快速上手 > 绑定邮箱 > 绑定子服务邮箱",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Contact",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > I have a feature request or suggestions"
+        ],
+        "scores": [
+          0.647,
+          0.579,
+          0.585,
+          0.552,
+          0.441
+        ],
+        "rerank_scores": [
+          0.1691,
+          0.0004,
+          0.0004,
+          0.0003,
+          0.0002
+        ],
+        "bm25_scores": [
+          17.2995,
+          4.7711,
+          4.9796,
+          6.8836,
+          5.4616
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1464.1,
+        "bm25_ms": 1.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 676.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.18
+    },
+    {
+      "id": "gen-para-014",
+      "category": "paraphrase",
+      "question": "平台底下跑容器用的是 docker 引擎还是别的运行时",
+      "search_query": "平台底下跑容器用的是 docker 引擎还是别的运行时 What is VKube",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube container runtime?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube container runtime?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "scores": [
+          0.736,
+          0.655,
+          0.632,
+          0.637,
+          0.614
+        ],
+        "rerank_scores": [
+          0.7136,
+          0.4772,
+          0.437,
+          0.3575,
+          0.2968
+        ],
+        "bm25_scores": [
+          10.5506,
+          14.6126,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 1417.0,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 728.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.18
+    },
+    {
+      "id": "gen-para-015",
+      "category": "paraphrase",
+      "question": "这套容器服务只认哪一种 Linux 发行版",
+      "search_query": "这套容器服务只认哪一种 Linux 发行版 operating system Ubuntu",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Which operating systems does VKube support?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/README.md :: 介绍"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Which operating systems does VKube support?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/README.md :: 介绍"
+        ],
+        "scores": [
+          0.534,
+          0.537,
+          0.529,
+          0.521,
+          0.571
+        ],
+        "rerank_scores": [
+          0.4284,
+          0.2991,
+          0.2731,
+          0.1414,
+          0.1037
+        ],
+        "bm25_scores": [
+          4.4776,
+          4.6247,
+          18.6017,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.3333333333333333,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg@5": 0.5,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1450.1,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 725.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.2
+    },
+    {
+      "id": "gen-para-016",
+      "category": "paraphrase",
+      "question": "往账户里补余额，网页上认哪两种币",
+      "search_query": "往账户里补余额，网页上认哪两种币",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/topup.md :: 服务充值 > 充值前须知",
+          "zh/node-watcher/topup.md :: 服务充值 > 充值流程（图文步骤）",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How do I top up on VKube?",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置"
+        ],
+        "context_keys": [
+          "zh/node-watcher/topup.md :: 服务充值 > 充值前须知",
+          "zh/node-watcher/topup.md :: 服务充值 > 充值流程（图文步骤）",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How do I top up on VKube?"
+        ],
+        "scores": [
+          0.655,
+          0.557,
+          0.64,
+          0.567,
+          0.499
+        ],
+        "rerank_scores": [
+          0.2379,
+          0.1987,
+          0.065,
+          0.0218,
+          0.0027
+        ],
+        "bm25_scores": [
+          8.2172,
+          4.335,
+          9.1461,
+          null,
+          3.2919
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.25,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.25,
+          "ndcg@5": 0.4306765580733931,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.25
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1533.9,
+        "bm25_ms": 0.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 614.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.17
+    },
+    {
+      "id": "gen-para-017",
+      "category": "paraphrase",
+      "question": "日志托管到期之后，以前抓下来的日志还留着吗",
+      "search_query": "日志托管到期之后，以前抓下来的日志还留着吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > persistStorage"
+        ],
+        "context_keys": [
+          "zh/log-hosting/README.md :: 介绍",
+          "zh/log-hosting/bind-containers.md :: 日志抓取管理",
+          "zh/log-hosting/view-logs.md :: 日志查询和分析 > 配置数据源链接",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > persistStorage"
+        ],
+        "scores": [
+          0.646,
+          0.612,
+          0.462,
+          0.548,
+          0.561
+        ],
+        "rerank_scores": [
+          0.9177,
+          0.3564,
+          0.0279,
+          0.0261,
+          0.0244
+        ],
+        "bm25_scores": [
+          10.2189,
+          8.9589,
+          5.1838,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 1524.3,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 700.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.36
+    },
+    {
+      "id": "gen-para-018",
+      "category": "paraphrase",
+      "question": "已经上架的商品如果把名字改了再上传，旧的那条会被删掉吗",
+      "search_query": "已经上架的商品如果把名字改了再上传，旧的那条会被删掉吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/guide/buying-process.md :: 购买流程 > 从购物车中移除订单"
+        ],
+        "context_keys": [
+          "zh/supplier/manage-product.md :: 管理已上架的商品"
+        ],
+        "scores": [
+          0.63,
+          0.449,
+          0.51,
+          0.37,
+          0.527
+        ],
+        "rerank_scores": [
+          0.7419,
+          0.0011,
+          0.0009,
+          0.0007,
+          0.0003
+        ],
+        "bm25_scores": [
+          20.4533,
+          8.6856,
+          null,
+          6.396,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1425.5,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 727.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.19
+    },
+    {
+      "id": "gen-para-019",
+      "category": "paraphrase",
+      "question": "访问白名单建了，但一条允许规则都不填，别人还能进来吗",
+      "search_query": "访问白名单建了，但一条允许规则都不填，别人还能进来吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/Example.md :: 示例 > 对于网络请求的额外补充，使用network policy功能",
+          "zh/VKservice/securityGroup.md :: 安全组",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy"
+        ],
+        "scores": [
+          0.671,
+          0.455,
+          0.563,
+          0.526,
+          0.449
+        ],
+        "rerank_scores": [
+          0.599,
+          0.0157,
+          0.0101,
+          0.0068,
+          0.0056
+        ],
+        "bm25_scores": [
+          16.8541,
+          7.9098,
+          5.0283,
+          8.9145,
+          5.7035
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1537.2,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 753.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.37
+    },
+    {
+      "id": "gen-para-020",
+      "category": "paraphrase",
+      "question": "网页终端那个登录密码，字符上有什么硬性要求",
+      "search_query": "网页终端那个登录密码，字符上有什么硬性要求 Webterminal ttyd",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "scores": [
+          0.551,
+          0.551,
+          0.567,
+          0.614,
+          0.534
+        ],
+        "rerank_scores": [
+          0.3502,
+          0.2361,
+          0.1194,
+          0.1046,
+          0.072
+        ],
+        "bm25_scores": [
+          10.6633,
+          12.8164,
+          7.091,
+          7.4315,
+          8.245
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.6,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1585.5,
+        "bm25_ms": 1256.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 582.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.49
+    },
+    {
+      "id": "gen-para-021",
+      "category": "paraphrase",
+      "question": "路径转发勾了改写之后，前面那一截路径还会不会原样进容器",
+      "search_query": "路径转发勾了改写之后，前面那一截路径还会不会原样进容器",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "scores": [
+          0.533,
+          0.496,
+          0.47,
+          0.452,
+          0.5
+        ],
+        "rerank_scores": [
+          0.3396,
+          0.1075,
+          0.0607,
+          0.0114,
+          0.011
+        ],
+        "bm25_scores": [
+          6.7142,
+          7.8551,
+          null,
+          3.9299,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.6666666666666666
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 1546.3,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 807.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.41
+    },
+    {
+      "id": "gen2-para-001",
+      "category": "paraphrase",
+      "question": "两个服务不在同一台机器上，想用公网 IP 加端口互相连数据库",
+      "search_query": "两个服务不在同一台机器上，想用公网 IP 加端口互相连数据库",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络"
+        ],
+        "scores": [
+          0.614,
+          0.654,
+          0.614,
+          0.626,
+          0.64
+        ],
+        "rerank_scores": [
+          0.5512,
+          0.3697,
+          0.3656,
+          0.3262,
+          0.2964
+        ],
+        "bm25_scores": [
+          15.7677,
+          null,
+          9.0216,
+          null,
+          8.7117
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 0.3333333333333333,
+          "ndcg@5": 0.5,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 29,
+        "vector_ms": 1538.8,
+        "bm25_ms": 1.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 11,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 785.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.38
+    },
+    {
+      "id": "gen2-para-002",
+      "category": "paraphrase",
+      "question": "我想用自己买的域名，让两个不在一起的服务互相找到对方",
+      "search_query": "我想用自己买的域名，让两个不在一起的服务互相找到对方",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains"
+        ],
+        "scores": [
+          0.64,
+          0.612,
+          0.583,
+          0.579,
+          0.572
+        ],
+        "rerank_scores": [
+          0.1617,
+          0.133,
+          0.0848,
+          0.0387,
+          0.0306
+        ],
+        "bm25_scores": [
+          7.5007,
+          8.0986,
+          8.3274,
+          9.5782,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1552.3,
+        "bm25_ms": 1.5,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 1142.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.79
+    },
+    {
+      "id": "gen2-para-003",
+      "category": "paraphrase",
+      "question": "同一地区的数据库不想暴露端口，只给旁边那个应用起个内部名字",
+      "search_query": "同一地区的数据库不想暴露端口，只给旁边那个应用起个内部名字",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "scores": [
+          0.602,
+          0.56,
+          0.554,
+          0.608,
+          0.51
+        ],
+        "rerank_scores": [
+          0.3516,
+          0.1571,
+          0.108,
+          0.0804,
+          0.0557
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          5.1898,
+          null,
+          7.6157
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1453.4,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 679.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.16
+    },
+    {
+      "id": "gen2-para-004",
+      "category": "paraphrase",
+      "question": "只想让某一个应用能连数据库，别的服务都别进来",
+      "search_query": "只想让某一个应用能连数据库，别的服务都别进来",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > `middleware` 配置信息",
+          "zh/VKservice/Example.md :: 示例 > 对于网络请求的额外补充，使用network policy功能",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > `middleware` 配置信息",
+          "zh/VKservice/Example.md :: 示例 > 对于网络请求的额外补充，使用network policy功能",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置"
+        ],
+        "scores": [
+          0.529,
+          0.556,
+          0.549,
+          0.578,
+          0.508
+        ],
+        "rerank_scores": [
+          0.0436,
+          0.0354,
+          0.0298,
+          0.0275,
+          0.0229
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          5.4423
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.25,
+          "ndcg@5": 0.4306765580733931,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 39,
+        "vector_ms": 1917.0,
+        "bm25_ms": 1.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 1,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 706.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.69
+    },
+    {
+      "id": "gen2-para-005",
+      "category": "paraphrase",
+      "question": "改了网页文件的内容，容器自己不重新读，我该怎么让它生效",
+      "search_query": "改了网页文件的内容，容器自己不重新读，我该怎么让它生效",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Restart",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Restart",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "scores": [
+          0.563,
+          0.556,
+          0.558,
+          0.555,
+          0.474
+        ],
+        "rerank_scores": [
+          0.1927,
+          0.1827,
+          0.0778,
+          0.059,
+          0.0535
+        ],
+        "bm25_scores": [
+          6.557,
+          null,
+          6.5451,
+          null,
+          5.9942
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1449.7,
+        "bm25_ms": 1.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 636.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.14
+    },
+    {
+      "id": "gen2-para-006",
+      "category": "paraphrase",
+      "question": "这东西是不是还得自己装一套 Kubernetes 控制面",
+      "search_query": "这东西是不是还得自己装一套 Kubernetes 控制面",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > v-kube控制台",
+          "zh/supplier/README.md :: 快速上手 > 1. 部署SDK服务端 > 1.1 Golang 命令启动",
+          "zh/vkube_cli/get-started.md :: 快速上手"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?"
+        ],
+        "scores": [
+          0.552,
+          0.59,
+          0.543,
+          0.525,
+          0.553
+        ],
+        "rerank_scores": [
+          0.1046,
+          0.011,
+          0.002,
+          0.0018,
+          0.0016
+        ],
+        "bm25_scores": [
+          5.4124,
+          4.6193,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1400.3,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 1074.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.53
+    },
+    {
+      "id": "gen2-para-007",
+      "category": "paraphrase",
+      "question": "为什么说它按用量收钱，有没有隐藏的起步费",
+      "search_query": "为什么说它按用量收钱，有没有隐藏的起步费",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How much does VKube cost?",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?"
+        ],
+        "scores": [
+          0.565,
+          0.552,
+          0.542,
+          0.507,
+          0.386
+        ],
+        "rerank_scores": [
+          0.3693,
+          0.0145,
+          0.0034,
+          0.0011,
+          0.0009
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          null,
+          null,
+          2.995
+        ],
+        "from_bm25": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 38,
+        "vector_ms": 1408.3,
+        "bm25_ms": 1.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 2,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 650.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.22
+    },
+    {
+      "id": "gen2-para-008",
+      "category": "paraphrase",
+      "question": "有没有哪些国家用不了这个容器平台",
+      "search_query": "有没有哪些国家用不了这个容器平台 Where is VKube available",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Where is VKube available?",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Where is VKube available?",
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > What is VKube by V Systems?"
+        ],
+        "scores": [
+          0.715,
+          0.612,
+          0.57,
+          0.633,
+          0.643
+        ],
+        "rerank_scores": [
+          0.6592,
+          0.4023,
+          0.1099,
+          0.0596,
+          0.0299
+        ],
+        "bm25_scores": [
+          21.0268,
+          null,
+          4.6957,
+          null,
+          6.0568
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1461.1,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 656.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.16
+    },
+    {
+      "id": "gen2-para-009",
+      "category": "paraphrase",
+      "question": "创建一个服务最少一小时要多少钱，付完还会不会再扣",
+      "search_query": "创建一个服务最少一小时要多少钱，付完还会不会再扣",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How much does VKube cost?",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > Why should I use VKube?",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`"
+        ],
+        "context_keys": [
+          "zh/VKservice/FAQ.md :: Frequently Asked Questions > How much does VKube cost?"
+        ],
+        "scores": [
+          0.677,
+          0.565,
+          0.553,
+          0.546,
+          0.571
+        ],
+        "rerank_scores": [
+          0.7486,
+          0.015,
+          0.0091,
+          0.0077,
+          0.0055
+        ],
+        "bm25_scores": [
+          null,
+          null,
+          5.0776,
+          null,
+          10.38
+        ],
+        "from_bm25": [
+          false,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 1443.6,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 664.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.15
+    },
+    {
+      "id": "gen2-para-010",
+      "category": "paraphrase",
+      "question": "一个 nginx 要 2G 内存、开在欧洲、跑半年，购买时这几项分别怎么对上",
+      "search_query": "一个 nginx 要 2G 内存、开在欧洲、跑半年，购买时这几项分别怎么对上",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件"
+        ],
+        "context_keys": [
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件"
+        ],
+        "scores": [
+          0.659,
+          0.489,
+          0.525,
+          0.562,
+          0.494
+        ],
+        "rerank_scores": [
+          0.9429,
+          0.0533,
+          0.0522,
+          0.0507,
+          0.0423
+        ],
+        "bm25_scores": [
+          13.1972,
+          7.747,
+          7.8142,
+          null,
+          6.2301
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1435.8,
+        "bm25_ms": 3.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 707.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.3
+    },
+    {
+      "id": "gen2-para-011",
+      "category": "paraphrase",
+      "question": "不想自己写镜像，商店里现成的应用怎么装上去",
+      "search_query": "不想自己写镜像，商店里现成的应用怎么装上去",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > 从应用市场部署应用",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > 从应用市场部署应用",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "scores": [
+          0.65,
+          0.618,
+          0.599,
+          0.456,
+          0.594
+        ],
+        "rerank_scores": [
+          0.1814,
+          0.1002,
+          0.053,
+          0.0477,
+          0.045
+        ],
+        "bm25_scores": [
+          4.9825,
+          null,
+          null,
+          5.139,
+          4.4743
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1378.4,
+        "bm25_ms": 1.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 625.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.03
+    },
+    {
+      "id": "gen2-para-012",
+      "category": "paraphrase",
+      "question": "托管的那份配置改了，引用它的那些服务会不会一起变，要不要重启",
+      "search_query": "托管的那份配置改了，引用它的那些服务会不会一起变，要不要重启",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管"
+        ],
+        "context_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管"
+        ],
+        "scores": [
+          0.668,
+          0.675,
+          0.688,
+          0.641,
+          0.633
+        ],
+        "rerank_scores": [
+          0.86,
+          0.855,
+          0.2477,
+          0.1059,
+          0.0671
+        ],
+        "bm25_scores": [
+          11.4257,
+          11.0182,
+          6.541,
+          6.7671,
+          6.8546
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 29,
+        "vector_ms": 1400.7,
+        "bm25_ms": 2.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 11,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 756.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.26
+    },
+    {
+      "id": "gen2-para-013",
+      "category": "paraphrase",
+      "question": "删掉网页上托管的那份配置，已经跑着的服务里的文件会跟着没吗",
+      "search_query": "删掉网页上托管的那份配置，已经跑着的服务里的文件会跟着没吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件"
+        ],
+        "context_keys": [
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 对服务内配置文件的批量更新",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件"
+        ],
+        "scores": [
+          0.652,
+          0.647,
+          0.622,
+          0.61,
+          0.621
+        ],
+        "rerank_scores": [
+          0.8054,
+          0.3646,
+          0.2803,
+          0.1906,
+          0.1462
+        ],
+        "bm25_scores": [
+          null,
+          9.2917,
+          null,
+          6.9842,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1369.3,
+        "bm25_ms": 1.4,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 979.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.37
+    },
+    {
+      "id": "gen2-para-014",
+      "category": "paraphrase",
+      "question": "列表右边有刷新、导入和管理，管理里面那个镜像仓库账号是干什么的",
+      "search_query": "列表右边有刷新、导入和管理，管理里面那个镜像仓库账号是干什么的",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 配置文件的托管与管理",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/getting-started.md :: 快速上手 > 更新镜像"
+        ],
+        "scores": [
+          0.634,
+          0.552,
+          0.577,
+          0.62,
+          0.597
+        ],
+        "rerank_scores": [
+          0.6982,
+          0.0606,
+          0.0485,
+          0.0473,
+          0.0322
+        ],
+        "bm25_scores": [
+          11.6864,
+          10.4834,
+          8.5961,
+          7.733,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1382.1,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 814.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.21
+    },
+    {
+      "id": "gen2-para-015",
+      "category": "paraphrase",
+      "question": "服务显示挂了或者还在起，这个状态弹窗大概告诉我什么",
+      "search_query": "服务显示挂了或者还在起，这个状态弹窗大概告诉我什么",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container状态弹窗",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询服务状态信息",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container状态弹窗",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/VKservice/getting-started.md :: 快速上手 > 查询服务状态信息",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "scores": [
+          0.59,
+          0.483,
+          0.651,
+          0.621,
+          0.577
+        ],
+        "rerank_scores": [
+          0.1386,
+          0.1144,
+          0.0926,
+          0.0755,
+          0.0732
+        ],
+        "bm25_scores": [
+          7.2931,
+          6.9406,
+          null,
+          7.2779,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 1378.9,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 783.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.17
+    },
+    {
+      "id": "gen2-para-016",
+      "category": "paraphrase",
+      "question": "部署框里私有镜像的账号密码填在哪，端口数量有没有上限",
+      "search_query": "部署框里私有镜像的账号密码填在哪，端口数量有没有上限",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "context_keys": [
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "scores": [
+          0.57,
+          0.649,
+          0.627,
+          0.561,
+          0.588
+        ],
+        "rerank_scores": [
+          0.4882,
+          0.4039,
+          0.2828,
+          0.1248,
+          0.1051
+        ],
+        "bm25_scores": [
+          9.9253,
+          5.455,
+          11.8993,
+          7.4494,
+          6.6935
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 31,
+        "vector_ms": 1377.4,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 9,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 672.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.07
+    },
+    {
+      "id": "gen2-para-017",
+      "category": "paraphrase",
+      "question": "本地那个 vkube 配置文件里，推镜像的令牌权限要开到什么程度",
+      "search_query": "本地那个 vkube 配置文件里，推镜像的令牌权限要开到什么程度",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal"
+        ],
+        "scores": [
+          0.648,
+          0.567,
+          0.609,
+          0.608,
+          0.536
+        ],
+        "rerank_scores": [
+          0.8496,
+          0.7152,
+          0.3771,
+          0.3311,
+          0.3303
+        ],
+        "bm25_scores": [
+          9.5599,
+          11.7744,
+          null,
+          null,
+          7.3457
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1373.6,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 691.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.18
+    },
+    {
+      "id": "gen2-para-018",
+      "category": "paraphrase",
+      "question": "部署文件开头那个类型字段现在只能写哪个值",
+      "search_query": "部署文件开头那个类型字段现在只能写哪个值 VKubefile kind",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 简介",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置secrets"
+        ],
+        "scores": [
+          0.607,
+          0.621,
+          0.574,
+          0.663,
+          0.587
+        ],
+        "rerank_scores": [
+          0.7541,
+          0.5574,
+          0.4878,
+          0.4622,
+          0.2282
+        ],
+        "bm25_scores": [
+          14.3878,
+          8.259,
+          null,
+          14.1857,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.25,
+          "ndcg@5": 0.4306765580733931,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 1420.0,
+        "bm25_ms": 1196.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 914.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.56
+    },
+    {
+      "id": "gen2-para-019",
+      "category": "paraphrase",
+      "question": "一个部署文件里能不能写好几个容器，名字有什么限制",
+      "search_query": "一个部署文件里能不能写好几个容器，名字有什么限制",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络"
+        ],
+        "scores": [
+          0.702,
+          0.667,
+          0.532,
+          0.588,
+          0.583
+        ],
+        "rerank_scores": [
+          0.7568,
+          0.6117,
+          0.4573,
+          0.3486,
+          0.3199
+        ],
+        "bm25_scores": [
+          null,
+          8.9194,
+          10.3177,
+          6.4172,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1487.3,
+        "bm25_ms": 2.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 748.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.26
+    },
+    {
+      "id": "gen2-para-020",
+      "category": "paraphrase",
+      "question": "不想在本地构建，直接用仓库里现成镜像，路径有哪几种写法",
+      "search_query": "不想在本地构建，直接用仓库里现成镜像，路径有哪几种写法",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 需要本地build镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 需要本地build镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "scores": [
+          0.656,
+          0.653,
+          0.566,
+          0.633,
+          0.535
+        ],
+        "rerank_scores": [
+          0.7831,
+          0.2606,
+          0.1959,
+          0.0908,
+          0.0463
+        ],
+        "bm25_scores": [
+          10.6514,
+          null,
+          6.3969,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1571.7,
+        "bm25_ms": 2.1,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 669.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.37
+    },
+    {
+      "id": "gen2-para-021",
+      "category": "paraphrase",
+      "question": "端口映射里只写路径、不写主机端口，这种写法允不允许",
+      "search_query": "端口映射里只写路径、不写主机端口，这种写法允不允许",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中使用多个配置文件"
+        ],
+        "scores": [
+          0.572,
+          0.527,
+          0.46,
+          0.454,
+          0.464
+        ],
+        "rerank_scores": [
+          0.6932,
+          0.2266,
+          0.1136,
+          0.0772,
+          0.0699
+        ],
+        "bm25_scores": [
+          14.0048,
+          9.621,
+          6.5341,
+          7.0828,
+          7.7832
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1596.3,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 718.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.43
+    },
+    {
+      "id": "gen2-para-022",
+      "category": "paraphrase",
+      "question": "想在部署文件里把 SSH 打开，公钥和端口怎么写",
+      "search_query": "想在部署文件里把 SSH 打开，公钥和端口怎么写",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Image customization"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > SSH 配置",
+          "zh/VKservice/configuration.md :: 配置文件托管 > 部署服务时使用托管配置文件",
+          "zh/VKservice/ssh.md :: SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Image customization"
+        ],
+        "scores": [
+          0.587,
+          0.669,
+          0.629,
+          0.557,
+          0.6
+        ],
+        "rerank_scores": [
+          0.82,
+          0.7614,
+          0.4451,
+          0.1184,
+          0.0943
+        ],
+        "bm25_scores": [
+          9.3567,
+          9.3923,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.4
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1672.4,
+        "bm25_ms": 0.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 637.7,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.33
+    },
+    {
+      "id": "gen2-para-023",
+      "category": "paraphrase",
+      "question": "镜像既要本地构建、又要直接拉仓库里的，一个文件里能混着写吗",
+      "search_query": "镜像既要本地构建、又要直接拉仓库里的，一个文件里能混着写吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 需要本地build镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 需要本地build镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗"
+        ],
+        "scores": [
+          0.686,
+          0.652,
+          0.628,
+          0.567,
+          0.542
+        ],
+        "rerank_scores": [
+          0.9281,
+          0.4824,
+          0.3517,
+          0.1177,
+          0.1036
+        ],
+        "bm25_scores": [
+          null,
+          13.2365,
+          7.3158,
+          11.1375,
+          8.3327
+        ],
+        "from_bm25": [
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 32,
+        "vector_ms": 1465.8,
+        "bm25_ms": 3.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 8,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 606.9,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.16
+    },
+    {
+      "id": "gen2-para-024",
+      "category": "paraphrase",
+      "question": "已经在镜像库里的镜像，部署文件里该填路径还是再写一个镜像名",
+      "search_query": "已经在镜像库里的镜像，部署文件里该填路径还是再写一个镜像名 部署已存在在镜像库的镜像",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 部署已存在在镜像库的镜像",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 镜像配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 容器配置",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 基础配置"
+        ],
+        "scores": [
+          0.72,
+          0.696,
+          0.589,
+          0.675,
+          0.59
+        ],
+        "rerank_scores": [
+          0.9386,
+          0.9111,
+          0.8986,
+          0.8917,
+          0.7902
+        ],
+        "bm25_scores": [
+          14.5787,
+          null,
+          10.788,
+          12.0602,
+          8.948
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 0.0,
+          "recall@5": 0.0,
+          "precision@5": 0.0,
+          "mrr": 0.0,
+          "ndcg@5": 0.0,
+          "context_recall": 0.0,
+          "context_hit": 0.0,
+          "context_precision": 0.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 29,
+        "vector_ms": 1427.8,
+        "bm25_ms": 3.6,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 11,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 804.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.29
+    },
+    {
+      "id": "gen2-para-025",
+      "category": "paraphrase",
+      "question": "工作流里的 VKubefile 不在仓库根目录时，action 的哪个字段要改",
+      "search_query": "工作流里的 VKubefile 不在仓库根目录时，action 的哪个字段要改",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 项目目录结构",
+          "zh/vkube_cli/get-started.md :: 快速上手",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "context_keys": [
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 配置你的VKubefile.yaml",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 创建工作流",
+          "zh/vkube_cli/workflows.md :: 用工作流持续部署 > 具体的例子 > 项目目录结构",
+          "zh/vkube_cli/get-started.md :: 快速上手",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构"
+        ],
+        "scores": [
+          0.626,
+          0.563,
+          0.621,
+          0.567,
+          0.598
+        ],
+        "rerank_scores": [
+          0.9852,
+          0.6132,
+          0.5176,
+          0.4132,
+          0.3874
+        ],
+        "bm25_scores": [
+          17.7504,
+          15.7841,
+          8.4577,
+          15.2281,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1584.4,
+        "bm25_ms": 1.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 740.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.38
+    },
+    {
+      "id": "gen2-para-026",
+      "category": "paraphrase",
+      "question": "供应商上传商品前，yaml 里供应商名字和钱包地址能不能和别人重复",
+      "search_query": "供应商上传商品前，yaml 里供应商名字和钱包地址能不能和别人重复",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览",
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 请求body",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 文件配置样例"
+        ],
+        "context_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览",
+          "zh/supplier/manage-product.md :: 管理已上架的商品",
+          "zh/supplier/config-sdk-service.md :: 配置供应商SDK服务端 > yaml 文件配置样例",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 请求body",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 文件配置样例"
+        ],
+        "scores": [
+          0.695,
+          0.629,
+          0.627,
+          0.485,
+          0.624
+        ],
+        "rerank_scores": [
+          0.8218,
+          0.4179,
+          0.0717,
+          0.0371,
+          0.0261
+        ],
+        "bm25_scores": [
+          10.9744,
+          11.0526,
+          6.4867,
+          5.2992,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1515.0,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 602.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.26
+    },
+    {
+      "id": "gen2-para-027",
+      "category": "paraphrase",
+      "question": "商品模板里同一种选项想在下面多个服务里复用，yaml 用什么符号",
+      "search_query": "商品模板里同一种选项想在下面多个服务里复用，yaml 用什么符号",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `options`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 文件配置样例",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory`"
+        ],
+        "context_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `options`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 文件配置样例",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory`"
+        ],
+        "scores": [
+          0.691,
+          0.671,
+          0.664,
+          0.638,
+          0.643
+        ],
+        "rerank_scores": [
+          0.8562,
+          0.3759,
+          0.1927,
+          0.1869,
+          0.166
+        ],
+        "bm25_scores": [
+          10.8163,
+          null,
+          null,
+          null,
+          9.7889
+        ],
+        "from_bm25": [
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1481.3,
+        "bm25_ms": 3.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 585.1,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.08
+    },
+    {
+      "id": "gen2-para-028",
+      "category": "paraphrase",
+      "question": "某个服务的 api 地址空着，系统会用哪一层的备用地址",
+      "search_query": "某个服务的 api 地址空着，系统会用哪一层的备用地址",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建服务种类 > 请求 Body",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务种类信息 > 返回 > 服务种类list中的变量",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 请求body"
+        ],
+        "context_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 创建服务种类 > 请求 Body",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务种类信息 > 返回 > 服务种类list中的变量"
+        ],
+        "scores": [
+          0.544,
+          0.574,
+          0.504,
+          0.557,
+          0.573
+        ],
+        "rerank_scores": [
+          0.6308,
+          0.0888,
+          0.0211,
+          0.0198,
+          0.0086
+        ],
+        "bm25_scores": [
+          9.8958,
+          9.072,
+          10.5568,
+          null,
+          6.346
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.3333333333333333
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1607.8,
+        "bm25_ms": 2.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 663.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.29
+    },
+    {
+      "id": "gen2-para-029",
+      "category": "paraphrase",
+      "question": "商品模板里的启动和关闭脚本，贴进去之前要先做什么编码",
+      "search_query": "商品模板里的启动和关闭脚本，贴进去之前要先做什么编码",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数"
+        ],
+        "context_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数"
+        ],
+        "scores": [
+          0.608,
+          0.564,
+          0.543,
+          0.558,
+          0.544
+        ],
+        "rerank_scores": [
+          0.5604,
+          0.43,
+          0.0626,
+          0.0357,
+          0.0351
+        ],
+        "bm25_scores": [
+          15.5305,
+          5.8467,
+          null,
+          null,
+          11.5676
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1584.7,
+        "bm25_ms": 2.5,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 736.2,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.46
+    },
+    {
+      "id": "gen2-para-030",
+      "category": "paraphrase",
+      "question": "模板里按时长打折，100 小时和 200 小时那些系数写在哪个字段",
+      "search_query": "模板里按时长打折，100 小时和 200 小时那些系数写在哪个字段",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > 返回",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > `durationToPrice`数组中的object变量"
+        ],
+        "context_keys": [
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/price-auditing.md :: 费用核算",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > 返回",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务 > `durationToPrice`数组中的object变量"
+        ],
+        "scores": [
+          0.589,
+          0.573,
+          0.526,
+          0.525,
+          0.548
+        ],
+        "rerank_scores": [
+          0.5489,
+          0.3581,
+          0.2221,
+          0.1608,
+          0.0452
+        ],
+        "bm25_scores": [
+          18.5824,
+          9.2593,
+          13.2557,
+          null,
+          13.5122
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 33,
+        "vector_ms": 1539.6,
+        "bm25_ms": 0.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 7,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 711.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.31
+    },
+    {
+      "id": "gen2-para-031",
+      "category": "paraphrase",
+      "question": "付款成功后那个 start 脚本拿到的表里有哪些字段",
+      "search_query": "付款成功后那个 start 脚本拿到的表里有哪些字段",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数"
+        ],
+        "context_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/duration-services.md :: 商品服务期限",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+          "zh/supplier/config-product-templates.md :: yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数"
+        ],
+        "scores": [
+          0.656,
+          0.595,
+          0.574,
+          0.559,
+          0.646
+        ],
+        "rerank_scores": [
+          0.6749,
+          0.2494,
+          0.1088,
+          0.0366,
+          0.0301
+        ],
+        "bm25_scores": [
+          13.1311,
+          null,
+          13.4771,
+          15.2718,
+          null
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1701.4,
+        "bm25_ms": 2.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 681.3,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.48
+    },
+    {
+      "id": "gen2-para-032",
+      "category": "paraphrase",
+      "question": "用户自己点退款时，Lua 的 refund 函数按什么顺序收金额和地址",
+      "search_query": "用户自己点退款时，Lua 的 refund 函数按什么顺序收金额和地址",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/duration-services.md :: 商品服务期限"
+        ],
+        "context_keys": [
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/advanced.md :: 进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+          "zh/developers/lua_scripts.md :: lua脚本 > Lua 脚本功能使用",
+          "zh/developers/lua_scripts.md :: lua脚本 > 编写 Lua脚本函数",
+          "zh/supplier/duration-services.md :: 商品服务期限"
+        ],
+        "scores": [
+          0.731,
+          0.666,
+          0.584,
+          0.605,
+          0.544
+        ],
+        "rerank_scores": [
+          0.6479,
+          0.5997,
+          0.511,
+          0.1709,
+          0.1324
+        ],
+        "bm25_scores": [
+          16.422,
+          12.9869,
+          13.5032,
+          11.7097,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 0.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 0.5,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 24,
+        "vector_ms": 1426.3,
+        "bm25_ms": 0.9,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 16,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 694.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.14
+    },
+    {
+      "id": "gen2-para-033",
+      "category": "paraphrase",
+      "question": "回调正文里余额变化那个字段叫什么，签名算法写的是哪种曲线",
+      "search_query": "回调正文里余额变化那个字段叫什么，签名算法写的是哪种曲线",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 2. 创建 Topic",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+          "zh/developers/platform_api.md :: V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量"
+        ],
+        "context_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例"
+        ],
+        "scores": [
+          0.588,
+          0.556,
+          0.431,
+          0.531,
+          0.497
+        ],
+        "rerank_scores": [
+          0.0386,
+          0.0139,
+          0.0021,
+          0.0011,
+          0.001
+        ],
+        "bm25_scores": [
+          10.4512,
+          null,
+          5.4733,
+          null,
+          6.0571
+        ],
+        "from_bm25": [
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.4,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 37,
+        "vector_ms": 1584.6,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 3,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 923.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.76
+    },
+    {
+      "id": "gen2-para-034",
+      "category": "paraphrase",
+      "question": "只听某个地址的收款，topic 路径里发送方可以用星号吗",
+      "search_query": "只听某个地址的收款，topic 路径里发送方可以用星号吗",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构"
+        ],
+        "context_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构"
+        ],
+        "scores": [
+          0.608,
+          0.616,
+          0.613,
+          0.548,
+          0.57
+        ],
+        "rerank_scores": [
+          0.7086,
+          0.3724,
+          0.1545,
+          0.1513,
+          0.0268
+        ],
+        "bm25_scores": [
+          5.2892,
+          6.7073,
+          11.0045,
+          9.0984,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 30,
+        "vector_ms": 1482.4,
+        "bm25_ms": 2.2,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 10,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 775.5,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.31
+    },
+    {
+      "id": "gen2-para-035",
+      "category": "paraphrase",
+      "question": "过滤合约调用时，接收人那个字段在文档里是怎么拼的",
+      "search_query": "过滤合约调用时，接收人那个字段在文档里是怎么拼的",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "rules",
+        "reason": "product_signal",
+        "confidence": 0.9
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构"
+        ],
+        "context_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构"
+        ],
+        "scores": [
+          0.677,
+          0.524,
+          0.533,
+          0.54,
+          0.547
+        ],
+        "rerank_scores": [
+          0.9365,
+          0.5566,
+          0.2081,
+          0.1117,
+          0.0514
+        ],
+        "bm25_scores": [
+          24.1435,
+          7.3164,
+          null,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 35,
+        "vector_ms": 1420.2,
+        "bm25_ms": 1.0,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 5,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 1003.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.73
+    },
+    {
+      "id": "gen2-para-036",
+      "category": "paraphrase",
+      "question": "创建 topic 之后，接收端要先回什么状态码才算通",
+      "search_query": "创建 topic 之后，接收端要先回什么状态码才算通",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 6. 操作流程小结",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 2. 创建 Topic"
+        ],
+        "context_keys": [
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 6. 操作流程小结",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > 2. 创建 Topic"
+        ],
+        "scores": [
+          0.574,
+          0.643,
+          0.612,
+          0.589,
+          0.63
+        ],
+        "rerank_scores": [
+          0.5772,
+          0.1226,
+          0.1109,
+          0.0563,
+          0.0211
+        ],
+        "bm25_scores": [
+          4.2333,
+          4.893,
+          null,
+          4.1843,
+          4.9687
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 0.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 0.5,
+          "ndcg@5": 0.6309297535714574,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1508.4,
+        "bm25_ms": 1328.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 843.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 4.75
+    },
+    {
+      "id": "gen2-para-037",
+      "category": "paraphrase",
+      "question": "已买的服务在客户端里哪里看登录信息",
+      "search_query": "已买的服务在客户端里哪里看登录信息",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/use-service.md :: 使用服务",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何购买v-kube服务 > 已购服务",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务"
+        ],
+        "context_keys": [
+          "zh/guide/use-service.md :: 使用服务",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何购买v-kube服务 > 已购服务",
+          "zh/VKservice/getting-started.md :: 快速上手",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务",
+          "zh/guide/buying-process.md :: 购买流程 > 查看可用服务"
+        ],
+        "scores": [
+          0.626,
+          0.67,
+          0.673,
+          0.6,
+          0.591
+        ],
+        "rerank_scores": [
+          0.962,
+          0.9006,
+          0.5157,
+          0.2104,
+          0.1371
+        ],
+        "bm25_scores": [
+          7.4568,
+          6.4163,
+          7.5804,
+          null,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1561.9,
+        "bm25_ms": 1.7,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 629.6,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.52
+    },
+    {
+      "id": "gen2-para-038",
+      "category": "paraphrase",
+      "question": "让编程助手帮我查钱包余额，它默认走主网还是测试网",
+      "search_query": "让编程助手帮我查钱包余额，它默认走主网还是测试网",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/guide/vcloud-skills.md :: 在AI中使用 > 使用 skill",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/guide/vcloud-skills.md :: 在AI中使用",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "context_keys": [
+          "zh/guide/vcloud-skills.md :: 在AI中使用 > 使用 skill",
+          "zh/guide/getting-started.md :: 快速上手 > 为账户充值",
+          "zh/node-watcher/README.md :: 功能介绍",
+          "zh/guide/vcloud-skills.md :: 在AI中使用",
+          "zh/node-watcher/sub-topic.md :: 主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明："
+        ],
+        "scores": [
+          0.578,
+          0.559,
+          0.538,
+          0.461,
+          0.532
+        ],
+        "rerank_scores": [
+          0.9407,
+          0.1979,
+          0.1167,
+          0.0968,
+          0.0816
+        ],
+        "bm25_scores": [
+          22.1674,
+          5.4017,
+          null,
+          15.3851,
+          4.3586
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 0.2
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 34,
+        "vector_ms": 1405.3,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 6,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 680.8,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.19
+    },
+    {
+      "id": "gen2-para-039",
+      "category": "paraphrase",
+      "question": "带宽默认能不能超过内存份数乘 10Mi",
+      "search_query": "带宽默认能不能超过内存份数乘 10Mi",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+          "zh/VKservice/Example.md :: 示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络"
+        ],
+        "context_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > resourceUnit"
+        ],
+        "scores": [
+          0.551,
+          0.456,
+          0.46,
+          0.391,
+          0.456
+        ],
+        "rerank_scores": [
+          0.864,
+          0.0023,
+          0.0023,
+          0.0023,
+          0.0019
+        ],
+        "bm25_scores": [
+          14.6143,
+          4.3348,
+          null,
+          3.7035,
+          null
+        ],
+        "from_bm25": [
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1401.8,
+        "bm25_ms": 1.3,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 851.4,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.3
+    },
+    {
+      "id": "gen2-para-040",
+      "category": "paraphrase",
+      "question": "四个地区分别叫什么，我要部署到香港该选哪一个名字",
+      "search_query": "四个地区分别叫什么，我要部署到香港该选哪一个名字",
+      "strategy": "hybrid",
+      "route": {
+        "strategy": "RETRIEVE",
+        "source": "default",
+        "reason": "rules miss → retrieve",
+        "confidence": 0.5
+      },
+      "retrieval": {
+        "query_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region",
+          "zh/VKservice/Example.md :: 示例 > 简单部署使用",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+          "zh/VKservice/Full-V-Kube.md :: VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+          "zh/vkube_cli/configureFile.md :: 文件配置 > 配置说明 > 部署配置"
+        ],
+        "context_keys": [
+          "zh/VKservice/assetsDetail.md :: ServiceOption说明 > region"
+        ],
+        "scores": [
+          0.569,
+          0.428,
+          0.441,
+          0.383,
+          0.452
+        ],
+        "rerank_scores": [
+          0.4755,
+          0.0039,
+          0.0012,
+          0.0009,
+          0.0009
+        ],
+        "bm25_scores": [
+          null,
+          5.7236,
+          8.0702,
+          4.3332,
+          null
+        ],
+        "from_bm25": [
+          false,
+          true,
+          true,
+          true,
+          false
+        ],
+        "from_vector": [
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        "blocked": false,
+        "metrics": {
+          "doc_hit@1": 1.0,
+          "doc_hit@5": 1.0,
+          "doc_mrr": 1.0,
+          "hit@1": 1.0,
+          "hit@5": 1.0,
+          "recall@5": 1.0,
+          "precision@5": 0.2,
+          "mrr": 1.0,
+          "ndcg@5": 1.0,
+          "context_recall": 1.0,
+          "context_hit": 1.0,
+          "context_precision": 1.0
+        }
+      },
+      "trace": {
+        "strategy": "hybrid",
+        "section_dedupe": false,
+        "candidate_count": 36,
+        "vector_ms": 1746.2,
+        "bm25_ms": 1.8,
+        "bm25_hit_count": 20,
+        "vector_hit_count": 20,
+        "overlap_count": 4,
+        "bm25_build_ms": 2484.9,
+        "rerank_ms": 839.0,
+        "fallback_reason": null,
+        "content_dedupe_dropped": 0
+      },
+      "seconds": 3.64
+    }
+  ]
+}

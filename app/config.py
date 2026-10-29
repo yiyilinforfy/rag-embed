@@ -53,12 +53,20 @@ class Settings(BaseSettings):
     # Must match the vector(N) column in the chunks table; changing it requires rebuilding the table.
     embedding_dim: int = 1024
 
+    # Answer LLM (generation / streaming). Prefer a remote model (DeepSeek) for UX.
     llm_base_url: str = "https://api.deepseek.com/v1"
     llm_api_key: str = ""
     llm_model: str = "deepseek-chat"
     # Ollama OpenAI-compat (/v1) ignores "think"; use reasoning_effort="none" to disable Qwen3 thinking.
     # Leave empty for DeepSeek and other providers that do not accept the field.
     llm_reasoning_effort: str = ""
+
+    # Aux LLM: multi-turn rewrite, optional LLM route / query-expand. Usually local Ollama (cheap).
+    # Empty base_url → fall back to llm_* (single-provider setups).
+    aux_llm_base_url: str = ""
+    aux_llm_api_key: str = ""
+    aux_llm_model: str = ""
+    aux_llm_reasoning_effort: str = ""
 
     docs_repo_url: str = "https://github.com/virtualeconomy/vcloud-doc.git"
     docs_repo_dir: Path = PROJECT_ROOT / "data" / "vcloud-doc"
@@ -95,9 +103,10 @@ class Settings(BaseSettings):
     # On reranker failure: "vector" logs it and returns the plain vector ranking; "error" fails the request.
     rerank_fallback: Literal["vector", "error"] = "vector"
     # Second gate AFTER Top-K, on rerank_score (bge-reranker-v2-m3). 0 = disabled.
-    # Calibrated on hybrid eval (103 cases): clear OOS max-rr often <0.03; answerable p10≈0.34
-    # but a long tail exists (~0.005). 0.05 blocks ~4/8 OOS with ~3/95 false refuses — tune via eval.
-    rerank_min_score: float = Field(default=0.05, ge=0.0, le=1.0)
+    # 2026-10-28 paraphrase tune (400-case hybrid run): 0.05 left 8 answerable paras blocked after
+    # hit@5; 0.02 saves ~5/8 of those while OOS blocked-by-rr stays ~50/53 (only ~+1 leak vs 0.05).
+    # Clear OOS still cluster below ~0.02; do not drop to 0.01 (OOS leak jumps to ~6).
+    rerank_min_score: float = Field(default=0.02, ge=0.0, le=1.0)
     # Keep one chunk per (source, heading)? auto = on for plain vector search, off when the reranker orders results.
     section_dedupe: Literal["auto", "on", "off"] = "auto"
 
@@ -105,6 +114,18 @@ class Settings(BaseSettings):
     # Off by default so existing deployments keep the vector-only path until explicitly enabled.
     hybrid_enabled: bool = False
     bm25_candidates: int = Field(default=20, ge=1, le=100)
+
+    # Pre-retrieval query router (DIRECT / RETRIEVE / MULTI / REFUSE). See app/router.py.
+    # off = always RETRIEVE (legacy path); rules = keyword/regex only; llm = Ollama/DeepSeek JSON;
+    # hybrid = high-confidence rules first, else LLM, else RETRIEVE.
+    route_mode: Literal["off", "rules", "llm", "hybrid"] = "hybrid"
+    # Optional model override for LLM routing only. Empty → aux_llm_model (or llm_model).
+    route_llm_model: str = ""
+
+    # Before retrieval: expand colloquial questions for paraphrase (after multi-turn rewrite).
+    # off = no expand; rules = instant keyword hints only; llm = chat model rewrite + hints
+    # (llm adds ~0.3–2s and fights the answer model on local Ollama — use rules for snappy UI).
+    query_expand_mode: Literal["off", "rules", "llm"] = "rules"
 
     # Multi-turn: only the most recent part of the conversation is sent to the LLM.
     history_max_messages: int = 6
@@ -119,6 +140,11 @@ class Settings(BaseSettings):
 
     # Frontends allowed to call the API from the browser (VKube web dev server by default).
     cors_origins: list[str] = ["http://localhost:9527", "http://127.0.0.1:9527"]
+
+    # Per-ask telemetry → ask_events table (and optional stdout JSON). See docs/observability-design.md.
+    ask_log_enabled: bool = True
+    ask_log_store_answer: bool = True  # full answer_text; set false to keep preview only
+    ask_log_stdout: bool = True  # also emit one JSON line for log shippers (Loki etc.)
 
     @model_validator(mode="after")
     def rerank_needs_a_key(self) -> "Settings":

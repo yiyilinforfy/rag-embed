@@ -26,7 +26,7 @@ def parse_sse(body: str) -> list[dict]:
 
 
 def test_ask_stream_sends_sources_tokens_and_end(monkeypatch):
-    def fake_stream(question, top_k, history):
+    def fake_stream(question, top_k, history, **_kwargs):
         yield {"type": "sources", "sources": [{"title": "T", "heading": "T > H", "url": "u", "score": 0.7}]}
         yield {"type": "token", "content": "你"}
         yield {"type": "token", "content": "好"}
@@ -43,14 +43,16 @@ def test_ask_stream_sends_sources_tokens_and_end(monkeypatch):
 
 
 def test_ask_stream_reports_errors_inside_the_stream(monkeypatch):
-    def broken_stream(question, top_k, history):
+    def broken_stream(question, top_k, history, **_kwargs):
         yield {"type": "sources", "sources": []}
         raise RuntimeError("LLM request failed: 401")
 
     monkeypatch.setattr(main, "stream_answer", broken_stream)
     events = parse_sse(client.post("/api/ask/stream", json={"question": "x"}).text)
 
-    assert events[-1] == {"type": "error", "content": "LLM request failed: 401"}
+    assert events[-1]["type"] == "error"
+    assert events[-1]["content"] == "LLM request failed: 401"
+    assert "ask_id" in events[-1]
 
 
 def test_empty_question_is_rejected():
@@ -61,7 +63,7 @@ def test_empty_question_is_rejected():
 def test_history_is_passed_through_and_validated(monkeypatch):
     seen = {}
 
-    def fake_stream(question, top_k, history):
+    def fake_stream(question, top_k, history, **_kwargs):
         seen["history"] = history
         yield {"type": "end"}
 
@@ -74,8 +76,21 @@ def test_history_is_passed_through_and_validated(monkeypatch):
     assert client.post("/api/ask/stream", json={"question": "q", "history": bad_role}).status_code == 422
 
 
-def fake_ok_stream(question, top_k, history):
+def fake_ok_stream(question, top_k, history, **_kwargs):
     yield {"type": "end"}
+
+
+def test_feedback_rejects_unknown_ask_id(monkeypatch):
+    monkeypatch.setattr(
+        main,
+        "upsert_feedback",
+        lambda **kwargs: (_ for _ in ()).throw(ValueError("ask_id not found")),
+    )
+    response = client.post(
+        "/api/feedback",
+        json={"ask_id": "00000000-0000-0000-0000-000000000001", "helpful": False},
+    )
+    assert response.status_code == 404
 
 
 @pytest.mark.parametrize(

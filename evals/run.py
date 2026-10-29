@@ -26,8 +26,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from app.config import get_settings
-from app.rag import generate_answer, rewrite_question, trim_history
-from app.search import SearchResult, apply_score_gates, search_with_trace
+from app.rag import expand_search_query, generate_answer, rewrite_question, trim_history
+from app.router import RouteDecision, RouteStrategy, route
+from app.search import SearchResult, SearchTrace, apply_score_gates, search_with_trace
 from evals.dataset import Case, DatasetError, chunk_catalog, chunk_key, load_dataset, stale_labels
 from evals.judge import answer_scores, judge_answer
 from evals.metrics import mean, percentile, retrieval_metrics
@@ -93,6 +94,37 @@ def evaluate_answer(case: Case, answer: str, context: list[SearchResult]) -> dic
     return {"answer": answer, "verdict": verdict, "scores": answer_scores(case, verdict)}
 
 
+def _empty_trace(query: str, strategy: str = "skipped") -> SearchTrace:
+    return SearchTrace(
+        strategy=strategy,
+        query=query,
+        candidate_count=0,
+        selected_count=0,
+        section_dedupe=False,
+        content_dedupe_dropped=0,
+        vector_ms=0.0,
+    )
+
+
+def _resolve_route_and_query(
+    case: Case,
+    history: list[dict],
+    *,
+    search_query: str | None = None,
+    decision: RouteDecision | None = None,
+) -> tuple[RouteDecision, str]:
+    """Match production prepare(): route → multi-turn rewrite → optional query expand."""
+    decision = decision or route(case.question, history)
+    if decision.strategy in (RouteStrategy.DIRECT, RouteStrategy.REFUSE):
+        return decision, case.question
+    if search_query is not None:
+        return decision, search_query
+    need_rewrite = bool(history) or decision.strategy == RouteStrategy.MULTI
+    query = rewrite_question(case.question, history) if need_rewrite else case.question
+    query = expand_search_query(query)
+    return decision, query
+
+
 def run_case(
     case: Case,
     top_k: int,
@@ -101,25 +133,33 @@ def run_case(
     strategy: str | None = None,
     search_query: str | None = None,
     history: list[dict] | None = None,
+    decision: RouteDecision | None = None,
 ) -> dict:
     settings = get_settings()
     started = time.perf_counter()
     history = history if history is not None else trim_history(case.history)
-    query = search_query if search_query is not None else rewrite_question(case.question, history)
+    decision, query = _resolve_route_and_query(
+        case, history, search_query=search_query, decision=decision
+    )
 
-    if strategy is None:
-        ranked, trace = search_with_trace(query, top_k)
+    if decision.strategy in (RouteStrategy.DIRECT, RouteStrategy.REFUSE):
+        ranked: list[SearchResult] = []
+        context: list[SearchResult] = []
+        trace = _empty_trace(query, strategy=f"route_{decision.strategy.value.lower()}")
     else:
-        opts = STRATEGY_PRESETS[strategy]
-        ranked, trace = search_with_trace(
-            query,
-            top_k,
-            rerank=opts["rerank"],
-            section_dedupe=opts["section_dedupe"],
-            hybrid=opts.get("hybrid", False),
-            candidates=settings.rerank_candidates if (opts["rerank"] or opts.get("hybrid")) else top_k * 4,
-        )
-    context = filter_by_min_score(ranked, settings.min_score, settings.rerank_min_score)
+        if strategy is None:
+            ranked, trace = search_with_trace(query, top_k)
+        else:
+            opts = STRATEGY_PRESETS[strategy]
+            ranked, trace = search_with_trace(
+                query,
+                top_k,
+                rerank=opts["rerank"],
+                section_dedupe=opts["section_dedupe"],
+                hybrid=opts.get("hybrid", False),
+                candidates=settings.rerank_candidates if (opts["rerank"] or opts.get("hybrid")) else top_k * 4,
+            )
+        context = filter_by_min_score(ranked, settings.min_score, settings.rerank_min_score)
 
     result: dict = {
         "id": case.id,
@@ -127,6 +167,7 @@ def run_case(
         "question": case.question,
         "search_query": query,
         "strategy": strategy or trace.strategy,
+        "route": decision.as_dict(),
         "retrieval": evaluate_retrieval(case, ranked, context, top_k),
         "trace": {
             "strategy": trace.strategy,
@@ -217,6 +258,13 @@ def summarize(results: list[dict]) -> dict:
     ret_keys = sorted({k for r in answerable for k in r["retrieval"]["metrics"]})
     overall = {k: mean(r["retrieval"]["metrics"].get(k) for r in answerable) for k in ret_keys}
     overall["blocked_rate_oos"] = mean(float(r["retrieval"]["blocked"]) for r in oos)
+    # Router: REFUSE/DIRECT skip search (counts as blocked context). Track false refuses on answerable.
+    overall["route_refuse_rate_oos"] = mean(
+        float((r.get("route") or {}).get("strategy") == "REFUSE") for r in oos
+    )
+    overall["route_false_refuse_rate"] = mean(
+        float((r.get("route") or {}).get("strategy") in ("REFUSE", "DIRECT")) for r in answerable
+    )
 
     if with_answer:
         overall["pass_rate"] = mean(float(r["answer"]["scores"]["pass"]) for r in with_answer if r["category"] != "out_of_scope")
@@ -239,6 +287,13 @@ def summarize(results: list[dict]) -> dict:
                 entry[k] = mean(r["retrieval"]["metrics"].get(k) for r in group)
         else:
             entry["blocked_rate"] = mean(float(r["retrieval"]["blocked"]) for r in group)
+            entry["route_refuse_rate"] = mean(
+                float((r.get("route") or {}).get("strategy") == "REFUSE") for r in group
+            )
+        route_counts: dict[str, int] = defaultdict(int)
+        for r in group:
+            route_counts[(r.get("route") or {}).get("strategy") or "none"] += 1
+        entry["route_counts"] = dict(route_counts)
         judged = [r for r in group if "answer" in r]
         if judged and cat != "out_of_scope":
             entry["pass_rate"] = mean(float(r["answer"]["scores"]["pass"]) for r in judged)
@@ -282,7 +337,23 @@ def print_report(summary: dict) -> None:
         for err in errors:
             print(f"  {err['id']:32s} {err['stage']:9s} {err['type']}: {err['message'][:100]}")
     print("--- retrieval ---")
-    for key in ("doc_hit@1", "doc_hit@5", "doc_mrr", "hit@1", "hit@5", "recall@5", "precision@5", "mrr", "ndcg@5", "context_recall", "context_precision", "blocked_rate_oos"):
+    for key in (
+        "doc_hit@1",
+        "doc_hit@5",
+        "doc_mrr",
+        "hit@1",
+        "hit@5",
+        "recall@5",
+        "precision@5",
+        "mrr",
+        "ndcg@5",
+        "context_recall",
+        "context_hit",
+        "context_precision",
+        "blocked_rate_oos",
+        "route_refuse_rate_oos",
+        "route_false_refuse_rate",
+    ):
         if key in overall:
             print(f"  {key:22s} {_fmt(overall[key])}")
     answer_keys = ("pass_rate", "correctness", "faithfulness", "refusal_rate_oos", "false_refusal_rate")
@@ -294,9 +365,22 @@ def print_report(summary: dict) -> None:
     print("--- by category ---")
     for cat, entry in summary["by_category"].items():
         bits = [f"n={entry['n']}"]
-        for key in ("hit@5", "ndcg@5", "context_recall", "pass_rate", "correctness", "blocked_rate", "refusal_rate"):
+        for key in (
+            "hit@5",
+            "hit@1",
+            "context_hit",
+            "context_recall",
+            "ndcg@5",
+            "pass_rate",
+            "correctness",
+            "blocked_rate",
+            "route_refuse_rate",
+            "refusal_rate",
+        ):
             if key in entry and entry[key] is not None:
                 bits.append(f"{key}={entry[key]:.3f}")
+        if entry.get("route_counts"):
+            bits.append("routes=" + ",".join(f"{k}:{v}" for k, v in sorted(entry["route_counts"].items())))
         print(f"  {cat:14s} " + "  ".join(bits))
     lat = summary["latency"]
     print(f"--- latency (s)  mean={_fmt(lat['mean'])}  p50={_fmt(lat['p50'])}  p95={_fmt(lat['p95'])}")
@@ -358,6 +442,8 @@ def write_run(path: Path, results: list[dict], summary: dict, extra_settings: di
             "rerank_model": settings.rerank_model,
             "rerank_candidates": settings.rerank_candidates,
             "section_dedupe": settings.section_dedupe,
+            "route_mode": settings.route_mode,
+            "hybrid_enabled": settings.hybrid_enabled,
             **extra_settings,
         },
         "summary": summary,
@@ -380,10 +466,11 @@ def main() -> None:
     )
     parser.add_argument("--compare", type=Path, help="previous run JSON to diff against")
     parser.add_argument("--out", type=Path, help="where to write this run (default: evals/runs/<timestamp>.json)")
+    parser.add_argument("--dataset", type=Path, help="dataset JSON (default: evals/dataset.json)")
     args = parser.parse_args()
 
     try:
-        cases = load_dataset()
+        cases = load_dataset(args.dataset) if args.dataset else load_dataset()
     except DatasetError as exc:
         raise SystemExit(f"invalid dataset: {exc}") from exc
     stale = stale_labels(cases, chunk_catalog())
@@ -411,7 +498,7 @@ def main() -> None:
 
     print(
         f"running {len(cases)} cases  top_k={settings.top_k}  min_score={settings.min_score}  "
-        f"rerank_min_score={settings.rerank_min_score}  "
+        f"rerank_min_score={settings.rerank_min_score}  route_mode={settings.route_mode}  "
         f"answer={with_answer}  strategies={strategies or ['settings']}"
     )
 
@@ -426,7 +513,12 @@ def main() -> None:
             args.out or RUNS_DIR / f"{stamp}.json",
             results,
             summary,
-            {"with_answer": with_answer, "strategies": None, "interrupted": interrupted},
+            {
+                "with_answer": with_answer,
+                "strategies": None,
+                "interrupted": interrupted,
+                "dataset": str(args.dataset) if args.dataset else "evals/dataset.json",
+            },
         )
         if interrupted:
             raise SystemExit(f"interrupted after {len(results)}/{len(cases)} cases; partial results saved")
@@ -439,33 +531,56 @@ def main() -> None:
             print("no regression beyond thresholds")
         return
 
-    # Shared rewrite so baseline and rerank see the same search query.
-    prepared: list[tuple[Case, list[dict], str]] = []
+    # Shared route + rewrite so baseline / rerank / hybrid see the same search query.
+    prepared: list[tuple[Case, list[dict], str, RouteDecision]] = []
     for i, case in enumerate(cases, start=1):
         history = trim_history(case.history)
         try:
-            query = rewrite_question(case.question, history)
+            decision, query = _resolve_route_and_query(case, history)
         except Exception as exc:
-            # Same query for every strategy keeps the comparison fair even when the rewrite fails.
-            print(f"    ! rewrite failed for {case.id}, using the raw question: {exc}", flush=True)
+            print(f"    ! route/rewrite failed for {case.id}, using RETRIEVE + raw question: {exc}", flush=True)
+            decision = RouteDecision(RouteStrategy.RETRIEVE, "default", f"eval_fallback: {exc}", 0.0)
             query = case.question
-        print(f"[{i}/{len(cases)}] rewrite {case.id}", flush=True)
-        prepared.append((case, history, query))
+        skip = decision.strategy in (RouteStrategy.DIRECT, RouteStrategy.REFUSE)
+        print(
+            f"[{i}/{len(cases)}] route={decision.strategy.value} "
+            f"{'(skip search) ' if skip else ''}{case.id}",
+            flush=True,
+        )
+        prepared.append((case, history, query, decision))
 
     summaries: dict[str, dict] = {}
     for strategy in strategies:
         print(f"\n>>> strategy={strategy}")
         results, interrupted = run_cases(
-            [case for case, _, _ in prepared],
+            [case for case, _, _, _ in prepared],
             settings.top_k,
             with_answer,
-            per_case={case.id: {"strategy": strategy, "search_query": q, "history": h} for case, h, q in prepared},
+            per_case={
+                case.id: {
+                    "strategy": strategy,
+                    "search_query": q,
+                    "history": h,
+                    "decision": d,
+                }
+                for case, h, q, d in prepared
+            },
         )
         summary = summarize(results)
         print_report(summary)
         summaries[strategy] = summary
         out = args.out.with_name(f"{args.out.stem}-{strategy}{args.out.suffix}") if args.out else RUNS_DIR / f"{stamp}-{strategy}.json"
-        write_run(out, results, summary, {"with_answer": with_answer, "strategies": [strategy], "interrupted": interrupted})
+        write_run(
+            out,
+            results,
+            summary,
+            {
+                "with_answer": with_answer,
+                "strategies": [strategy],
+                "interrupted": interrupted,
+                "dataset": str(args.dataset) if args.dataset else "evals/dataset.json",
+            },
+        )
         if interrupted:
             raise SystemExit(f"interrupted during strategy={strategy}; partial results saved")
 

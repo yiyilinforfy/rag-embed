@@ -1,5 +1,37 @@
+import pytest
+
 from app import rag
-from app.search import SearchResult
+from app.search import SearchResult, SearchTrace
+
+
+@pytest.fixture(autouse=True)
+def _disable_ask_log(monkeypatch):
+    monkeypatch.setattr(rag.get_settings(), "ask_log_enabled", False)
+
+
+def _disable_query_expand(monkeypatch):
+    monkeypatch.setattr(rag.get_settings(), "query_expand_mode", "off")
+
+
+def _stub_trace(query: str = "") -> SearchTrace:
+    return SearchTrace(
+        strategy="baseline",
+        query=query,
+        candidate_count=0,
+        selected_count=0,
+        section_dedupe=False,
+        content_dedupe_dropped=0,
+        vector_ms=0.0,
+    )
+
+
+def _patch_search(monkeypatch, search_fn):
+    """Tests used to patch rag.search; prepare now calls search_with_trace."""
+
+    def wrapped(query, top_k=None, **_kwargs):
+        return search_fn(query, top_k), _stub_trace(query)
+
+    monkeypatch.setattr(rag, "search_with_trace", wrapped)
 
 
 def make_result(n: int, score: float = 0.7) -> SearchResult:
@@ -53,7 +85,10 @@ def test_cited_sources_follow_answer_markers():
 
 
 def test_low_scores_skip_the_llm(monkeypatch):
-    monkeypatch.setattr(rag, "search", lambda q, k=None: [make_result(1, score=0.3)])
+    # Force legacy path so this tests score gates, not the OOS router.
+    _disable_query_expand(monkeypatch)
+    monkeypatch.setattr(rag.get_settings(), "route_mode", "off")
+    _patch_search(monkeypatch, lambda q, k=None: [make_result(1, score=0.3)])
 
     def fail_chat(messages):
         raise AssertionError("LLM should not be called")
@@ -64,8 +99,30 @@ def test_low_scores_skip_the_llm(monkeypatch):
     assert result.sources == []
 
 
+def test_router_refuse_skips_search_and_llm(monkeypatch):
+    _disable_query_expand(monkeypatch)
+    monkeypatch.setattr(rag.get_settings(), "route_mode", "rules")
+
+    def fail_search(*args, **kwargs):
+        raise AssertionError("search should not run on REFUSE")
+
+    def fail_chat(*args, **kwargs):
+        raise AssertionError("LLM should not run on REFUSE")
+
+    _patch_search(monkeypatch, fail_search)
+    monkeypatch.setattr(rag, "chat", fail_chat)
+    from app.router import REFUSE_REPLY
+
+    result = rag.answer_question("红烧肉怎么做")
+    assert result.answer == REFUSE_REPLY
+    assert result.route is not None and result.route.strategy.value == "REFUSE"
+    assert result.sources == []
+
+
 def test_relevant_chunks_are_sent_to_llm(monkeypatch):
-    monkeypatch.setattr(rag, "search", lambda q, k=None: [make_result(1, 0.8), make_result(2, 0.3)])
+    _disable_query_expand(monkeypatch)
+    monkeypatch.setattr(rag.get_settings(), "route_mode", "off")
+    _patch_search(monkeypatch, lambda q, k=None: [make_result(1, 0.8), make_result(2, 0.3)])
     seen = {}
 
     def fake_chat(messages):
@@ -111,6 +168,9 @@ def test_rewrite_is_skipped_without_history(monkeypatch):
 
 
 def test_follow_up_is_rewritten_for_search_and_history_reaches_llm(monkeypatch):
+    # rules mode: product follow-up → MULTI → rewrite, without calling the route LLM.
+    _disable_query_expand(monkeypatch)
+    monkeypatch.setattr(rag.get_settings(), "route_mode", "rules")
     searched = {}
     sent = {}
 
@@ -124,12 +184,13 @@ def test_follow_up_is_rewritten_for_search_and_history_reaches_llm(monkeypatch):
         sent["messages"] = messages
         return "答案"
 
-    monkeypatch.setattr(rag, "search", fake_search)
+    _patch_search(monkeypatch, fake_search)
     monkeypatch.setattr(rag, "chat", fake_chat)
     history = [{"role": "user", "content": "怎么创建安全组？"}, {"role": "assistant", "content": "在控制台..."}]
 
-    rag.answer_question("那怎么删除它？", history=history)
+    result = rag.answer_question("那怎么删除它？", history=history)
 
+    assert result.route is not None and result.route.strategy.value == "MULTI"
     assert searched["query"] == "如何删除安全组？"
     assert [m["role"] for m in sent["messages"]] == ["system", "user", "assistant", "user"]
     assert sent["messages"][-1]["content"].endswith("## User question\n\n那怎么删除它？")
@@ -142,3 +203,52 @@ def test_rewrite_failure_falls_back_to_original_question(monkeypatch):
     monkeypatch.setattr(rag, "chat", broken_chat)
     history = [{"role": "user", "content": "q"}, {"role": "assistant", "content": "a"}]
     assert rag.rewrite_question("那它呢？", history) == "那它呢？"
+
+
+def test_expand_rules_mode_appends_hints_without_llm(monkeypatch):
+    monkeypatch.setattr(rag.get_settings(), "query_expand_mode", "rules")
+
+    def fail_chat(*args, **kwargs):
+        raise AssertionError("rules mode must not call LLM")
+
+    monkeypatch.setattr(rag, "chat", fail_chat)
+    out = rag.expand_search_query("几个容器只允许彼此访问、外面进不来，页面上在哪建")
+    assert "安全组" in out
+
+
+def test_expand_llm_mode_uses_chat(monkeypatch):
+    monkeypatch.setattr(rag.get_settings(), "query_expand_mode", "llm")
+
+    def fake_chat(messages, **kwargs):
+        assert "改写成更适合搜索" in messages[0]["content"]
+        return "如何创建安全组 隔离容器网络\n"
+
+    monkeypatch.setattr(rag, "chat", fake_chat)
+    out = rag.expand_search_query("几个容器只允许彼此访问、外面进不来")
+    assert "安全组" in out
+
+
+def test_expand_disabled_returns_original(monkeypatch):
+    _disable_query_expand(monkeypatch)
+
+    def fail_chat(*args, **kwargs):
+        raise AssertionError("expand should not call LLM when disabled")
+
+    monkeypatch.setattr(rag, "chat", fail_chat)
+    assert rag.expand_search_query("几个容器只允许彼此访问") == "几个容器只允许彼此访问"
+
+
+def test_prepare_expands_before_search(monkeypatch):
+    monkeypatch.setattr(rag.get_settings(), "route_mode", "rules")
+    monkeypatch.setattr(rag.get_settings(), "query_expand_mode", "rules")
+    searched = {}
+
+    def fake_search(query, k=None):
+        searched["query"] = query
+        return [make_result(1, 0.8)]
+
+    _patch_search(monkeypatch, fake_search)
+    monkeypatch.setattr(rag, "chat", lambda *a, **k: "答案")
+    prepared = rag.prepare("几个容器只允许彼此访问、外面进不来，页面上在哪建", None, [])
+    assert "安全组" in prepared.query
+    assert searched["query"] == prepared.query

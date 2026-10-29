@@ -1,0 +1,269 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "stat",
+      "title": "提问次数",
+      "id": 1,
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT count(*) AS asks FROM ask_events WHERE $__timeFilter(created_at);",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "short", "thresholds": { "mode": "absolute", "steps": [{ "color": "blue", "value": null }] } },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "stat",
+      "title": "P95 总耗时",
+      "id": 2,
+      "gridPos": { "h": 4, "w": 4, "x": 4, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT percentile_cont(0.95) WITHIN GROUP (ORDER BY total_ms) AS p95_total_ms FROM ask_events WHERE $__timeFilter(created_at) AND total_ms IS NOT NULL;",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 5000 },
+              { "color": "red", "value": 8000 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "stat",
+      "title": "P95 首 Token",
+      "id": 3,
+      "gridPos": { "h": 4, "w": 4, "x": 8, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT percentile_cont(0.95) WITHIN GROUP (ORDER BY first_token_ms) AS p95_ttfb_ms FROM ask_events WHERE $__timeFilter(created_at) AND first_token_ms IS NOT NULL;",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 3000 },
+              { "color": "red", "value": 4000 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "stat",
+      "title": "拒答率",
+      "id": 4,
+      "gridPos": { "h": 4, "w": 4, "x": 12, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT CASE WHEN count(*) = 0 THEN 0 ELSE round(100.0 * count(*) FILTER (WHERE refused) / count(*), 1) END AS refuse_pct FROM ask_events WHERE $__timeFilter(created_at);",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 40 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "stat",
+      "title": "门闸空结果率",
+      "id": 5,
+      "gridPos": { "h": 4, "w": 4, "x": 16, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT CASE WHEN count(*) = 0 THEN 0 ELSE round(100.0 * count(*) FILTER (WHERE gate_blocked) / count(*), 1) END AS gate_pct FROM ask_events WHERE $__timeFilter(created_at);",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 15 },
+              { "color": "red", "value": 30 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "stat",
+      "title": "差评率",
+      "id": 6,
+      "gridPos": { "h": 4, "w": 4, "x": 20, "y": 0 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT CASE WHEN count(*) = 0 THEN 0 ELSE round(100.0 * count(*) FILTER (WHERE helpful = false) / count(*), 1) END AS down_pct FROM ask_feedback WHERE $__timeFilter(created_at);",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 20 },
+              { "color": "red", "value": 40 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "colorMode": "value", "graphMode": "none", "textMode": "auto" }
+    },
+    {
+      "type": "timeseries",
+      "title": "提问量（按时间）",
+      "id": 7,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawSql": "SELECT\n  $__timeGroupAlias(created_at, $__interval),\n  count(*) AS asks\nFROM ask_events\nWHERE $__timeFilter(created_at)\nGROUP BY 1\nORDER BY 1;",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "short", "custom": { "drawStyle": "bars", "fillOpacity": 40, "lineWidth": 1, "spanNulls": false } },
+        "overrides": []
+      },
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "single" } }
+    },
+    {
+      "type": "timeseries",
+      "title": "P95 延迟（按小时）",
+      "id": 8,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "time_series",
+          "rawSql": "SELECT\n  $__timeGroupAlias(created_at, '1h'),\n  percentile_cont(0.95) WITHIN GROUP (ORDER BY total_ms) AS p95_total_ms,\n  percentile_cont(0.95) WITHIN GROUP (ORDER BY first_token_ms) AS p95_ttfb_ms\nFROM ask_events\nWHERE $__timeFilter(created_at) AND total_ms IS NOT NULL\nGROUP BY 1\nORDER BY 1;",
+          "editorMode": "code"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "ms", "custom": { "drawStyle": "line", "fillOpacity": 10, "lineWidth": 2, "spanNulls": true } },
+        "overrides": []
+      },
+      "options": { "legend": { "displayMode": "list", "placement": "bottom" }, "tooltip": { "mode": "multi" } }
+    },
+    {
+      "type": "table",
+      "title": "最近提问",
+      "id": 9,
+      "gridPos": { "h": 10, "w": 14, "x": 0, "y": 12 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT\n  created_at AS time,\n  left(question, 80) AS question,\n  route_strategy,\n  retrieval_strategy,\n  round(total_ms::numeric, 0) AS total_ms,\n  round(first_token_ms::numeric, 0) AS first_token_ms,\n  refused,\n  gate_blocked\nFROM ask_events\nWHERE $__timeFilter(created_at)\nORDER BY created_at DESC\nLIMIT 50;",
+          "editorMode": "code"
+        }
+      ],
+      "options": { "showHeader": true, "cellHeight": "sm" },
+      "fieldConfig": { "defaults": { "custom": { "align": "auto", "filterable": true } }, "overrides": [] }
+    },
+    {
+      "type": "table",
+      "title": "差评明细",
+      "id": 10,
+      "gridPos": { "h": 10, "w": 10, "x": 14, "y": 12 },
+      "datasource": { "type": "postgres", "uid": "rag-postgres" },
+      "targets": [
+        {
+          "refId": "A",
+          "format": "table",
+          "rawSql": "SELECT\n  f.created_at AS time,\n  left(e.question, 80) AS question,\n  e.route_strategy,\n  round(e.total_ms::numeric, 0) AS total_ms,\n  f.reason,\n  left(f.comment, 80) AS comment\nFROM ask_feedback f\nJOIN ask_events e ON e.id = f.ask_id\nWHERE f.helpful = false AND $__timeFilter(f.created_at)\nORDER BY f.created_at DESC\nLIMIT 50;",
+          "editorMode": "code"
+        }
+      ],
+      "options": { "showHeader": true, "cellHeight": "sm" },
+      "fieldConfig": { "defaults": { "custom": { "align": "auto", "filterable": true } }, "overrides": [] }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "tags": ["rag", "vkube"],
+  "templating": { "list": [] },
+  "time": { "from": "now-24h", "to": "now" },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Ask Overview",
+  "uid": "ask-overview",
+  "version": 1
+}

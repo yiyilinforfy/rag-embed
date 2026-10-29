@@ -77,6 +77,8 @@ def retrieval_metrics(
         "mrr": reciprocal_rank(keys, relevant),
         f"ndcg@{k}": ndcg_at_k(keys, grades, k),
         "context_recall": len(essential & set(context_keys)) / len(essential),
+        # At least one grade-2 chunk survived the score gates (what the answer LLM actually sees).
+        "context_hit": float(bool(essential & set(context_keys))),
         "context_precision": precision_at_k(context_keys, relevant, len(context_keys)),
     }
 

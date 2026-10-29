@@ -12,8 +12,8 @@
   3. 很短的父标题正文（<80 字）会并进第一个子 chunk，避免出现只有一句话的碎片。
   4. 仍然太长的小节，按段落和代码块切；还不行就硬切；太小的碎片会合并回去。
   5. 超长代码块（CLI 输出、大段 JSON）截断到 800 字：这类内容对检索帮助小，还会稀释向量的语义。
-- clean_markdown：去掉 <script>/<style> 标签和 ::: 容器标记，图片换成 [图片: alt]，链接只留文字，
-  这些都是对检索没用的噪声。
+- clean_markdown：去掉 <script>/<style> 标签和 ::: 容器标记；链接只留文字（降噪）。
+  图片保留为 Markdown，并把 `../.vuepress/public/...` 改成 docs 站绝对 URL，方便回答里直接插图。
 - 锚点：slugify + unique_anchor 复刻 VuePress 1.x 的标题 id 规则（重复标题加 -2、-3），
   这是对照线上文档站的 JS 代码核实过的，保证生成的 url 能跳到正确的小节。
 - 验证：scripts/preview_chunks.py 预览切分结果；tests/test_chunker.py 覆盖代码块里的 #、锚点、子树合并、代码截断。
@@ -32,8 +32,9 @@ MIN_PIECE_CHARS = 80
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 FENCE_RE = re.compile(r"^\s*(```|~~~)")
-IMAGE_RE = re.compile(r"!\[([^\]]*)\]\([^)]*\)")
-LINK_RE = re.compile(r"\[([^\]]+)\]\([^)]*\)")
+IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)]*)\)")
+# (?<!!) so Markdown images ![alt](url) are not stripped after absolutizing.
+LINK_RE = re.compile(r"(?<!!)\[([^\]]+)\]\([^)]*\)")
 HTML_ONLY_LINE_RE = re.compile(r"^\s*</?(link|script|style|meta)\b[^>]*>\s*$", re.IGNORECASE)
 CONTAINER_RE = re.compile(r"^\s*:::")
 
@@ -121,8 +122,10 @@ def truncate_code(lines: list[str]) -> list[str]:
     return kept
 
 
-def clean_markdown(text: str) -> str:
-    """Remove things that carry no meaning for retrieval, and shorten huge code blocks."""
+def clean_markdown(text: str, docs_base_url: str = "https://docs.vcloud.systems") -> str:
+    """Remove noise for retrieval, keep images (absolute URLs), shorten huge code blocks."""
+    from app.media import absolutize_markdown_image
+
     out: list[str] = []
     code: list[str] | None = None  # lines of the code block being read, None when outside
     for line in text.splitlines():
@@ -140,7 +143,7 @@ def clean_markdown(text: str) -> str:
             continue
         if HTML_ONLY_LINE_RE.match(line) or CONTAINER_RE.match(line):
             continue
-        line = IMAGE_RE.sub(lambda m: f"[图片: {m.group(1)}]" if m.group(1) else "", line)
+        line = IMAGE_RE.sub(lambda m: absolutize_markdown_image(m.group(1), m.group(2), docs_base_url), line)
         line = LINK_RE.sub(r"\1", line)
         out.append(line)
     if code is not None:
@@ -150,9 +153,10 @@ def clean_markdown(text: str) -> str:
 
 def load_documents(docs_dir: Path, subdir: str, base_url: str = "") -> list[MarkdownDoc]:
     docs = []
+    docs_base = base_url.rstrip("/") if base_url else "https://docs.vcloud.systems"
     for path in sorted((docs_dir / subdir).rglob("*.md")):
         raw = path.read_text(encoding="utf-8")
-        body = clean_markdown(strip_frontmatter(raw))
+        body = clean_markdown(strip_frontmatter(raw), docs_base_url=docs_base)
         if not body:
             continue  # empty files and the frontmatter-only home page
         source = path.relative_to(docs_dir).as_posix()
@@ -163,7 +167,8 @@ def load_documents(docs_dir: Path, subdir: str, base_url: str = "") -> list[Mark
                 url=page_url(source, base_url),
                 lang=subdir,
                 text=body,
-                content_hash=hashlib.sha256(raw.encode("utf-8")).hexdigest(),
+                # Include cleaned body so image-URL policy changes force re-index without editing docs.
+                content_hash=hashlib.sha256((raw + "\0" + body).encode("utf-8")).hexdigest(),
             )
         )
     return docs

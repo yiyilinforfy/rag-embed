@@ -1,0 +1,6466 @@
+[
+  {
+    "id": "gen-direct-001",
+    "category": "direct",
+    "question": "怎么创建安全组",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 创建安全组",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在侧边栏进入 Security Group",
+      "右上角 Create Security Group 创建",
+      "安全组是区域内资源，只能加入同一区域的服务"
+    ]
+  },
+  {
+    "id": "gen-direct-002",
+    "category": "direct",
+    "question": "订单怎么提前解约",
+    "relevant": [
+      {
+        "source": "zh/guide/advance-termination.md",
+        "heading": "订单提前解约",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在用户服务界面输入 1 选择 Show Running User Service",
+      "输入 f 选择 Refund Service，再输入服务序号",
+      "最后输入 y 确认退款"
+    ]
+  },
+  {
+    "id": "gen-direct-003",
+    "category": "direct",
+    "question": "怎么查看服务日志",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查看服务日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先选 Show Running User Service",
+      "输入 t 选择 Tail Service Log",
+      "多容器时还要选择子容器，按 Enter 停止显示"
+    ]
+  },
+  {
+    "id": "gen-direct-004",
+    "category": "direct",
+    "question": "怎么做域名绑定",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名绑定",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "一个云服务最多绑定 10 个域名",
+      "先把 Host IP 设成域名的 A Record",
+      "在 CLI 里选 Bind Domain Name，再填域名、Container Port，以及是否使用 https"
+    ]
+  },
+  {
+    "id": "gen-direct-005",
+    "category": "direct",
+    "question": "怎么暂停服务",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 暂停服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 p 选择 Pause Service 并确认后暂停",
+      "输入 q 选择 Resume Service 可恢复运行"
+    ]
+  },
+  {
+    "id": "gen-direct-006",
+    "category": "direct",
+    "question": "服务怎么续费",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 服务续费",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 g 选择 Renew Service",
+      "填写服务序号和续费时长后输入 y 会形成续费订单",
+      "可以立刻支付，也可以稍后支付"
+    ]
+  },
+  {
+    "id": "gen-direct-007",
+    "category": "direct",
+    "question": "日志托管服务怎么购买",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/purchase-service.md",
+        "heading": "服务购买",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Marketplace 选择 Log Host，配置区域、资源大小和运行时间",
+      "Order Now 创建未支付订单，Purchase Now 创建并立即支付",
+      "订单状态为 Filed 后可在 My Service 获取 Token"
+    ]
+  },
+  {
+    "id": "gen-direct-008",
+    "category": "direct",
+    "question": "Node Watcher 怎么充值",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值流程（图文步骤）",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值前须知",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "账户扣款模式在 Purchase 页点 Topup",
+      "最低充值 1 美元，充值完成后不支持退款",
+      "订单状态显示 Filed 表示支付完成"
+    ]
+  },
+  {
+    "id": "gen-direct-009",
+    "category": "direct",
+    "question": "怎么安装 vcloud skill",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "不指定目标时 vcloud skill install 会装到 Claude Code 和 Codex",
+      "仅 Claude 用 vcloud skill install --target claude，目录是 ~/.claude/skills/vcloud-cli/",
+      "仅 Codex 用 --target codex，目录是 ~/.codex/skills/vcloud-cli/"
+    ]
+  },
+  {
+    "id": "gen-direct-010",
+    "category": "direct",
+    "question": "过期服务的部署信息怎么导出",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 过期服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "过期后部署信息仍保留，Actions 里选 Export Deployment Data",
+      "可复制 token，或 Export Zip 导出 yaml 和 config files",
+      "部署新服务时可以 clone 已过期服务，或用 token 克隆"
+    ]
+  },
+  {
+    "id": "gen-direct-011",
+    "category": "direct",
+    "question": "怎么打开 Webterminal",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务和目标 Container 都要在运行",
+      "展开 Actions 后点 Open terminal",
+      "状态变成 Connected 后可输入命令，断线用 Reconnect，结束用 Close"
+    ]
+  },
+  {
+    "id": "gen-direct-012",
+    "category": "direct",
+    "question": "Alias 怎么设置",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Alias 只在同一个 region 内让服务用别名通信",
+      "需要填 Alias、Alias Port、Container Port 和 Protocol（TCP 或 UDP）",
+      "浏览器里用别名访问是不行的"
+    ]
+  },
+  {
+    "id": "gen-direct-013",
+    "category": "direct",
+    "question": "配置文件托管怎么创建",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 配置文件的托管与管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "侧边栏进入 Hosted Config，点 Create",
+      "Config Name 只用于区分，和容器里的文件名无关，同一地址下不能重复",
+      "每个 address 最多托管总计 1MB"
+    ]
+  },
+  {
+    "id": "gen-direct-014",
+    "category": "direct",
+    "question": "商品服务期限从什么时候开始",
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "付款后会跑 start Lua，默认创建 UserService 且状态为 ServiceRunning，创建时间即开始时间",
+      "调用 preventDefault() 时初始状态是 ServicePending，尚未开始计费",
+      "到点后 SDK 每小时检查，结束时间到了会变成 ServiceDone 并跑 stop"
+    ]
+  },
+  {
+    "id": "gen-direct-015",
+    "category": "direct",
+    "question": "费用核算怎么算订单金额",
+    "relevant": [
+      {
+        "source": "zh/supplier/price-auditing.md",
+        "heading": "费用核算",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "结算货币是 VSYS Coin 以及供应商定义的 VSYS Chain Token",
+      "时长 t 落在打折系数 r 内时，订单数额 = t * p * r",
+      "主动退款的 Token 数量 =（剩余时长 * 单位时间价值 - 0.1）* y，0.1 是 VSYS 手续费"
+    ]
+  },
+  {
+    "id": "gen-direct-016",
+    "category": "direct",
+    "question": "怎么用 Docker 启动 SDK 服务端",
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 1. 部署SDK服务端 > 1.2 Docker 命令启动",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 v-cloud-merchant 根目录执行 docker build -t <YOUR-IMAGE-TAG-NAME> -f ./docker/dockerfile",
+      "再用 docker run -d -t <YOUR-IMAGE-TAG-NAME> 运行"
+    ]
+  },
+  {
+    "id": "gen-direct-017",
+    "category": "direct",
+    "question": "怎么安装 vkube 命令行",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "需要 Python 大于等于 3.7",
+      "用 pip3 install vkube 安装，vkube version 看版本",
+      "部署命令是 vkube deploy -f ./VKubefile.yaml，或不带参数时在当前目录找 VKubefile.yaml"
+    ]
+  },
+  {
+    "id": "gen-direct-018",
+    "category": "direct",
+    "question": "访问令牌怎么创建",
+    "relevant": [
+      {
+        "source": "zh/VKservice/accessToken.md",
+        "heading": "令牌",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "购买后 My Services 里有默认令牌，可导入 Containers",
+      "访问令牌在 Access Token 页点 Add，填写 UserServiceID 和过期时间后 Confirm",
+      "访问令牌可以激活、停用、设过期或删除，过期后不能当凭证"
+    ]
+  },
+  {
+    "id": "gen-direct-019",
+    "category": "direct",
+    "question": "怎么创建 Topic",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 2. 创建 Topic",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "网络支持 testnet 和 mainnet",
+      "event_type 有 BlockAppended 和 StatusUpdated",
+      "交易类型常见 PaymentTransaction 和 ExecuteContract，回调填 webhook_url"
+    ]
+  },
+  {
+    "id": "gen-direct-020",
+    "category": "direct",
+    "question": "怎么验证 skill 是否安装成功",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 验证安装",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用 vcloud skill list 查看 Claude Code 和 Codex 的安装状态",
+      "可以加 --target claude 或 --target codex 只看一个",
+      "当前会话没识别到就重启助手或开新会话"
+    ]
+  },
+  {
+    "id": "gen-direct-021",
+    "category": "direct",
+    "question": "部署回滚的记录怎么保存和套用",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 回滚",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "部署时勾选 Record 并填写 tag，这次配置会被记下",
+      "运行中的服务可在 Actions 里选 Record Deployment",
+      "Redeploy 时打开 Record，可以 Preview、Apply 或 Remove"
+    ]
+  },
+  {
+    "id": "gen-para-001",
+    "category": "paraphrase",
+    "question": "几个容器只允许彼此访问、外面进不来，页面上在哪建",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 创建安全组",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 将服务引入或移出安全组",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "在 Security Group 页面按区域创建",
+      "只能把同一区域的服务加进去",
+      "组内服务默认不接受公网入站"
+    ]
+  },
+  {
+    "id": "gen-para-002",
+    "category": "paraphrase",
+    "question": "买的时长还没用完，想在客户端里停掉并把钱退回来",
+    "relevant": [
+      {
+        "source": "zh/guide/advance-termination.md",
+        "heading": "订单提前解约",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "进入正在运行的用户服务列表",
+      "选择 Refund Service，输入序号后用 y 确认"
+    ]
+  },
+  {
+    "id": "gen-para-003",
+    "category": "paraphrase",
+    "question": "同一机房的两个服务用内部名字互访，我在浏览器里打开这个名字行不行",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "别名只供同一 region 内的服务访问，例如 mongo-url:27017",
+      "在浏览器里用别名访问不行"
+    ]
+  },
+  {
+    "id": "gen-para-004",
+    "category": "paraphrase",
+    "question": "不想在自己电脑装 ssh，能不能直接在网页里敲容器里的命令",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Webterminal 在浏览器打开运行中容器的命令行，不用本地 SSH",
+      "Actions 里点 Open terminal，Connected 后即可输入"
+    ]
+  },
+  {
+    "id": "gen-para-005",
+    "category": "paraphrase",
+    "question": "容器打出来的日志想交到云上存，和跑容器的那套平台分开",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/README.md",
+        "heading": "介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "日志托管抓取指定容器服务的日志并永久存到云端，存储和 VKube 平台解耦",
+      "每个 Resource-Unit 对应 5Gi 日志空间",
+      "服务到期后日志会被清理，并停止采集"
+    ]
+  },
+  {
+    "id": "gen-para-006",
+    "category": "paraphrase",
+    "question": "链上有人给我打币的时候，能不能往我的服务推一条 HTTP",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/README.md",
+        "heading": "功能介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Node watcher 监控 VSYS 链上交易和区块新增，订阅后把 webhook 发到用户终端",
+      "支持 VSYS coin 支付等事件",
+      "每次 webhook 收费 1 美分，新用户有 1000 次免费额度"
+    ]
+  },
+  {
+    "id": "gen-para-007",
+    "category": "paraphrase",
+    "question": "自动部署时不想把登录凭证写进 yaml，放到仓库的密钥里行不行",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 GitHub Settings → Secrets 里配置",
+      "用 ghcr 需要 GHCR_TOKEN，用 docker 需要 DOCKERHUB_TOKEN 和 DOCKERHUB_USERNAME",
+      "必须加 VKUBE_TOKEN，这样 VKubefile.yaml 里不必再写 vkubeToken"
+    ]
+  },
+  {
+    "id": "gen-para-008",
+    "category": "paraphrase",
+    "question": "申请的内存用超了，进程会不会被干掉然后自己起来",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "x-Unit-Resource 的内存上限是 x Gi",
+      "超过限定内存可能触发 memory kill 导致服务重启"
+    ]
+  },
+  {
+    "id": "gen-para-009",
+    "category": "paraphrase",
+    "question": "钱付完了先别开始算时长，等我真正把应用拉起来再计费",
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 start 脚本里调用 SystemUtils.preventDefault()",
+      "UserService 初始状态变为 ServicePending，表示还没开始计费",
+      "资源节点部署成功后再通知 SDK，状态变为 ServiceRunning 才开始计费"
+    ]
+  },
+  {
+    "id": "gen-para-010",
+    "category": "paraphrase",
+    "question": "在网页上存配置文本，一个地址有没有总大小上限",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 配置文件的托管与管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "每个 address 最多托管总计 1MB 的配置文件",
+      "同一地址下配置名称必须唯一"
+    ]
+  },
+  {
+    "id": "gen-para-011",
+    "category": "paraphrase",
+    "question": "GitHub 上的私有镜像要拉进平台，名字前面得加哪一段",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`上如何使用在ghcr或者docker hub的私有镜像",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "支持 Docker Hub 和 ghcr，镜像名前加 docker.io/ 或 ghcr.io/",
+      "私有镜像要填账户和 Access Token，建议只读权限"
+    ]
+  },
+  {
+    "id": "gen-para-012",
+    "category": "paraphrase",
+    "question": "一个订单里塞两个容器、它们走 127.0.0.1 说话，下单时资源份数怎么选",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两个容器放在同一个 pod，用 localhost 通信",
+      "一个容器至少占一个 resource-unit，所以至少买两个 resource-unit"
+    ]
+  },
+  {
+    "id": "gen-para-013",
+    "category": "paraphrase",
+    "question": "自己搞不定的时候邮件找谁，大概多久有人回",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > I have a feature request or suggestions",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "支持邮箱是 support@v.systems",
+      "会在 24 小时内回复"
+    ]
+  },
+  {
+    "id": "gen-para-014",
+    "category": "paraphrase",
+    "question": "平台底下跑容器用的是 docker 引擎还是别的运行时",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is VKube container runtime?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKube 使用 Containerd"
+    ]
+  },
+  {
+    "id": "gen-para-015",
+    "category": "paraphrase",
+    "question": "这套容器服务只认哪一种 Linux 发行版",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > Which operating systems does VKube support?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKube 支持 Ubuntu"
+    ]
+  },
+  {
+    "id": "gen-para-016",
+    "category": "paraphrase",
+    "question": "往账户里补余额，网页上认哪两种币",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > How do I top up on VKube?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以用 VSYS 或 USDV 购买服务",
+      "把头像里的钱包公钥复制到交易所，把 VSYS 转到 VKube 上的钱包"
+    ]
+  },
+  {
+    "id": "gen-para-017",
+    "category": "paraphrase",
+    "question": "日志托管到期之后，以前抓下来的日志还留着吗",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/README.md",
+        "heading": "介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务到期后日志会被清理",
+      "系统会停止采集仍在运行的容器日志"
+    ]
+  },
+  {
+    "id": "gen-para-018",
+    "category": "paraphrase",
+    "question": "已经上架的商品如果把名字改了再上传，旧的那条会被删掉吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "除 service 与 service category 名称外，改 yaml 再上传会更新已上架信息",
+      "名称变了会生成新的 service 或 service category，旧的不会被删除",
+      "provider 和 walletAddress 提交后暂时不能更新"
+    ]
+  },
+  {
+    "id": "gen-para-019",
+    "category": "paraphrase",
+    "question": "访问白名单建了，但一条允许规则都不填，别人还能进来吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Policy",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Policy 是白名单，不在名单里的访问会被限制",
+      "不添加 Rule 直接创建时，所有服务都被禁止访问该用户服务"
+    ]
+  },
+  {
+    "id": "gen-para-020",
+    "category": "paraphrase",
+    "question": "网页终端那个登录密码，字符上有什么硬性要求",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "ttyd 密码至少要有一个大写、一个小写、一个数字、一个特殊字符",
+      "不少于 8 个字符",
+      "密码通过环境变量 VKUBE_TTYD_PASSWORD 传入容器"
+    ]
+  },
+  {
+    "id": "gen-para-021",
+    "category": "paraphrase",
+    "question": "路径转发勾了改写之后，前面那一截路径还会不会原样进容器",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Rewrite 会去掉第一阶路径再转发",
+      "Path 配成 /api/v1 时，访问 /api/v1/detail，容器收到 /v1/detail",
+      "Path 按最长前缀匹配，且不能重复"
+    ]
+  },
+  {
+    "id": "gen-exact-001",
+    "category": "exact_term",
+    "question": "refundVsys 的参数是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "签名是 refundVsys(int amount, string recipient, string orderID)",
+      "把订单 orderID 的 amount 原路退回 recipient 这个 VSYS 地址"
+    ]
+  },
+  {
+    "id": "gen-exact-002",
+    "category": "exact_term",
+    "question": "refundToken 和 refundVsys 有什么差别",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两者都在 VsysRefund 里，参数都是 amount、recipient、orderID",
+      "refundVsys 退回 VSYS 账户，refundToken 以 token 形式打到 recipient"
+    ]
+  },
+  {
+    "id": "gen-exact-003",
+    "category": "exact_term",
+    "question": "SystemUtils.preventDefault 会把 UserService 初始状态设成什么",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "preventDefault 让新建的 UserService 初始状态为 ServicePending"
+    ]
+  },
+  {
+    "id": "gen-exact-004",
+    "category": "exact_term",
+    "question": "portSpecification 选 System Random Map Port 是什么意思",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > portSpecification",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "由 VKube 随机选择 host 上暴露的端口",
+      "另一种是 User Specified Service Port，由用户指定且不能和现有端口冲突"
+    ]
+  },
+  {
+    "id": "gen-exact-005",
+    "category": "exact_term",
+    "question": "persistStorage 选 YES 之后重启容器数据还在吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > persistStorage",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选 YES 后，container service 内某个目录在 restart 之后数据仍保留"
+    ]
+  },
+  {
+    "id": "gen-exact-006",
+    "category": "exact_term",
+    "question": "vsysNetType 主链该填 M 还是 Mainnet",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vsysNetType 主链填 \"M\"，测试链填 \"T\""
+    ]
+  },
+  {
+    "id": "gen-exact-007",
+    "category": "exact_term",
+    "question": "供应商节点配置里公钥字段是 sererPublicKey 吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "文档中的字段名是 sererPublicKey，类型 string，必填，表示供应商 VSYS 钱包公钥"
+    ]
+  },
+  {
+    "id": "gen-exact-008",
+    "category": "exact_term",
+    "question": "luaPlugin 的 httpSharedKeyPrefix 是干什么的",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `luaPlugin` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "httpSharedKeyPrefix 用来生成共同密钥，加密 Lua 脚本 HTTP 通信的 body"
+    ]
+  },
+  {
+    "id": "gen-exact-009",
+    "category": "exact_term",
+    "question": "casbin 配置里的 autoloadInterval 是什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `casbin` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "autoloadInterval 是 int，表示自动加载间隔",
+      "同组还有 enable、debug、model、autoload"
+    ]
+  },
+  {
+    "id": "gen-exact-010",
+    "category": "exact_term",
+    "question": "platformConf 里的 uploadUri 填什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `platformConf` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "uploadUri 是必填 string，表示 api 路径",
+      "同组 host 是 vcloud 平台域名或 IP，tempDir 是 template 存储目录"
+    ]
+  },
+  {
+    "id": "gen-exact-011",
+    "category": "exact_term",
+    "question": "POST /api/v1/order/serviceRefund/:id 的 stopService 什么意思",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > Order 退款 API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "资源不足时资源节点调用 POST /api/v1/order/serviceRefund/:id，id 是订单 ID",
+      "body 里 stopService 为 bool，表示退款时是否执行停止资源的 lua 脚本"
+    ]
+  },
+  {
+    "id": "gen-exact-012",
+    "category": "exact_term",
+    "question": "POST /api/v1/userService/start/:orderId 是谁调用的",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 开始User Service计时",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "该接口给资源节点通知 SDK 节点开始计时"
+    ]
+  },
+  {
+    "id": "gen-exact-013",
+    "category": "exact_term",
+    "question": "POST /api/v1/listener/vsys 做什么",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > VSYS 付款网络钩子",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "接收 VSYS 节点发出的 transaction，用来更新付款信息"
+    ]
+  },
+  {
+    "id": "gen-exact-014",
+    "category": "exact_term",
+    "question": "GET /api/v1/service/template/add 是上传模版吗",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > 上传服务模版",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "平台节点读取请求 body 里的 yaml 服务模版并注册服务信息"
+    ]
+  },
+  {
+    "id": "gen-exact-015",
+    "category": "exact_term",
+    "question": "durationToPrice 里的 duration 字段是什么类型",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建具体服务 > `durationToPrice`的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "duration 类型是 map[int]float，表示服务时长与打折系数的映射",
+      "price 是每小时价格（VSYS），chargingOptions 是 map[string]string"
+    ]
+  },
+  {
+    "id": "gen-exact-016",
+    "category": "exact_term",
+    "question": "serviceAPI 的 start 脚本要不要 url encoded",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建具体服务 > `serviceAPI`的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "start、stop、refund 都是 lua 脚本，script has to be url encoded",
+      "normal 和 secret 是 API 名称到路径的映射，secret 需要用户提供 secret"
+    ]
+  },
+  {
+    "id": "gen-exact-017",
+    "category": "exact_term",
+    "question": "GitHub Actions 里 VKUBE_TOKEN 这个 secret 必须加吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "需要在 GitHub Secrets 里添加名为 VKUBE_TOKEN 的 secret",
+      "这样不必在 VKubefile.yaml 里填写 vkubeToken"
+    ]
+  },
+  {
+    "id": "gen-exact-018",
+    "category": "exact_term",
+    "question": "sshd 注入时公钥写进哪个环境变量",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "SSH Public Key 通过环境变量 VKUBE_SSH_PUB_KEY 传入容器",
+      "ttyd 用户名是 VKUBE_TTYD_USER，密码是 VKUBE_TTYD_PASSWORD"
+    ]
+  },
+  {
+    "id": "gen-exact-019",
+    "category": "exact_term",
+    "question": "VKUBE_TTYD_PASSWORD 至少要多长",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "不少于 8 个字符",
+      "至少一个大写、一个小写、一个数字、一个特殊字符"
+    ]
+  },
+  {
+    "id": "gen-exact-020",
+    "category": "exact_term",
+    "question": "依赖下不来时 go env -w GO111MODULE=on 后面 GOPROXY 怎么设",
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 1. 部署SDK服务端 > 1.1 Golang 命令启动",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先 go env -w GO111MODULE=on",
+      "GOPROXY 可选 https://goproxy.cn,direct、阿里云镜像或 https://goproxy.io,direct"
+    ]
+  },
+  {
+    "id": "gen-exact-021",
+    "category": "exact_term",
+    "question": "vcloud skill install --target claude 会装到哪个目录",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "安装到 ~/.claude/skills/vcloud-cli/",
+      "目录里有 SKILL.md 以及命令和工作流参考"
+    ]
+  },
+  {
+    "id": "gen-exact-022",
+    "category": "exact_term",
+    "question": "event_type 里 BlockAppended 表示什么",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 2. 创建 Topic",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "BlockAppended 表示新增区块事件",
+      "StatusUpdated 表示交易或账户额度状态变化"
+    ]
+  },
+  {
+    "id": "gen-exact-023",
+    "category": "exact_term",
+    "question": "Topic 路径里 function_index 3 和 function send 是不是同一个函数",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > Topic Name 结构 > 各路径段说明：",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "/function_index/3 与 /function/send 等价，指向同一个函数",
+      "send 表示发送 Token"
+    ]
+  },
+  {
+    "id": "gen-exact-024",
+    "category": "exact_term",
+    "question": "mongodb 配置里的 collectionPrefix 是什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `mongodb` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "collectionPrefix 是 mongodb collection 的命名前缀，必填 string",
+      "endpointTest 是 test 环境的链接，indexCreation 控制是否建 index"
+    ]
+  },
+  {
+    "id": "gen-exact-025",
+    "category": "exact_term",
+    "question": "middleware 里 authenticationEnable 打开后，请求会多带什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `middleware` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "authenticationEnable 启用 URL 访问验证，请求会附带 VSYS address 和签名",
+      "providerAllowEnable 限制为只有供应商可以访问"
+    ]
+  },
+  {
+    "id": "gen-exact-026",
+    "category": "exact_term",
+    "question": "镜像里手写 sshd 时，示例把 PasswordAuthentication 设成 yes 还是 no",
+    "relevant": [
+      {
+        "source": "zh/VKservice/ssh.md",
+        "heading": "SSH > 如何在VKUBE中使用shell/ssh远程连接功能 > Image customization",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "示例把 PasswordAuthentication 写成 no，PubkeyAuthentication 写成 yes",
+      "另一段把 sshd 端口改成 2222，并创建 /root/.ssh"
+    ]
+  },
+  {
+    "id": "gen-multi-001",
+    "category": "multi_doc",
+    "question": "用户想提前结束订单，客户端怎么操作，供应商会扣多少手续费、用什么退",
+    "relevant": [
+      {
+        "source": "zh/guide/advance-termination.md",
+        "heading": "订单提前解约",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "客户端在运行中服务里选 Refund Service，输入序号后 y 确认",
+      "用户主动提前结束会扣 0.1 交易费，按供应商定义的 Token 和汇率退剩余时间价值",
+      "余额不够则不退款，也不额外收费"
+    ]
+  },
+  {
+    "id": "gen-multi-002",
+    "category": "multi_doc",
+    "question": "用了 preventDefault 之后，哪个接口负责通知开始计时",
+    "relevant": [
+      {
+        "source": "zh/guide/service-expired.md",
+        "heading": "服务结束计算",
+        "grade": 2
+      },
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 开始User Service计时",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "preventDefault 时付款后订单是 OrderFiled，服务是 ServicePending，尚未计时",
+      "资源节点通知 SDK 的接口是 POST /api/v1/userService/start/:orderId",
+      "完成后服务变为 ServiceRunning，订单状态不变"
+    ]
+  },
+  {
+    "id": "gen-multi-003",
+    "category": "multi_doc",
+    "question": "一个 Resource Unit 给多少内存和持久盘，最低一小时多少钱",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is a Resource Unit?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "x Resource Unit 对应 x Gi 内存；选了 persistStorage 时持久盘是 x * 8Gi",
+      "FAQ 写 n Resource Unit = n Gi 内存和 n*8 Gi 持久存储",
+      "起步价是每小时 $0.0025"
+    ]
+  },
+  {
+    "id": "gen-multi-004",
+    "category": "multi_doc",
+    "question": "Grafana 查托管日志时 Secret 头怎么填，这个令牌是付完款去哪拿",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      },
+      {
+        "source": "zh/log-hosting/purchase-service.md",
+        "heading": "服务购买",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "Authentication method 设为 No Authentication",
+      "HTTP headers 里加 Secret，值是 Log Host 服务的验证令牌",
+      "订单 Filed 后到 My Service 获取 Token"
+    ]
+  },
+  {
+    "id": "gen-multi-005",
+    "category": "multi_doc",
+    "question": "供应商 Lua 里 while 能不能用，发 HTTP 有哪些函数",
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > Lua 脚本中禁用语法",
+        "grade": 2
+      },
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "while 在禁用语法列表里，不能用",
+      "VsysHttp 提供 get、post、postwosign"
+    ]
+  },
+  {
+    "id": "gen-multi-006",
+    "category": "multi_doc",
+    "question": "安全组是不是只能加同一区域的服务，同区域不想走公网 IP 该怎么互访",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 创建安全组",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "安全组是区域内资源，只能加入同一区域的服务",
+      "同一 region 内可以用 Alias、Alias Port、Container Port 和 Protocol 互访"
+    ]
+  },
+  {
+    "id": "gen-multi-007",
+    "category": "multi_doc",
+    "question": "本机 vkube config 里 DockerhubToken 怎么写，GitHub Actions 里对应的 secret 叫什么",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "本机用 vkube config -w DockerhubToken=... 或 GHCRToken=...",
+      "Actions 里 docker 仓库要 DOCKERHUB_TOKEN 和 DOCKERHUB_USERNAME",
+      "另外还要 VKUBE_TOKEN"
+    ]
+  },
+  {
+    "id": "gen-multi-008",
+    "category": "multi_doc",
+    "question": "退款公式里的 y 和节点配置的 vsysTokenExchangeRate 是不是同一个汇率",
+    "relevant": [
+      {
+        "source": "zh/supplier/price-auditing.md",
+        "heading": "费用核算",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "费用核算里 y 是 VSYS Coin 兑供应商 Token 的系数，退款 Token 数量要乘 y",
+      "节点配置 vsysTokenExchangeRate 是用户主动退款时 VSYS 转 token 的汇率"
+    ]
+  },
+  {
+    "id": "gen-en-001",
+    "category": "english",
+    "question": "How do I tail logs of a running user service in the CLI?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查看服务日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Choose Show Running User Service, then press t for Tail Service Log",
+      "Enter the service index; if there are multiple containers, pick one"
+    ]
+  },
+  {
+    "id": "gen-en-002",
+    "category": "english",
+    "question": "What initial status does preventDefault assign to a UserService?",
+    "relevant": [
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "preventDefault sets the new UserService to ServicePending"
+    ]
+  },
+  {
+    "id": "gen-en-003",
+    "category": "english",
+    "question": "Which four regions can I deploy a V-Kube service to?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > region",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "North America, Europe, Tokyo, and Hongkong"
+    ]
+  },
+  {
+    "id": "gen-en-004",
+    "category": "english",
+    "question": "How is the CPU allowance y computed from the memory I bought?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "y = (x / m) * n",
+      "x is purchased memory, m is the node total memory, n is the node CPU count"
+    ]
+  },
+  {
+    "id": "gen-en-005",
+    "category": "english",
+    "question": "What event_type value means a new block was appended?",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 2. 创建 Topic",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "BlockAppended means a new block event",
+      "StatusUpdated means a transaction or balance status change"
+    ]
+  },
+  {
+    "id": "gen-en-006",
+    "category": "english",
+    "question": "What Python version and pip command install the vkube CLI?",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Python must be 3.7 or newer",
+      "Install with pip3 install vkube"
+    ]
+  },
+  {
+    "id": "gen-en-007",
+    "category": "english",
+    "question": "Are hosted container logs deleted when the log hosting service expires?",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/README.md",
+        "heading": "介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "When the service expires, stored logs are cleaned up",
+      "Collection of running containers also stops"
+    ]
+  },
+  {
+    "id": "gen-en-008",
+    "category": "english",
+    "question": "Where do I click to open an in-browser terminal for a running container?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Webterminal",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Open the Actions menu and click Open terminal",
+      "Wait until the status shows Connected"
+    ]
+  },
+  {
+    "id": "gen-turn-001",
+    "category": "multi_turn",
+    "question": "那组里的服务还能收外面的流量吗",
+    "history": [
+      {
+        "role": "user",
+        "content": "我想把几个服务收进一个只能内部互访的组"
+      },
+      {
+        "role": "assistant",
+        "content": "在侧边栏 Security Group 里按区域创建安全组，只能加入同一区域的服务。组内默认不接受公网入站。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 网关服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "把服务 Set as Gateway 后可以接收公网或组外入站",
+      "网关可以有多个，设置是热更新，不必重启，但可能要等几分钟"
+    ]
+  },
+  {
+    "id": "gen-turn-002",
+    "category": "multi_turn",
+    "question": "勾了改写之后，/api/v1/detail 进到容器里变成什么",
+    "history": [
+      {
+        "role": "user",
+        "content": "部署时怎么给自动分配的子域名加路径转发"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Path Routing 里点 Add Routing，填写 Container Port、Path 和 Rewrite。路径按最长前缀匹配，而且不能重复。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Subdomain Access",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "勾选 Rewrite 会去掉第一阶路径再转发",
+      "Path 为 /api/v1 时，访问 /api/v1/detail，容器收到 /v1/detail"
+    ]
+  },
+  {
+    "id": "gen-turn-003",
+    "category": "multi_turn",
+    "question": "https 之后还能改吗",
+    "history": [
+      {
+        "role": "user",
+        "content": "CLI 里怎么给正在跑的服务绑域名"
+      },
+      {
+        "role": "assistant",
+        "content": "先把 Host IP 做成 A 记录，再在 Domain Name 里选 Bind Domain Name，填域名和容器端口，并选择是否使用 https。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名绑定",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "同一域下 use https 只能在初次绑定时设置",
+      "要改必须先全部解绑"
+    ]
+  },
+  {
+    "id": "gen-turn-004",
+    "category": "multi_turn",
+    "question": "那个网页终端密码的环境变量呢",
+    "history": [
+      {
+        "role": "user",
+        "content": "Tool Injection 开 sshd 时公钥写进哪个环境变量"
+      },
+      {
+        "role": "assistant",
+        "content": "SSH 公钥通过 VKUBE_SSH_PUB_KEY 传进容器。ttyd 另外还要用户名和密码。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Tool Injection",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "密码环境变量是 VKUBE_TTYD_PASSWORD",
+      "用户名是 VKUBE_TTYD_USER"
+    ]
+  },
+  {
+    "id": "gen-turn-005",
+    "category": "multi_turn",
+    "question": "最低要充多少",
+    "history": [
+      {
+        "role": "user",
+        "content": "Node Watcher 账户怎么充值"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Purchase 页面，账户扣款模式点 Topup，生成订单后到 My Orders 支付。充完不支持退款。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值前须知",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值流程（图文步骤）",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "最低充值额度是 1 美元，不足无法生成充值订单"
+    ]
+  },
+  {
+    "id": "gen-turn-006",
+    "category": "multi_turn",
+    "question": "我只想装到 Claude，命令怎么写",
+    "history": [
+      {
+        "role": "user",
+        "content": "怎么把 vcloud 的 skill 装进 AI 编程助手"
+      },
+      {
+        "role": "assistant",
+        "content": "先确认 vcloud --help 里有 skill。然后执行 vcloud skill install，默认会同时装到 Claude Code 和 Codex。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "只装 Claude 用 vcloud skill install --target claude",
+      "路径是 ~/.claude/skills/vcloud-cli/"
+    ]
+  },
+  {
+    "id": "gen-turn-007",
+    "category": "multi_turn",
+    "question": "暂停之后那个怎么恢复",
+    "history": [
+      {
+        "role": "user",
+        "content": "运行中的容器服务怎么先停一下"
+      },
+      {
+        "role": "assistant",
+        "content": "在运行中服务列表里输入 p，选择 Pause Service，填序号后确认。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 暂停服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 q 选择 Resume Service，填序号并确认即可恢复"
+    ]
+  },
+  {
+    "id": "gen-turn-008",
+    "category": "multi_turn",
+    "question": "我在浏览器里打开那个别名行不行",
+    "history": [
+      {
+        "role": "user",
+        "content": "同一 region 里两个服务不想走公网，怎么用别名互访"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Alias 里填别名、Alias Port、Container Port 和 TCP/UDP。例如 mongo-url 配 27017 后，同区域服务可以用 mongo-url:27017 访问。"
+      }
+    ],
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Alias",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "浏览器里用别名访问不行，别名只给平台内同一 region 的服务用"
+    ]
+  },
+  {
+    "id": "gen-oos-001",
+    "category": "out_of_scope",
+    "question": "明天上海天气怎么样"
+  },
+  {
+    "id": "gen-oos-002",
+    "category": "out_of_scope",
+    "question": "苹果公司股票现在多少钱"
+  },
+  {
+    "id": "gen-oos-003",
+    "category": "out_of_scope",
+    "question": "AWS 上 t3.micro 现在每小时多少美元"
+  },
+  {
+    "id": "gen-oos-004",
+    "category": "out_of_scope",
+    "question": "红烧肉怎么做"
+  },
+  {
+    "id": "gen-oos-005",
+    "category": "out_of_scope",
+    "question": "帮我写一首关于春天的诗"
+  },
+  {
+    "id": "gen-oos-006",
+    "category": "out_of_scope",
+    "question": "今天美元兑人民币官方汇率是多少"
+  },
+  {
+    "id": "gen-oos-007",
+    "category": "out_of_scope",
+    "question": "Kubernetes 1.32 的发布说明在哪"
+  },
+  {
+    "id": "gen-oos-008",
+    "category": "out_of_scope",
+    "question": "我附近评分高的川菜馆有哪些"
+  },
+  {
+    "id": "gen2-direct-001",
+    "category": "direct",
+    "question": "CLI 里怎么启动已经买了但还没启用的服务",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 启动服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先选 Show Usable User Service",
+      "输入 s 选择 Start a service",
+      "容器参数里 env、command、arguments 可以按 Enter 留空"
+    ]
+  },
+  {
+    "id": "gen2-direct-002",
+    "category": "direct",
+    "question": "怎么查询服务状态信息",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询服务状态信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在运行中服务里输入 s 选择 Service Status",
+      "再输入 m 选择 Monitor 看资源使用"
+    ]
+  },
+  {
+    "id": "gen2-direct-003",
+    "category": "direct",
+    "question": "怎么获取服务访问 API",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 获取服务访问API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Running 或 Usable 列表里输入 a，选择 User Service API Access"
+    ]
+  },
+  {
+    "id": "gen2-direct-004",
+    "category": "direct",
+    "question": "域名怎么解绑",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名解绑",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先进入 Domain Name",
+      "输入 u 选择 Unbind Domain Name，序号用逗号或空格分开",
+      "提示后输入 y 确认"
+    ]
+  },
+  {
+    "id": "gen2-direct-005",
+    "category": "direct",
+    "question": "怎么把一个服务上的域名全部清掉",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名清除",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "进入该服务的 Domain Name",
+      "确认 clean up all domain names 时输入 y"
+    ]
+  },
+  {
+    "id": "gen2-direct-006",
+    "category": "direct",
+    "question": "CLI 里怎么重启服务",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 重启服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在运行中服务里输入 r 选择 Restart Service",
+      "输入序号后再输入 y"
+    ]
+  },
+  {
+    "id": "gen2-direct-007",
+    "category": "direct",
+    "question": "怎么更新镜像",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 更新镜像",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 h 选择 Update Image",
+      "可以选择是否私有镜像，并填写 Docker Hub 或 GitHub 镜像名",
+      "最后输入 y 确认"
+    ]
+  },
+  {
+    "id": "gen2-direct-008",
+    "category": "direct",
+    "question": "怎么查询容器配置",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 c 选择 Container Config，再输入服务序号"
+    ]
+  },
+  {
+    "id": "gen2-direct-009",
+    "category": "direct",
+    "question": "怎么更新配置",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 更新配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在运行中服务里输入 u 选择 Update Config"
+    ]
+  },
+  {
+    "id": "gen2-direct-010",
+    "category": "direct",
+    "question": "怎么重新部署",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 重新部署",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 v 选择 Update Deployment，再输入服务序号"
+    ]
+  },
+  {
+    "id": "gen2-direct-011",
+    "category": "direct",
+    "question": "怎么设置标签和描述",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 设置标签和描述",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 l 选择 Set Label 写标签",
+      "输入 m 选择 Set Description 写描述"
+    ]
+  },
+  {
+    "id": "gen2-direct-012",
+    "category": "direct",
+    "question": "怎么查询通知信息",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询通知信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 5 选择 Show Notice Message",
+      "可以填 user service id，直接回车则查全部"
+    ]
+  },
+  {
+    "id": "gen2-direct-013",
+    "category": "direct",
+    "question": "怎么绑定用户邮箱",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 绑定邮箱 > 绑定用户邮箱",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 6 进入 User Email",
+      "再输入 b 选择 Bind Email，填写邮箱和验证码"
+    ]
+  },
+  {
+    "id": "gen2-direct-014",
+    "category": "direct",
+    "question": "怎么绑定子服务邮箱",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 绑定邮箱 > 绑定子服务邮箱",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在运行中服务里输入 n 选择 Email",
+      "再输入 b 选择 Bind Email，填写邮箱和验证码"
+    ]
+  },
+  {
+    "id": "gen2-direct-015",
+    "category": "direct",
+    "question": "怎么解绑邮箱",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 绑定邮箱 > 解绑邮箱",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在邮箱界面输入 u 选择 Unbind Email",
+      "再输入 y 确认"
+    ]
+  },
+  {
+    "id": "gen2-direct-016",
+    "category": "direct",
+    "question": "怎么查看可用的云服务",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 查看可用服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "主界面进 Market Service，再 Get Service Provider Information",
+      "输入 c 按序号选供应商，再按序号选服务类别"
+    ]
+  },
+  {
+    "id": "gen2-direct-017",
+    "category": "direct",
+    "question": "怎么把云服务加到购物车",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 添加云服务至购物车",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在服务详情输入 c 选择 Add Service to Cart",
+      "再选服务规格和时长（小时）"
+    ]
+  },
+  {
+    "id": "gen2-direct-018",
+    "category": "direct",
+    "question": "怎么进入购物车",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 进入购物车",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "主界面选 Cart Service，再 Show cart list",
+      "加购后也可以选 Show Cart Table"
+    ]
+  },
+  {
+    "id": "gen2-direct-019",
+    "category": "direct",
+    "question": "怎么从购物车里移除一项",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 从购物车中移除订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选择 Remove Order by Choosing Index",
+      "输入要移除的序号"
+    ]
+  },
+  {
+    "id": "gen2-direct-020",
+    "category": "direct",
+    "question": "购物车里的服务怎么变成订单",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 在购物车中创建订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在购物车界面选择 Make Order from Cart",
+      "成功后会给出 Order ID"
+    ]
+  },
+  {
+    "id": "gen2-direct-021",
+    "category": "direct",
+    "question": "创建好的订单怎么支付",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Order Service 里 Show pending Order 看未付完的订单",
+      "选 Pay An Order，选支付方式并输入金额，最后 y 确认",
+      "Filed 表示已完成支付"
+    ]
+  },
+  {
+    "id": "gen2-direct-022",
+    "category": "direct",
+    "question": "网页上点 Restart 会怎样",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Restart",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "该服务下所有容器先关再开",
+      "重启后原有 log 和数据会删掉，要保留得用持久化"
+    ]
+  },
+  {
+    "id": "gen2-direct-023",
+    "category": "direct",
+    "question": "网页上点 Stop 之后还计费吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop 会关掉服务里的容器，再点 Start 可以起来",
+      "Stop 不停止计费，End Time 不会往后延",
+      "Container Status 变为 Pending，Service Status 变为 ServiceStop"
+    ]
+  },
+  {
+    "id": "gen2-direct-024",
+    "category": "direct",
+    "question": "Config 里能改容器的什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Config",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以改某个容器的配置文件内容和环境变量",
+      "上传文件只是读到前端，要点 Confirm 才生效"
+    ]
+  },
+  {
+    "id": "gen2-direct-025",
+    "category": "direct",
+    "question": "Redeploy 和第一次部署有什么不同",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Redeploy",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以改部署信息当作一次新部署，例如从 nginx 换成 redis",
+      "重新部署后之前容器的 Log 会被删除"
+    ]
+  },
+  {
+    "id": "gen2-direct-026",
+    "category": "direct",
+    "question": "Bind Domains 的 Basic 模式要填哪些项",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先把域名 A Record 指到 nodeIP",
+      "Basic 要填 Domain、Container Port，以及是否用 Letsencrypt 的 HTTPS",
+      "Unbind All 只解除 VKUBE 里的代理，不改用户自己的 DNS"
+    ]
+  },
+  {
+    "id": "gen2-direct-027",
+    "category": "direct",
+    "question": "Contact 怎么给服务绑通知邮箱",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Contact",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "填写邮箱后系统发验证码，点 Verify Code 完成绑定",
+      "绑定后 Notice 里的新消息会发到这个邮箱"
+    ]
+  },
+  {
+    "id": "gen2-direct-028",
+    "category": "direct",
+    "question": "页面上的 Delete 会删掉后台容器吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Delete",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Delete 只从当前浏览器页面移除显示，不改服务器",
+      "要恢复就到 My Services 复制 Token，再在 Containers 里 Import"
+    ]
+  },
+  {
+    "id": "gen2-direct-029",
+    "category": "direct",
+    "question": "Notice 里会有哪些公告",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Notice",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以看到 Out Of Memory 和服务快过期之类的公告",
+      "关联了邮箱就会把公告发到邮箱"
+    ]
+  },
+  {
+    "id": "gen2-direct-030",
+    "category": "direct",
+    "question": "单个容器的 Log 窗口默认看多少行",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Tail Lines 默认 10 行",
+      "勾上 Follow 会持续跟踪，不再受行数限制",
+      "Upgrade 只能升同一个镜像的版本，并且会重启服务"
+    ]
+  },
+  {
+    "id": "gen2-direct-031",
+    "category": "direct",
+    "question": "网页上第一次怎么注册并买到 v-kube",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何购买v-kube服务 > 注册/登陆v-kube",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何购买v-kube服务 > 建立订单",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何购买v-kube服务 > 付款弹窗",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "第一次进入会到注册页，用系统随机助记词加密码即可",
+      "Purchase 里点 order 选 region、持久存储、端口、Resource Unit 和时长",
+      "My Orders 里点 Pay，可用 USDV 或 VSYS"
+    ]
+  },
+  {
+    "id": "gen2-direct-032",
+    "category": "direct",
+    "question": "控制台里的 Token 存在浏览器的哪里",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > v-kube控制台",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 My Services 复制 Token，再到 Containers 导入",
+      "Token 以明文放在浏览器 local storage，清缓存会消失",
+      "增删 Token 不影响后台，点部署后才会按配置部署"
+    ]
+  },
+  {
+    "id": "gen2-direct-033",
+    "category": "direct",
+    "question": "日志抓取页面上 Scraping 和 Hosted 有什么区别",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/bind-containers.md",
+        "heading": "日志抓取管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 My Services 点 Manage，有 Scraping Services 和 Hosted Services",
+      "Scraping 是正在抓日志的服务，Hosted 是已停止抓取或已到期、但还存着历史日志的服务",
+      "绑定要求容器服务和日志服务属于同一用户"
+    ]
+  },
+  {
+    "id": "gen2-direct-034",
+    "category": "direct",
+    "question": "Grafana 里怎么添加 Loki 数据源",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 添加数据源",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "打开 connections/add-new-connection，选择 Loki data source"
+    ]
+  },
+  {
+    "id": "gen2-direct-035",
+    "category": "direct",
+    "question": "查托管日志时可以用哪些 label",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 查询日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在数据源上点 Explore",
+      "支持的 label 有 node、region、app（容器服务 ID）、container、tenant（日志托管服务 ID）"
+    ]
+  },
+  {
+    "id": "gen2-direct-036",
+    "category": "direct",
+    "question": "Topic 的回调地址连续访问失败怎么算钱",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 1. 概念",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Endpoint 连续三次访问失败，按一次计费",
+      "匹配到事件时平台发 HTTP POST JSON"
+    ]
+  },
+  {
+    "id": "gen2-direct-037",
+    "category": "direct",
+    "question": "已经创建的订阅怎么关闭或删除",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 订阅管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "关闭后 webhook 停止发送，关闭期间不再计费，关闭期间的事件也不会补发",
+      "删除后 webhook 不再发送",
+      "更新只能改 webhook 地址和描述"
+    ]
+  },
+  {
+    "id": "gen2-direct-038",
+    "category": "direct",
+    "question": "Node Watcher 账户怎么激活",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 使用流程",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "账户按钱包地址激活，点 register",
+      "订阅支付要选 PaymentTransaction，Sender 和 Recipient 必须有一个是有效值",
+      "合约类型支持 AtomicSwapContract、TokenContract、SplitTokenContract"
+    ]
+  },
+  {
+    "id": "gen2-direct-039",
+    "category": "direct",
+    "question": "装 vcloud skill 之前要先确认什么",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 准备工作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先跑 vcloud --help，帮助里应有 skill 命令",
+      "没有就 pip install -U v-cloud-market-cli-user"
+    ]
+  },
+  {
+    "id": "gen2-direct-040",
+    "category": "direct",
+    "question": "vcloud skill 怎么更新或卸载",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 更新或卸载",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vcloud skill update 更新到当前 CLI 附带的版本",
+      "vcloud skill uninstall 从 Claude Code 和 Codex 卸载",
+      "可以加 --target claude 或 --target codex"
+    ]
+  },
+  {
+    "id": "gen2-direct-041",
+    "category": "direct",
+    "question": "用户侧 vcloud 客户端怎么用 pip 安装",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "pip install v-cloud-market-cli-user",
+      "主网直接运行 vcloud，测试网运行 vcloud -t"
+    ]
+  },
+  {
+    "id": "gen2-direct-042",
+    "category": "direct",
+    "question": "从源码怎么跑用户 CLI",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用代码安装cli 客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "克隆 v-cloud-market-cli-user 后 source ./venv/bin/activate",
+      "主网 python use_main_interface.py，测试网加 -t"
+    ]
+  },
+  {
+    "id": "gen2-direct-043",
+    "category": "direct",
+    "question": "怎么用 seed 导入已有 v 账户",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 准备v账户 > 1. 使用seed导入已有v账户",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选择 Recover Wallet From Seed，按提示输入 seed"
+    ]
+  },
+  {
+    "id": "gen2-direct-044",
+    "category": "direct",
+    "question": "怎么在 CLI 里生成新钱包",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 准备v账户 > 2. 生成新账户",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选择 Generate New Wallet"
+    ]
+  },
+  {
+    "id": "gen2-direct-045",
+    "category": "direct",
+    "question": "怎么看 vcloud CLI 版本并升级",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 版本检查",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "主界面进 About Vcloud 看版本",
+      "升级命令是 pip install -U v-cloud-market-cli-user"
+    ]
+  },
+  {
+    "id": "gen2-direct-046",
+    "category": "direct",
+    "question": "怎么解锁钱包",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 解锁钱包",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选择 Unlock Wallet，输入密码回车",
+      "成功会提示 Wallet 已解锁"
+    ]
+  },
+  {
+    "id": "gen2-direct-047",
+    "category": "direct",
+    "question": "供应商的 vcloud.py 怎么启动",
+    "relevant": [
+      {
+        "source": "zh/supplier/README.md",
+        "heading": "快速上手 > 2. 安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "克隆 v-cloud-market-cli-provider，进入 market-place-cli 并激活 venv",
+      "运行 python vcloud.py，python vcloud.py --help 查看服务"
+    ]
+  },
+  {
+    "id": "gen2-direct-048",
+    "category": "direct",
+    "question": "GitHub 自动部署的 workflow 文件放哪",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在仓库根目录建 .github/workflows/deploy.yaml",
+      "用 certram/vkube-cli-action@v1，vkube_config_file 指向 ./VKubefile.yaml",
+      "on 里包含 push、pull_request 和 workflow_dispatch"
+    ]
+  },
+  {
+    "id": "gen2-direct-049",
+    "category": "direct",
+    "question": "这个部署工作流怎么被触发",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 如何触发工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "向 master 提 PR 会触发",
+      "git push origin master 会触发",
+      "触发分支可以改成 dev、main 或其他"
+    ]
+  },
+  {
+    "id": "gen2-direct-050",
+    "category": "direct",
+    "question": "部署时怎么选用已经托管的配置文件",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 部署服务时使用托管配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "点 From hosted config，按 id 或 name 搜索后 Select",
+      "这次部署里的临时编辑不会改托管原文",
+      "用托管配置后可以批量更新多个服务，不用逐个重新部署"
+    ]
+  },
+  {
+    "id": "gen2-para-001",
+    "category": "paraphrase",
+    "question": "两个服务不在同一台机器上，想用公网 IP 加端口互相连数据库",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用hostIP:port网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两个服务分在不同 pod，用 host:port 通信",
+      "数据库要映射 Container Port 和 Host Port，例如 mongo 的 27017"
+    ]
+  },
+  {
+    "id": "gen2-para-002",
+    "category": "paraphrase",
+    "question": "我想用自己买的域名，让两个不在一起的服务互相找到对方",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在任意区域，使用域名网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在域名服务商把 A Record 指到数据库的 HostIP，例如 db.mydomain.com",
+      "应用通过这个域名去连数据库"
+    ]
+  },
+  {
+    "id": "gen2-para-003",
+    "category": "paraphrase",
+    "question": "同一地区的数据库不想暴露端口，只给旁边那个应用起个内部名字",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 两个用户服务部署在同一区域，使用Alias网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两个服务必须在同一个 region",
+      "在 Actions 里加 Alias，例如 mydb，应用用这个别名访问，不必映射 Host Port"
+    ]
+  },
+  {
+    "id": "gen2-para-004",
+    "category": "paraphrase",
+    "question": "只想让某一个应用能连数据库，别的服务都别进来",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 对于网络请求的额外补充，使用network policy功能",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Actions 里点 Policy，填允许访问的 user service id",
+      "文档示例是只允许 web app 访问 mongodb"
+    ]
+  },
+  {
+    "id": "gen2-para-005",
+    "category": "paraphrase",
+    "question": "改了网页文件的内容，容器自己不重新读，我该怎么让它生效",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中使用多个配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Config 只能改内容，不能增删文件或改路径",
+      "程序没有热加载时，要在 Actions 里 Restart"
+    ]
+  },
+  {
+    "id": "gen2-para-006",
+    "category": "paraphrase",
+    "question": "这东西是不是还得自己装一套 Kubernetes 控制面",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is VKube by V Systems?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKube 是基于 Kubernetes 的容器服务",
+      "不用自己安装和运维 Kubernetes 控制面或 worker",
+      "可以用网页或 market-cli 部署"
+    ]
+  },
+  {
+    "id": "gen2-para-007",
+    "category": "paraphrase",
+    "question": "为什么说它按用量收钱，有没有隐藏的起步费",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > Why should I use VKube?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "起步大约每小时 $0.0025",
+      "只为选中的资源单位和时长付费",
+      "主网和测试网同步可以在 30 小时内完成"
+    ]
+  },
+  {
+    "id": "gen2-para-008",
+    "category": "paraphrase",
+    "question": "有没有哪些国家用不了这个容器平台",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > Where is VKube available?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "文档写 VKube 没有地域限制，所有国家都可以用"
+    ]
+  },
+  {
+    "id": "gen2-para-009",
+    "category": "paraphrase",
+    "question": "创建一个服务最少一小时要多少钱，付完还会不会再扣",
+    "relevant": [
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > How much does VKube cost?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "每个服务最低每小时 $0.0025",
+      "订单创建并支付后不再另收费用"
+    ]
+  },
+  {
+    "id": "gen2-para-010",
+    "category": "paraphrase",
+    "question": "一个 nginx 要 2G 内存、开在欧洲、跑半年，购买时这几项分别怎么对上",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 简单部署使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "区域选 Europe，Resource Unit 选 2，时长选 180 天",
+      "部署时 Image 填 nginx:latest，Container Port 80，Host Port 自定",
+      "内存上限是购买时的 Resource Unit"
+    ]
+  },
+  {
+    "id": "gen2-para-011",
+    "category": "paraphrase",
+    "question": "不想自己写镜像，商店里现成的应用怎么装上去",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > 从应用市场部署应用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "App Catalog 提供热门应用的预制模板",
+      "点开卡片可以看镜像标签、存储需求和环境变量"
+    ]
+  },
+  {
+    "id": "gen2-para-012",
+    "category": "paraphrase",
+    "question": "托管的那份配置改了，引用它的那些服务会不会一起变，要不要重启",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 对服务内配置文件的批量更新",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "打开 Overwrite the config in referrer services and restart them 后，引用该配置的服务会更新并重启",
+      "Referrer Services 里能看到谁在用",
+      "批量更新大约有一分钟延迟"
+    ]
+  },
+  {
+    "id": "gen2-para-013",
+    "category": "paraphrase",
+    "question": "删掉网页上托管的那份配置，已经跑着的服务里的文件会跟着没吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 配置文件的托管与管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "删除托管配置后，服务里已经放进去的配置文件不受影响"
+    ]
+  },
+  {
+    "id": "gen2-para-014",
+    "category": "paraphrase",
+    "question": "列表右边有刷新、导入和管理，管理里面那个镜像仓库账号是干什么的",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container列表结构",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Refresh 刷新状态，Import 导入 token",
+      "Manage 里的 ImageHub 可以保存镜像仓库账号，不保存的话每次部署私有镜像都要再填"
+    ]
+  },
+  {
+    "id": "gen2-para-015",
+    "category": "paraphrase",
+    "question": "服务显示挂了或者还在起，这个状态弹窗大概告诉我什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container状态弹窗",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "点 Container Status 旁的按钮打开弹窗",
+      "里面有历史状态、配置和当前状态，标题是 Service ID，正文是 json"
+    ]
+  },
+  {
+    "id": "gen2-para-016",
+    "category": "paraphrase",
+    "question": "部署框里私有镜像的账号密码填在哪，端口数量有没有上限",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container部署弹窗",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "导入 token 后状态是 ServicePending，Actions 里出现 Deploy",
+      "私有镜像要填用户名和 PAT",
+      "可映射的 host port 数量由 Number Of Port 决定"
+    ]
+  },
+  {
+    "id": "gen2-para-017",
+    "category": "paraphrase",
+    "question": "本地那个 vkube 配置文件里，推镜像的令牌权限要开到什么程度",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 简介",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "VKubefile.yaml 用来写部署",
+      "~/.vkube/config.yaml 记录登录信息",
+      "DockerhubToken 或 GHCRToken 需要 write 和 read，否则 push 会失败"
+    ]
+  },
+  {
+    "id": "gen2-para-018",
+    "category": "paraphrase",
+    "question": "部署文件开头那个类型字段现在只能写哪个值",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 基础配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Kind 目前只能填 vkube",
+      "vkubeToken 是网页上生成的令牌",
+      "imageRegistry 只能是 docker 或 ghcr，推送也只能去这个仓库"
+    ]
+  },
+  {
+    "id": "gen2-para-019",
+    "category": "paraphrase",
+    "question": "一个部署文件里能不能写好几个容器，名字有什么限制",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 容器配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "containers 下可以写多个容器",
+      "containerName 必须小写，可用字母数字和连字符",
+      "resourceUnit 是大于等于 1 的整数"
+    ]
+  },
+  {
+    "id": "gen2-para-020",
+    "category": "paraphrase",
+    "question": "不想在本地构建，直接用仓库里现成镜像，路径有哪几种写法",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 镜像配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用 registryImagePath 指定现成镜像，支持 docker.io、ghcr.io 或简写",
+      "本地构建要写 dockerfilePath，并且要有 imageName 和 tag，tag 不写默认 latest"
+    ]
+  },
+  {
+    "id": "gen2-para-021",
+    "category": "paraphrase",
+    "question": "端口映射里只写路径、不写主机端口，这种写法允不允许",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 部署配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "ports 是数组，可以只写 containerPort 加 path",
+      "path 要符合文档给的正则",
+      "containerName 要符合 Kubernetes 命名"
+    ]
+  },
+  {
+    "id": "gen2-para-022",
+    "category": "paraphrase",
+    "question": "想在部署文件里把 SSH 打开，公钥和端口怎么写",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > SSH 配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "containerPort 设为 22，hostPort 设成有效端口",
+      "installSSH 设为 true，并填写 sshPubKeyPath",
+      "连接命令是 ssh -p 主机端口 root@服务器IP"
+    ]
+  },
+  {
+    "id": "gen2-para-023",
+    "category": "paraphrase",
+    "question": "镜像既要本地构建、又要直接拉仓库里的，一个文件里能混着写吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 示例 > 混合形式（既有需要build的镜像也有已存在镜像库的镜像）",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "同一个 VKubefile 里可以同时有 build 镜像和 registryImagePath 镜像"
+    ]
+  },
+  {
+    "id": "gen2-para-024",
+    "category": "paraphrase",
+    "question": "已经在镜像库里的镜像，部署文件里该填路径还是再写一个镜像名",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 注意事项",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "使用仓库已有镜像时填 registryImagePath",
+      "不要和本地构建用的 imageName 搞混"
+    ]
+  },
+  {
+    "id": "gen2-para-025",
+    "category": "paraphrase",
+    "question": "工作流里的 VKubefile 不在仓库根目录时，action 的哪个字段要改",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置你的VKubefile.yaml",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "改 vkube_config_file 的值，指向 VKubefile.yaml 的实际位置"
+    ]
+  },
+  {
+    "id": "gen2-para-026",
+    "category": "paraphrase",
+    "question": "供应商上传商品前，yaml 里供应商名字和钱包地址能不能和别人重复",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "provider 和 walletAddress 在平台上都必须唯一",
+      "apiHost 是用户 CLI 请求地址",
+      "serviceCategory 是服务种类列表"
+    ]
+  },
+  {
+    "id": "gen2-para-027",
+    "category": "paraphrase",
+    "question": "商品模板里同一种选项想在下面多个服务里复用，yaml 用什么符号",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `options`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "options 里每个选项是 string 列表",
+      "样例用 yaml 的 & 锚点，方便下面的 service 复用"
+    ]
+  },
+  {
+    "id": "gen2-para-028",
+    "category": "paraphrase",
+    "question": "某个服务的 api 地址空着，系统会用哪一层的备用地址",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "服务自己的 apiHost 为空时，用 serviceCategory 的备用 api host",
+      "refundable 表示用户能不能退款",
+      "durationToPrice 必填"
+    ]
+  },
+  {
+    "id": "gen2-para-029",
+    "category": "paraphrase",
+    "question": "商品模板里的启动和关闭脚本，贴进去之前要先做什么编码",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "start、stop、refund 是 Lua 脚本",
+      "写好后要做 URL 编码再填进字符串字段"
+    ]
+  },
+  {
+    "id": "gen2-para-030",
+    "category": "paraphrase",
+    "question": "模板里按时长打折，100 小时和 200 小时那些系数写在哪个字段",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `durationToPrice`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "price 是一小时单价",
+      "chargingOptions 指定哪组选项决定价格",
+      "duration 是时长到打折系数的映射"
+    ]
+  },
+  {
+    "id": "gen2-para-031",
+    "category": "paraphrase",
+    "question": "付款成功后那个 start 脚本拿到的表里有哪些字段",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > 编写 Lua脚本函数",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "start 的 inputTable 含 id、duration、createdAt、options",
+      "stop 和 refund 示例里主要用 id",
+      "没有对应脚本时走系统默认流程"
+    ]
+  },
+  {
+    "id": "gen2-para-032",
+    "category": "paraphrase",
+    "question": "用户自己点退款时，Lua 的 refund 函数按什么顺序收金额和地址",
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > 编写`start`, `stop`, `refund` Lua脚本函数",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "refund 的参数顺序是 amount、recipient、orderId",
+      "amount 是 number，recipient 和 orderId 是 string",
+      "示例里调用 refundInToken 和 refundInVsys"
+    ]
+  },
+  {
+    "id": "gen2-para-033",
+    "category": "paraphrase",
+    "question": "回调正文里余额变化那个字段叫什么，签名算法写的是哪种曲线",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "payload 里有 balanceDiff 和 newBalance",
+      "proofType 示例是 Curve25519",
+      "建议校验 CanonicalRequest，其中包含 x-sdk-time"
+    ]
+  },
+  {
+    "id": "gen2-para-034",
+    "category": "paraphrase",
+    "question": "只听某个地址的收款，topic 路径里发送方可以用星号吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Payment 的 sender 可以写 *，recipient 写具体地址",
+      "sender 和 recipient 必须至少有一个是精确值"
+    ]
+  },
+  {
+    "id": "gen2-para-035",
+    "category": "paraphrase",
+    "question": "过滤合约调用时，接收人那个字段在文档里是怎么拼的",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "标准字段是 sender 和 recipient",
+      "合约字段包括 contractID、function、contract_sender、contract_receipient、caller"
+    ]
+  },
+  {
+    "id": "gen2-para-036",
+    "category": "paraphrase",
+    "question": "创建 topic 之后，接收端要先回什么状态码才算通",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 6. 操作流程小结",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "创建时指定 tx_type、filters、webhook_url",
+      "接收端要能返回 200，并支持 HTTPS"
+    ]
+  },
+  {
+    "id": "gen2-para-037",
+    "category": "paraphrase",
+    "question": "已买的服务在客户端里哪里看登录信息",
+    "relevant": [
+      {
+        "source": "zh/guide/use-service.md",
+        "heading": "使用服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先 User Service，再 Show Usable User Service",
+      "User Service Usage Info 会显示 Service Login Information",
+      "具体用法看供应商在 description 里的说明"
+    ]
+  },
+  {
+    "id": "gen2-para-038",
+    "category": "paraphrase",
+    "question": "让编程助手帮我查钱包余额，它默认走主网还是测试网",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 使用 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "直接用自然语言描述操作即可",
+      "默认主网，只有明确说测试网才用测试网",
+      "付款、部署、续费前会先向你确认"
+    ]
+  },
+  {
+    "id": "gen2-para-039",
+    "category": "paraphrase",
+    "question": "带宽默认能不能超过内存份数乘 10Mi",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "默认吞吐量不能超过 10Mi 乘以 x，x 是资源份数"
+    ]
+  },
+  {
+    "id": "gen2-para-040",
+    "category": "paraphrase",
+    "question": "四个地区分别叫什么，我要部署到香港该选哪一个名字",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > region",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "region 目前有 North America、Europe、Tokyo、Hongkong"
+    ]
+  },
+  {
+    "id": "gen2-exact-001",
+    "category": "exact_term",
+    "question": "创建服务商的接口是 POST /api/v1/service/provider 吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建服务商信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "创建服务商信息使用 POST /api/v1/service/provider"
+    ]
+  },
+  {
+    "id": "gen2-exact-002",
+    "category": "exact_term",
+    "question": "创建服务商时 walletAddress 和 category2ID 哪个必填",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 请求body",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "name、id、walletAddress、apiHost 必填",
+      "category2ID 是服务种类名到 ID 的映射，选填"
+    ]
+  },
+  {
+    "id": "gen2-exact-003",
+    "category": "exact_term",
+    "question": "查询服务商列表时 pageSize 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 查询变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "GET /api/v1/service/provider? 可用 id、name、walletAddress、current、pageSize 过滤"
+    ]
+  },
+  {
+    "id": "gen2-exact-004",
+    "category": "exact_term",
+    "question": "服务商返回里的 signAddress 是干什么的",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "signAddress 是上传服务模版时用于签名的地址",
+      "id 与 name 相同"
+    ]
+  },
+  {
+    "id": "gen2-exact-005",
+    "category": "exact_term",
+    "question": "GET /api/v1/service/provider/:id 返回什么状态",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 获取服务商信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "按服务商 id 获取，示例状态是 200 OK"
+    ]
+  },
+  {
+    "id": "gen2-exact-006",
+    "category": "exact_term",
+    "question": "创建服务种类的 name2ID 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建服务种类 > 请求 Body",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "POST /api/v1/service/category",
+      "name 在一个服务商内必须唯一",
+      "name2ID 是服务名称到服务 ID 的映射，选填"
+    ]
+  },
+  {
+    "id": "gen2-exact-007",
+    "category": "exact_term",
+    "question": "GET /api/v1/service/category? 能按 ids 过滤吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务种类信息 > 查询变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "ids 是服务种类 ID 的字符串数组",
+      "还可以按 provider、name、current、pageSize 查"
+    ]
+  },
+  {
+    "id": "gen2-exact-008",
+    "category": "exact_term",
+    "question": "服务种类返回里的 categoryID 和 name2ID 分别是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务种类信息 > 返回 > 服务种类list中的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "categoryID 是服务种类 ID",
+      "name2ID 是服务名到 ID 的字典",
+      "serviceOptions 是选项名到可选值的映射"
+    ]
+  },
+  {
+    "id": "gen2-exact-009",
+    "category": "exact_term",
+    "question": "GET /api/v1/service/category/:id 是取单个种类吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 获取服务种类",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "路径里的 id 用来获取一个服务种类"
+    ]
+  },
+  {
+    "id": "gen2-exact-010",
+    "category": "exact_term",
+    "question": "创建具体服务时 refundable 必填吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "refundable 是 bool，必填，表示该服务能否退款",
+      "categoryID 和 category 也必填",
+      "serviceAPI 选填"
+    ]
+  },
+  {
+    "id": "gen2-exact-011",
+    "category": "exact_term",
+    "question": "GET /api/v1/service/type? 的 minPrice 和 maxPrice 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务 > 查询服务变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用来按价格区间过滤服务",
+      "还有 pageSize 等分页参数"
+    ]
+  },
+  {
+    "id": "gen2-exact-012",
+    "category": "exact_term",
+    "question": "查出来的服务列表里 serviceAPI 的 normal 和 secret 差在哪",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务 > `serviceAPI`变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "normal 是不需认证的 API 名到路径",
+      "secret 是需要认证的 API 名到路径"
+    ]
+  },
+  {
+    "id": "gen2-exact-013",
+    "category": "exact_term",
+    "question": "平台侧上传模板的路径是 GET /api/v1/template/add 吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 上传服务模版",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "平台节点读 body 里的 yaml 并注册服务",
+      "这和 SDK 的 /api/v1/service/template/add 不是同一条路径"
+    ]
+  },
+  {
+    "id": "gen2-exact-014",
+    "category": "exact_term",
+    "question": "GET /api/v1/order? 的 serviceActivated 表示什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 查询订单变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "serviceActivated 是 bool，表示 user service 是否启用",
+      "还有 startFrom、endAt、serviceID、userServiceStartFrom、serviceStatuses[]"
+    ]
+  },
+  {
+    "id": "gen2-exact-015",
+    "category": "exact_term",
+    "question": "订单列表里的 serviceExpiredDate 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > list中order的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "serviceExpiredDate 是用户定义的服务结束时间",
+      "amount 是需付总额，amountPaid 在文档里是剩余需付金额"
+    ]
+  },
+  {
+    "id": "gen2-exact-016",
+    "category": "exact_term",
+    "question": "GET /api/v1/order/id/:id 的 id 指什么",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 获取订单信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用订单 id 获取单笔订单"
+    ]
+  },
+  {
+    "id": "gen2-exact-017",
+    "category": "exact_term",
+    "question": "创建订单的 body 里要带 serviceID 吗",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建订单 > 请求 Body",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "amount 和 serviceID 必填",
+      "duration 和 serviceExpiredDate 至少要有一项",
+      "请求要用 VSYS 钱包私钥签名"
+    ]
+  },
+  {
+    "id": "gen2-exact-018",
+    "category": "exact_term",
+    "question": "GET /api/v1/userService? 的 statuses 是什么类型",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 查询 User Service > 查询变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "statuses 是 string 数组，表示要筛选的状态",
+      "address 只能查用户本人的 user service",
+      "还有 serviceID、startFrom、endAt、pageSize"
+    ]
+  },
+  {
+    "id": "gen2-exact-019",
+    "category": "exact_term",
+    "question": "user service 返回里的 magic 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 查询 User Service > list中user service的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "magic 是服务 secret token，用用户公钥加密",
+      "userServiceID 与订单 ID 相同",
+      "还有 serviceActiveTS、serviceRunningTS、serviceAbortTS、serviceDoneTS"
+    ]
+  },
+  {
+    "id": "gen2-exact-020",
+    "category": "exact_term",
+    "question": "GET /api/v1/userService/:id 的 id 是订单 ID 吗",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 获取 User Service",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "路径中的 id 是订单 ID"
+    ]
+  },
+  {
+    "id": "gen2-exact-021",
+    "category": "exact_term",
+    "question": "POST /api/v1/userService/stop 谁来调用",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 关闭到时 User Service",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "该接口由节点自动运行，用来关闭到时的 User Service"
+    ]
+  },
+  {
+    "id": "gen2-exact-022",
+    "category": "exact_term",
+    "question": "POST /api/v1/order/userRefund/:id 的 id 是什么",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > Order 退款 API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "这是用户调用的退款接口，id 为订单 ID",
+      "资源不足时走的是另一条 serviceRefund"
+    ]
+  },
+  {
+    "id": "gen2-exact-023",
+    "category": "exact_term",
+    "question": "商品 yaml 顶层的 serviceCategory 是 list 吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "serviceCategory 是 list",
+      "里面有 name、categoryDescription、apiHost、options、services"
+    ]
+  },
+  {
+    "id": "gen2-exact-024",
+    "category": "exact_term",
+    "question": "样例里的 user-choose-option-1 后面那个 & 是什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 文件配置样例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "&user-choose-option-1 是 yaml 锚点，下面用 * 引用",
+      "durationToPrice 样例里 100 小时系数是 0.9，200 小时是 0.85"
+    ]
+  },
+  {
+    "id": "gen2-exact-025",
+    "category": "exact_term",
+    "question": "节点配置里的 stage 会拼进哪个数据库名",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "数据库名是 market-cli- 加上 stage",
+      "dbInit 标记为 Depreciated"
+    ]
+  },
+  {
+    "id": "gen2-exact-026",
+    "category": "exact_term",
+    "question": "kubeConfigPath 是干什么的",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "kubeConfigPath 是控制远端 K8S 集群的 config 文件路径，必填"
+    ]
+  },
+  {
+    "id": "gen2-exact-027",
+    "category": "exact_term",
+    "question": "tokenId 在节点配置里用来做什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > 节点基本配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "tokenId 是业务订单退款和支付使用的 token，必填"
+    ]
+  },
+  {
+    "id": "gen2-exact-028",
+    "category": "exact_term",
+    "question": "mongodb 的 endpointTest 必填吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `mongodb` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "endpoint 必填，endpointTest 选填，给 test 环境用",
+      "timeout、collectionPrefix、indexCreation 必填"
+    ]
+  },
+  {
+    "id": "gen2-exact-029",
+    "category": "exact_term",
+    "question": "providerAllowEnable 打开后谁能访问",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `middleware` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "providerAllowEnable 为 true 时只有供应商可以访问"
+    ]
+  },
+  {
+    "id": "gen2-exact-030",
+    "category": "exact_term",
+    "question": "platformConf 的 tempDir 还建议用吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `platformConf` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "tempDir 是 template 存放目录，文档标成 To-be-depreciated",
+      "host 和 uploadUri 必填，port 选填"
+    ]
+  },
+  {
+    "id": "gen2-exact-031",
+    "category": "exact_term",
+    "question": "VKubefile 里 Kind 不写 vkube 行不行",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 基础配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Kind 必填，目前仅支持 vkube"
+    ]
+  },
+  {
+    "id": "gen2-exact-032",
+    "category": "exact_term",
+    "question": "containerName 可以有大写字母吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 容器配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "containerName 必须是小写，字母数字可含连字符"
+    ]
+  },
+  {
+    "id": "gen2-exact-033",
+    "category": "exact_term",
+    "question": "ports 里的 path 示例 /test 属于哪一种写法",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 部署配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以只写 containerPort、rewrite 和 path，不写 hostPort",
+      "path 需要匹配文档中的正则"
+    ]
+  },
+  {
+    "id": "gen2-exact-034",
+    "category": "exact_term",
+    "question": "installSSH 设为 true 时还要配哪个路径",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > SSH 配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "还要配置 sshPubKeyPath，并保证 dockerFilePath 正确",
+      "containerPort 设为 22"
+    ]
+  },
+  {
+    "id": "gen2-exact-035",
+    "category": "exact_term",
+    "question": "registryImagePath 写成 docker.io/nginx:latest 算不算完整路径",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 镜像配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "registryImagePath 支持 docker.io/account/image-name:tag 这种完整路径",
+      "也支持 ghcr.io 和 Docker Hub 短名"
+    ]
+  },
+  {
+    "id": "gen2-exact-036",
+    "category": "exact_term",
+    "question": "vkube config -w GHCRToken= 写到哪类配置",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/get-started.md",
+        "heading": "快速上手",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vkube config -w 用来写 DockerhubToken 或 GHCRToken",
+      "部署命令是 vkube deploy，默认识别当前目录的 VKubefile.yaml"
+    ]
+  },
+  {
+    "id": "gen2-exact-037",
+    "category": "exact_term",
+    "question": "workflow 里的 COMMIT_HASH 是怎么写进环境变量的",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用 git rev-parse HEAD 写入 GITHUB_ENV 的 COMMIT_HASH",
+      "action 是 certram/vkube-cli-action@v1"
+    ]
+  },
+  {
+    "id": "gen2-exact-038",
+    "category": "exact_term",
+    "question": "workflow_dispatch 在 deploy.yaml 里表示什么",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "workflow_dispatch 表示允许手动触发"
+    ]
+  },
+  {
+    "id": "gen2-exact-039",
+    "category": "exact_term",
+    "question": "git push origin master 会触发哪份文档里的工作流",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 如何触发工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "推送到 master 会触发",
+      "向 master 提交 PR 也会触发"
+    ]
+  },
+  {
+    "id": "gen2-exact-040",
+    "category": "exact_term",
+    "question": "vcloud -t 和 vcloud 差在哪",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vcloud 是主网",
+      "vcloud -t 是测试网"
+    ]
+  },
+  {
+    "id": "gen2-exact-041",
+    "category": "exact_term",
+    "question": "python use_main_interface.py -t 是测试网吗",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用代码安装cli 客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "不加参数是主网",
+      "加 -t 是测试网"
+    ]
+  },
+  {
+    "id": "gen2-exact-042",
+    "category": "exact_term",
+    "question": "pip install -U v-cloud-market-cli-user 是升级用户 CLI 吗",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 版本检查",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "About Vcloud 里可以看版本",
+      "升级用 pip install -U v-cloud-market-cli-user"
+    ]
+  },
+  {
+    "id": "gen2-exact-043",
+    "category": "exact_term",
+    "question": "vcloud skill uninstall --target codex 会动 Claude 吗",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 更新或卸载",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "--target codex 只卸载 Codex 里的 skill",
+      "不带 target 时 Claude Code 和 Codex 一起卸"
+    ]
+  },
+  {
+    "id": "gen2-exact-044",
+    "category": "exact_term",
+    "question": "vcloud skill list --target claude 看的是哪边",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 验证安装",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "--target claude 只看 Claude Code 的安装状态"
+    ]
+  },
+  {
+    "id": "gen2-exact-045",
+    "category": "exact_term",
+    "question": "~/.codex/skills/vcloud-cli/ 是哪个命令装出来的",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vcloud skill install --target codex 装到这个目录"
+    ]
+  },
+  {
+    "id": "gen2-exact-046",
+    "category": "exact_term",
+    "question": "Tail Lines 默认值是 10 吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Log 窗口 Tail Lines 默认为 10",
+      "Follow 默认不选"
+    ]
+  },
+  {
+    "id": "gen2-exact-047",
+    "category": "exact_term",
+    "question": "证书挂载路径 /vkube/tls/<domain>/tls.crt 在哪种模式",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "打开 Mount certificates inside the container 后，证书在 tls.crt，私钥在 tls.key",
+      "域名目录是 /vkube/tls/ 加上完整域名"
+    ]
+  },
+  {
+    "id": "gen2-exact-048",
+    "category": "exact_term",
+    "question": "Advance 域名模式支持 Route53 和 Cloudflare 吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Advance 支持 aws Route53 和 Cloudflare",
+      "需要提供对应 Credentials",
+      "Cloudflare 可以兼容 Proxy DNS"
+    ]
+  },
+  {
+    "id": "gen2-exact-049",
+    "category": "exact_term",
+    "question": "Unbind All 会不会改掉我在域名商那里的解析",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Unbind All 只解除 VKUBE 上的代理关系，不改用户自己的域名映射"
+    ]
+  },
+  {
+    "id": "gen2-exact-050",
+    "category": "exact_term",
+    "question": "ServiceStop 是在点了 Stop 之后的服务状态吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop 之后 Container Status 变为 Pending，Service Status 变为 ServiceStop",
+      "End Time 不变"
+    ]
+  },
+  {
+    "id": "gen2-exact-051",
+    "category": "exact_term",
+    "question": "Letsencrypt 出现在域名绑定的哪一项",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Basic 模式的 HTTPS 选项会用 VKUBE 提供的 Letsencrypt 免费证书"
+    ]
+  },
+  {
+    "id": "gen2-exact-052",
+    "category": "exact_term",
+    "question": "MONGO_INITDB_ROOT_USERNAME 写在部署的哪一块",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "写在 Environment Variables",
+      "和 MONGO_INITDB_ROOT_PASSWORD 一起初始化 mongo",
+      "数据目录示例是 /data/db"
+    ]
+  },
+  {
+    "id": "gen2-exact-053",
+    "category": "exact_term",
+    "question": "静态页示例里 Config Path 为什么是 /usr/share/nginx/html/index.html",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中使用多个配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "把 html 内容作为配置文件挂到 nginx 的这个路径",
+      "Host Port 示例是 12345"
+    ]
+  },
+  {
+    "id": "gen2-exact-054",
+    "category": "exact_term",
+    "question": "From hosted config 和 Direct Input 是一对选项吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 部署服务时使用托管配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "部署时配置来源可以选直接输入，或 From hosted config",
+      "按配置 ID 或名称搜索"
+    ]
+  },
+  {
+    "id": "gen2-exact-055",
+    "category": "exact_term",
+    "question": "Only update hosted config 这个开关切过去之后会发生什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 对服务内配置文件的批量更新",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "会变成覆盖引用服务里的 config 并重启它们",
+      "可在 Referrer Services 查看引用者"
+    ]
+  },
+  {
+    "id": "gen2-exact-056",
+    "category": "exact_term",
+    "question": "Scraping Services 和 Hosted Services 哪个是正在抓日志",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/bind-containers.md",
+        "heading": "日志抓取管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Scraping Services 是正在抓取",
+      "Hosted Services 是历史日志，包含已停止或已到期的容器服务"
+    ]
+  },
+  {
+    "id": "gen2-exact-057",
+    "category": "exact_term",
+    "question": "Loki data source 在 Grafana 的哪个页面选",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 添加数据源",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 add-new-connection 页面选择 Loki data source"
+    ]
+  },
+  {
+    "id": "gen2-exact-058",
+    "category": "exact_term",
+    "question": "日志查询的 label 里 app 和 tenant 分别是谁的 ID",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 查询日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "app 是容器服务 ID",
+      "tenant 是日志托管服务 ID",
+      "还有 node、region、container"
+    ]
+  },
+  {
+    "id": "gen2-exact-059",
+    "category": "exact_term",
+    "question": "Secret 这个 header 的值是 Log Host 的令牌吗",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Authentication method 设为 No Authentication",
+      "HTTP header 名是 Secret，值是 Log Host 验证令牌",
+      "然后点 Save & test"
+    ]
+  },
+  {
+    "id": "gen2-exact-060",
+    "category": "exact_term",
+    "question": "contract_receipient 是文档里的过滤字段吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "合约过滤字段写成 contract_receipient",
+      "另外有 contractID、function、contract_sender、caller"
+    ]
+  },
+  {
+    "id": "gen2-exact-061",
+    "category": "exact_term",
+    "question": "proofType 示例里写的是 Curve25519 吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "webhook 示例的 proofType 是 Curve25519",
+      "还有 balanceDiff 和 newBalance"
+    ]
+  },
+  {
+    "id": "gen2-exact-062",
+    "category": "exact_term",
+    "question": "x-sdk-time 用在回调验签的哪一步",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 4. 回调（Webhook）格式示例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "验签基于 CanonicalRequest，里面包含 x-sdk-time 和 User-Agent",
+      "用订阅方公钥校验"
+    ]
+  },
+  {
+    "id": "gen2-exact-063",
+    "category": "exact_term",
+    "question": "PaymentTransaction 的 Sender 和 Recipient 可以两个都空吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 使用流程",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "订阅 VSYS coin 支付时要选 PaymentTransaction",
+      "Sender 和 Recipient 必须有一个是有效值"
+    ]
+  },
+  {
+    "id": "gen2-exact-064",
+    "category": "exact_term",
+    "question": "AtomicSwapContract 在订阅合约事件时可选吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 使用流程",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "支持 AtomicSwapContract、TokenContract、SplitTokenContract",
+      "Function 是必选，且至少一个过滤参数有效"
+    ]
+  },
+  {
+    "id": "gen2-exact-065",
+    "category": "exact_term",
+    "question": "关闭订阅期间的事件还会补发吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 订阅管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "关闭后停止发送，关闭期间不再计费",
+      "关闭期间的事件不会补发",
+      "更新只能改 webhook 地址和描述"
+    ]
+  },
+  {
+    "id": "gen2-exact-066",
+    "category": "exact_term",
+    "question": "[S]Start a service 是在哪个列表里",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 启动服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Show Usable User Service 里输入 s",
+      "启动的是已购买但尚未启用的服务"
+    ]
+  },
+  {
+    "id": "gen2-exact-067",
+    "category": "exact_term",
+    "question": "[M]Monitor 是查状态之后的哪一步",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询服务状态信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先 Service Status，再输入 m 选择 Monitor"
+    ]
+  },
+  {
+    "id": "gen2-exact-068",
+    "category": "exact_term",
+    "question": "[A]User Service API Access 怎么进",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 获取服务访问API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在 Running 或 Usable 列表输入 a"
+    ]
+  },
+  {
+    "id": "gen2-exact-069",
+    "category": "exact_term",
+    "question": "[U]Unbind Domain Name 的序号用什么分隔",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名解绑",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "用逗号或空格分隔域名序号",
+      "确认时输入 y"
+    ]
+  },
+  {
+    "id": "gen2-exact-070",
+    "category": "exact_term",
+    "question": "[H]Update Image 对应更新镜像吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 更新镜像",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在运行中服务里输入 h",
+      "可以选择 Docker Hub 或 Github Container Registry 的镜像"
+    ]
+  },
+  {
+    "id": "gen2-exact-071",
+    "category": "exact_term",
+    "question": "[V]Update Deployment 是重新部署吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 重新部署",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 v 选择 Update Deployment"
+    ]
+  },
+  {
+    "id": "gen2-exact-072",
+    "category": "exact_term",
+    "question": "[L]Set Label 和 [M]Set Description 分别改什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 设置标签和描述",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "l 改标签，m 改描述"
+    ]
+  },
+  {
+    "id": "gen2-exact-073",
+    "category": "exact_term",
+    "question": "[C]Add Service to Cart 是在服务详情里吗",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 添加云服务至购物车",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在云服务详情页输入 c",
+      "然后选规格和小时数"
+    ]
+  },
+  {
+    "id": "gen2-exact-074",
+    "category": "exact_term",
+    "question": "[O]Make Order from Cart 做完会显示 Order ID 吗",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 在购物车中创建订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "在购物车选择该项即可把当前购物车创建成订单",
+      "成功提示里有 Order ID"
+    ]
+  },
+  {
+    "id": "gen2-exact-075",
+    "category": "exact_term",
+    "question": "[R]Remove Order by Choosing Index 输入的是序号吗",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 从购物车中移除订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入要移除的云服务序号"
+    ]
+  },
+  {
+    "id": "gen2-exact-076",
+    "category": "exact_term",
+    "question": "[M]Pay An Order 在 Show pending Order 之后吗",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "先看 Pending 订单，再 Pay An Order",
+      "选支付方式、输入金额、y 确认"
+    ]
+  },
+  {
+    "id": "gen2-exact-077",
+    "category": "exact_term",
+    "question": "[2]Show Paid Order 看的是哪种订单",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Paid 是已支付状态",
+      "Pending 含未支付和部分付款",
+      "Filed 是已完成支付"
+    ]
+  },
+  {
+    "id": "gen2-exact-078",
+    "category": "exact_term",
+    "question": "Show Notice Message 是菜单里的第 5 项吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询通知信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "输入 5 进入 Show Notice Message",
+      "回车可以查全部通知"
+    ]
+  },
+  {
+    "id": "gen2-exact-079",
+    "category": "exact_term",
+    "question": "python vcloud.py service --template 用来上传什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "命令是 python vcloud.py service --template YOUR-YAML-FILE",
+      "用来上传更新后的商品模板"
+    ]
+  },
+  {
+    "id": "gen2-exact-080",
+    "category": "exact_term",
+    "question": "inputTable 里的 createdAt 是订单创建时间吗",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > 编写 Lua脚本函数",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "start 的 inputTable 含 id、duration、createdAt、options",
+      "createdAt 是订单创建时间"
+    ]
+  },
+  {
+    "id": "gen2-multi-001",
+    "category": "multi_doc",
+    "question": "网页上 Stop 了还会计费吗，想把剩余时间退掉在 CLI 里走哪一项",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      },
+      {
+        "source": "zh/guide/advance-termination.md",
+        "heading": "订单提前解约",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop 不改 End Time，服务状态变成 ServiceStop",
+      "提前结束要在运行中服务里选 Refund Service 并确认"
+    ]
+  },
+  {
+    "id": "gen2-multi-002",
+    "category": "multi_doc",
+    "question": "preventDefault 之后服务还没计时，到点又是谁把它收掉",
+    "relevant": [
+      {
+        "source": "zh/guide/service-expired.md",
+        "heading": "服务结束计算",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/duration-services.md",
+        "heading": "商品服务期限",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "preventDefault 时付款后是 ServicePending，真正启动后才 ServiceRunning",
+      "SDK 每小时检查，到期变为 ServiceDone 并执行 stop"
+    ]
+  },
+  {
+    "id": "gen2-multi-003",
+    "category": "multi_doc",
+    "question": "用户主动退款扣的 0.1 和费用公式里的 y 分别是什么",
+    "relevant": [
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/price-auditing.md",
+        "heading": "费用核算",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "主动退款扣除 0.1 的 VSYS 交易费，按供应商 Token 和汇率退剩余时间",
+      "退款 Token 数量公式里要乘汇率系数 y"
+    ]
+  },
+  {
+    "id": "gen2-multi-004",
+    "category": "multi_doc",
+    "question": "Grafana 的数据源地址去哪复制，令牌又是订单到了哪一步才有",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      },
+      {
+        "source": "zh/log-hosting/purchase-service.md",
+        "heading": "服务购买",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "url 在 Log Host 管理界面",
+      "订单 Filed 后到 My Service 拿 Token，并放到名为 Secret 的 header"
+    ]
+  },
+  {
+    "id": "gen2-multi-005",
+    "category": "multi_doc",
+    "question": "安全组默认不让公网进来，怎样才能让其中一个服务收外网流量",
+    "relevant": [
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 将服务引入或移出安全组",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/securityGroup.md",
+        "heading": "安全组 > 网关服务",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "组内服务默认拒绝公网入站，加入和退出是热更新",
+      "Set as Gateway 后该服务可以接收公网或组外入站，网关可以有多个"
+    ]
+  },
+  {
+    "id": "gen2-multi-006",
+    "category": "multi_doc",
+    "question": "本地构建镜像和只填仓库路径，VKubefile 里分别用哪两个字段",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 镜像配置",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 注意事项",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "本地构建用 build.dockerfilePath，并提供 imageName 和 tag",
+      "已有镜像用 registryImagePath，不要和 imageName 混用"
+    ]
+  },
+  {
+    "id": "gen2-multi-007",
+    "category": "multi_doc",
+    "question": "工作流手动触发靠哪个关键字，密钥里 VKUBE_TOKEN 还要不要写进 yaml",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      },
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 配置secrets",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "workflow_dispatch 表示可以手动触发",
+      "GitHub Secret 里要有 VKUBE_TOKEN，yaml 里就不必再写 vkubeToken"
+    ]
+  },
+  {
+    "id": "gen2-multi-008",
+    "category": "multi_doc",
+    "question": "域名要在 CLI 里解绑一条，和在网页 Basic 模式一次解掉全部，分别点什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名解绑",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "CLI 里选 Unbind Domain Name，按序号解绑",
+      "网页 Basic 有 Unbind All，只解除平台上的代理"
+    ]
+  },
+  {
+    "id": "gen2-multi-009",
+    "category": "multi_doc",
+    "question": "内存用超了会不会被杀掉，一个 Resource Unit 在 FAQ 里对应多少内存和磁盘",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > resourceUnit",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/FAQ.md",
+        "heading": "Frequently Asked Questions > What is a Resource Unit?",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "超过内存上限可能触发 memory kill 并重启",
+      "FAQ 写 n Resource Unit = n Gi 内存和 n*8 Gi 持久存储",
+      "CPU 配额 y = (x / m) * n"
+    ]
+  },
+  {
+    "id": "gen2-multi-010",
+    "category": "multi_doc",
+    "question": "平台创建服务的 refundable，和商品 yaml 里的 refundable，是不是都表示能退款",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 创建具体服务 > 请求 Body",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `serviceCategory` 中的 `services`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "两边的 refundable 都是 bool",
+      "都用来说明这个服务是否允许用户退款"
+    ]
+  },
+  {
+    "id": "gen2-multi-011",
+    "category": "multi_doc",
+    "question": "SDK 的模板上传路径和平台的模板上传路径是不是同一条",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > 上传服务模版",
+        "grade": 2
+      },
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 上传服务模版",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "SDK 是 GET /api/v1/service/template/add",
+      "平台文档写的是 GET /api/v1/template/add",
+      "两边都是读取 body 里的 yaml 并注册"
+    ]
+  },
+  {
+    "id": "gen2-multi-012",
+    "category": "multi_doc",
+    "question": "资源不够时退款走哪个接口，用户自己提前结束又走哪个",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > Order 退款 API",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/refund.md",
+        "heading": "退款",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "资源不足调用 POST /api/v1/order/serviceRefund/:id，body 可带 stopService",
+      "用户主动退款调用 POST /api/v1/order/userRefund/:id，并按 Token 汇率退剩余时间"
+    ]
+  },
+  {
+    "id": "gen2-multi-013",
+    "category": "multi_doc",
+    "question": "网页把证书挂进容器时文件放哪；CLI 里同一个域名的 https 选项事后还能改吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名绑定",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Mount 打开后证书在 /vkube/tls/<domain>/tls.crt，私钥在 tls.key",
+      "CLI 里同一域的 use https 只能在初次绑定时设置，要改必须先全部解绑"
+    ]
+  },
+  {
+    "id": "gen2-multi-014",
+    "category": "multi_doc",
+    "question": "Node Watcher 免费额度用完怎么收费，充值最低多少、能不能退",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/README.md",
+        "heading": "功能介绍",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值前须知",
+        "grade": 2
+      },
+      {
+        "source": "zh/node-watcher/topup.md",
+        "heading": "服务充值 > 充值流程（图文步骤）",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "每次 webhook 1 美分，新用户和每月 1 号各有 1000 次免费额度",
+      "最低充值 1 美元，充值不支持退款"
+    ]
+  },
+  {
+    "id": "gen2-multi-015",
+    "category": "multi_doc",
+    "question": "改已上架商品的名字会怎样，模板里的 walletAddress 本身要求唯一吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      },
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "service 或 service category 改名会生成新记录，旧的不删",
+      "注册后 provider 和 walletAddress 暂时不能更新",
+      "模板里 walletAddress 在平台数据中必须唯一"
+    ]
+  },
+  {
+    "id": "gen2-multi-016",
+    "category": "multi_doc",
+    "question": "Lua 里 os 和 debug 能不能用，start 脚本不用签名的 POST 该调哪个函数",
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > Lua 脚本中禁用语法",
+        "grade": 2
+      },
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > Lua 脚本功能使用",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "os 和 debug 在禁用列表里",
+      "postwosign 发送不带签名流程的 post，post 则会加密并带签名"
+    ]
+  },
+  {
+    "id": "gen2-multi-017",
+    "category": "multi_doc",
+    "question": "同一个 pod 用 localhost 连 mongo 时环境变量写什么，选了持久化之后重启数据还在吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > persistStorage",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "示例用 MONGO_INITDB_ROOT_USERNAME 和 MONGO_INITDB_ROOT_PASSWORD，目录是 /data/db",
+      "persistStorage 选 YES 后，restart 之后该目录数据仍保留"
+    ]
+  },
+  {
+    "id": "gen2-multi-018",
+    "category": "multi_doc",
+    "question": "用户 CLI 主网和测试网命令，跟 skill 默认用哪张网，分别怎么说的",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      },
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 使用 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "CLI 主网是 vcloud，测试网是 vcloud -t",
+      "skill 默认主网，只有请求里明确说测试网才切换"
+    ]
+  },
+  {
+    "id": "gen2-multi-019",
+    "category": "multi_doc",
+    "question": "默认令牌存在浏览器哪里，访问令牌过期后还能不能导入服务",
+    "relevant": [
+      {
+        "source": "zh/VKservice/accessToken.md",
+        "heading": "令牌",
+        "grade": 2
+      },
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > v-kube控制台",
+        "grade": 1
+      }
+    ],
+    "key_points": [
+      "访问令牌过期后不能再当凭证；默认令牌没有过期开关",
+      "控制台里的 Token 以明文放在浏览器 local storage，清缓存会消失"
+    ]
+  },
+  {
+    "id": "gen2-multi-020",
+    "category": "multi_doc",
+    "question": "日志服务到期会清数据，Grafana 里 tenant 这个 label 对应的是哪个 ID",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/README.md",
+        "heading": "介绍",
+        "grade": 2
+      },
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 查询日志",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "日志服务到期后日志被清理并停止采集",
+      "tenant 是日志托管服务的 ID"
+    ]
+  },
+  {
+    "id": "gen2-en-001",
+    "category": "english",
+    "question": "How do I unbind one domain from a running service in the CLI?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名解绑",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Enter Domain Name, then Unbind Domain Name",
+      "Separate indexes with commas or spaces and confirm with y"
+    ]
+  },
+  {
+    "id": "gen2-en-002",
+    "category": "english",
+    "question": "Does clicking Stop on the web console extend the service end time?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop does not stop billing and End Time stays the same",
+      "Service Status becomes ServiceStop"
+    ]
+  },
+  {
+    "id": "gen2-en-003",
+    "category": "english",
+    "question": "Where are mounted TLS certificate files placed inside the container?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Certificate is /vkube/tls/<domain>/tls.crt",
+      "Private key is /vkube/tls/<domain>/tls.key"
+    ]
+  },
+  {
+    "id": "gen2-en-004",
+    "category": "english",
+    "question": "What does the Kind field in VKubefile have to be?",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 基础配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Kind must be vkube",
+      "imageRegistry is docker or ghcr"
+    ]
+  },
+  {
+    "id": "gen2-en-005",
+    "category": "english",
+    "question": "Which GitHub event keyword allows me to run the deploy workflow by hand?",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "workflow_dispatch marks the workflow as manually triggerable"
+    ]
+  },
+  {
+    "id": "gen2-en-006",
+    "category": "english",
+    "question": "What pip package installs the user-facing vcloud CLI?",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "pip install v-cloud-market-cli-user",
+      "vcloud -t selects testnet"
+    ]
+  },
+  {
+    "id": "gen2-en-007",
+    "category": "english",
+    "question": "How do I pay a pending order from the user CLI?",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Open Show pending Order, then Pay An Order",
+      "Choose a method, enter the amount, and confirm with y"
+    ]
+  },
+  {
+    "id": "gen2-en-008",
+    "category": "english",
+    "question": "What is signAddress on a service provider record?",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询服务商信息 > 服务商品目中list的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "signAddress is the address used to sign an uploaded service template"
+    ]
+  },
+  {
+    "id": "gen2-en-009",
+    "category": "english",
+    "question": "What does the magic field on a user service contain?",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 查询 User Service > list中user service的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "magic is the service secret token encrypted with the user public key"
+    ]
+  },
+  {
+    "id": "gen2-en-010",
+    "category": "english",
+    "question": "Which HTTP header name carries the log-hosting token in Grafana?",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Add an HTTP header named Secret",
+      "Authentication method is No Authentication"
+    ]
+  },
+  {
+    "id": "gen2-en-011",
+    "category": "english",
+    "question": "What happens to webhook delivery if I turn a topic subscription off?",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 订阅管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Webhooks stop and the subscription is not billed while it is off",
+      "Events during the off period are not delivered later"
+    ]
+  },
+  {
+    "id": "gen2-en-012",
+    "category": "english",
+    "question": "How do I install the CLI skill only for Codex?",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 安装 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "vcloud skill install --target codex",
+      "Files go to ~/.codex/skills/vcloud-cli/"
+    ]
+  },
+  {
+    "id": "gen2-en-013",
+    "category": "english",
+    "question": "What command uploads an updated provider product template?",
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "python vcloud.py service --template YOUR-YAML-FILE"
+    ]
+  },
+  {
+    "id": "gen2-en-014",
+    "category": "english",
+    "question": "Is endpointTest required in the SDK mongodb config?",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `mongodb` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "endpoint is required",
+      "endpointTest is optional and used in the test environment"
+    ]
+  },
+  {
+    "id": "gen2-en-015",
+    "category": "english",
+    "question": "What input fields does the Lua start(inputTable) receive?",
+    "relevant": [
+      {
+        "source": "zh/developers/lua_scripts.md",
+        "heading": "lua脚本 > 编写 Lua脚本函数",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "id, duration, createdAt, and options"
+    ]
+  },
+  {
+    "id": "gen2-en-016",
+    "category": "english",
+    "question": "Can I delete a hosted config without deleting the copy already inside a running service?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 配置文件的托管与管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Deleting the hosted file does not change the config already used by the service"
+    ]
+  },
+  {
+    "id": "gen2-en-017",
+    "category": "english",
+    "question": "What is the default Tail Lines value in a single container log view?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Tail Lines defaults to 10",
+      "Follow streams the log without the line limit"
+    ]
+  },
+  {
+    "id": "gen2-en-018",
+    "category": "english",
+    "question": "How do I recover an existing VSYS wallet from a seed in the CLI?",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 准备v账户 > 1. 使用seed导入已有v账户",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Choose Recover Wallet From Seed and enter the seed"
+    ]
+  },
+  {
+    "id": "gen2-en-019",
+    "category": "english",
+    "question": "Which two DNS providers does advanced domain binding support?",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "AWS Route53 and Cloudflare",
+      "Cloudflare can work with Proxy DNS"
+    ]
+  },
+  {
+    "id": "gen2-en-020",
+    "category": "english",
+    "question": "What does serviceActivated mean on GET /api/v1/order?",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 查询订单信息 > 查询订单变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "It is a bool for whether the user service is activated"
+    ]
+  },
+  {
+    "id": "gen2-en-021",
+    "category": "english",
+    "question": "Does a container name in VKubefile allow uppercase letters?",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 容器配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "containerName must be lowercase and may include digits and hyphens"
+    ]
+  },
+  {
+    "id": "gen2-en-022",
+    "category": "english",
+    "question": "Where do I click to register a Node Watcher account?",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 使用流程",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Click register to activate the account tied to the wallet address"
+    ]
+  },
+  {
+    "id": "gen2-en-023",
+    "category": "english",
+    "question": "What is the difference between Scraping Services and Hosted Services?",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/bind-containers.md",
+        "heading": "日志抓取管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Scraping Services are actively collected",
+      "Hosted Services keep historical logs after collection stopped or the container expired"
+    ]
+  },
+  {
+    "id": "gen2-en-024",
+    "category": "english",
+    "question": "Which Lua libraries are forbidden: can a supplier script call os or debug?",
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > Lua 脚本中禁用语法",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Both os and debug are in the disabled list",
+      "while, coroutine, dofile, and load are disabled too"
+    ]
+  },
+  {
+    "id": "gen2-en-025",
+    "category": "english",
+    "question": "How is a cart item turned into an order in the user CLI?",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 在购物车中创建订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Choose Make Order from Cart",
+      "The success dialog shows an Order ID"
+    ]
+  },
+  {
+    "id": "gen2-turn-001",
+    "category": "multi_turn",
+    "question": "那计费时间会不会往后延",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Stop",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Stop 之后 End Time 不变，不会因为中途停下就把过期时间推迟"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "网页上把容器停掉是点哪里"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Actions 里点 Stop，容器会关掉，状态变成 ServiceStop。之后可以再点 Start。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-002",
+    "category": "multi_turn",
+    "question": "私钥会落到容器里的哪个路径",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Bind Domains",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "私钥是 /vkube/tls/<domain>/tls.key",
+      "证书是同目录下的 tls.crt"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "域名证书想让容器里的程序自己读，怎么开"
+      },
+      {
+        "role": "assistant",
+        "content": "在域名绑定里打开 Mount certificates inside the container。证书由平台生成。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-003",
+    "category": "multi_turn",
+    "question": "序号之间用逗号还是只能一个一个解",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名解绑",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以一次输入多个序号，用逗号或空格分隔",
+      "最后输入 y 确认"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "CLI 里怎么给正在跑的服务解绑域名"
+      },
+      {
+        "role": "assistant",
+        "content": "先打开 Domain Name，再选 Unbind Domain Name。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-004",
+    "category": "multi_turn",
+    "question": "tag 不写的话默认是什么",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 配置说明 > 镜像配置",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "tag 不写时默认为 latest"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "VKubefile 里本地构建镜像要填哪些"
+      },
+      {
+        "role": "assistant",
+        "content": "需要 dockerfilePath，还要给 imageName 和 tag。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-005",
+    "category": "multi_turn",
+    "question": "那测试网的命令差在哪一个参数",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 使用pip安装cli客户端",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "测试网运行 vcloud -t"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "用户 CLI 用 pip 装好之后怎么进主网"
+      },
+      {
+        "role": "assistant",
+        "content": "装的是 v-cloud-market-cli-user，主网直接运行 vcloud。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-006",
+    "category": "multi_turn",
+    "question": "关闭的那几天漏掉的通知还会补过来吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 订阅管理",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "关闭期间的事件不会补发",
+      "重新打开后只发送打开之后的事件"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "订阅创建之后不想收通知了怎么关"
+      },
+      {
+        "role": "assistant",
+        "content": "在订阅列表的 Actions 里可以关闭。关闭期间不再计费。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-007",
+    "category": "multi_turn",
+    "question": "只卸 Codex 的话命令后面加什么",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 更新或卸载",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "只处理 Codex 时加 --target codex"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "vcloud skill 怎么从 AI 助手里卸掉"
+      },
+      {
+        "role": "assistant",
+        "content": "vcloud skill uninstall 会同时从 Claude Code 和 Codex 移除。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-008",
+    "category": "multi_turn",
+    "question": "部分付了一点的订单在哪个列表",
+    "relevant": [
+      {
+        "source": "zh/guide/buying-process.md",
+        "heading": "购买流程 > 支付订单",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Show pending Order 包含未支付和仅部分付款的订单"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "CLI 里怎么把还没付钱的订单付掉"
+      },
+      {
+        "role": "assistant",
+        "content": "进 Order Service，可以按状态查看订单，再用 Pay An Order。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-009",
+    "category": "multi_turn",
+    "question": "临时改一下这次部署的内容，托管的原文会变吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 部署服务时使用托管配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "选中后的临时编辑只影响这次部署，不修改托管原文"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "部署时不想手写配置，想选已经托管的那份"
+      },
+      {
+        "role": "assistant",
+        "content": "选 From hosted config，按名字或 ID 挑一份。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-010",
+    "category": "multi_turn",
+    "question": "上传到供应商节点之后，名字改了旧的还在吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/manage-product.md",
+        "heading": "管理已上架的商品",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "service 或 service category 改名会新建一条，旧记录不删除"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "更新已上架商品用哪条命令"
+      },
+      {
+        "role": "assistant",
+        "content": "python vcloud.py service --template 加上 yaml 路径。名称不要随便改。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-011",
+    "category": "multi_turn",
+    "question": "body 里那个布尔字段叫什么",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > Order 退款 API",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "body 字段 stopService 表示退款时是否执行停止资源的 lua"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "机器资源不够、要平台退款时调哪个接口"
+      },
+      {
+        "role": "assistant",
+        "content": "资源节点调用 POST /api/v1/order/serviceRefund/:id，id 是订单。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-012",
+    "category": "multi_turn",
+    "question": "加密后的那个密钥字段叫 magic 吗",
+    "relevant": [
+      {
+        "source": "zh/developers/sdk_api.md",
+        "heading": "V Cloud SDK API 指南 > User Service API > 查询 User Service > list中user service的变量",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "字段名是 magic，用用户公钥加密"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "查询 user service 的返回里，服务凭证放在哪"
+      },
+      {
+        "role": "assistant",
+        "content": "列表里有 userServiceID、status，还有一个加密过的 token。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-013",
+    "category": "multi_turn",
+    "question": "连续失败要几次才算扣一次",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 1. 概念",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "连续三次访问失败按一次计费"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Topic 的回调地址是干什么的"
+      },
+      {
+        "role": "assistant",
+        "content": "事件匹配后平台向这个地址 POST JSON。地址暂时不可达时有计费规则。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-014",
+    "category": "multi_turn",
+    "question": "Follow 勾上之后还受那 10 行限制吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Follow 选中后持续跟踪，不再受行数限制"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "单个容器的日志窗口默认显示多少行"
+      },
+      {
+        "role": "assistant",
+        "content": "Tail Lines 默认是 10。还可以选时间范围。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-015",
+    "category": "multi_turn",
+    "question": "换成别的镜像名字行不行",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > 单个container操作",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "只能升级同一个镜像的不同版本，例如原来是 nginx 就仍然必须是 nginx"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "容器列表里 Upgrade 是升级镜像吗"
+      },
+      {
+        "role": "assistant",
+        "content": "Upgrade 会重启服务，用来换同一个镜像的更新版本。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-016",
+    "category": "multi_turn",
+    "question": "清缓存之后那些令牌还在吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > v-kube控制台",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Token 以明文放在 local storage，清空浏览器缓存后消失"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Containers 页面的 token 是存在服务器还是浏览器"
+      },
+      {
+        "role": "assistant",
+        "content": "Token 存在浏览器本地，导入后才能看到对应容器。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-017",
+    "category": "multi_turn",
+    "question": "用星号当发送方，收款方必须写死吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 5. 常见场景示例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "sender 可以是 *",
+      "recipient 写具体地址",
+      "两者必须至少有一个是精确值"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "只想监听打到某一个地址的转账，topic 怎么写"
+      },
+      {
+        "role": "assistant",
+        "content": "支付事件的路径里可以限制 sender 和 recipient。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-018",
+    "category": "multi_turn",
+    "question": "脚本贴进 yaml 之前要编码吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 配置文件概览 > yaml 配置文件 -- `services` 中的 `serviceFunctionApi`",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "本地写好的 Lua 要先做 URL 编码，再作为字符串填入"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "serviceFunctionApi 的 start 和 stop 填什么"
+      },
+      {
+        "role": "assistant",
+        "content": "填购买后启动和到期关闭时要跑的 Lua。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-019",
+    "category": "multi_turn",
+    "question": "测试环境那条连接必填吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-sdk-service.md",
+        "heading": "配置供应商SDK服务端 > `mongodb` 配置信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "endpointTest 选填，只给 test 环境"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "SDK 的 mongodb 配置里 endpoint 是干什么的"
+      },
+      {
+        "role": "assistant",
+        "content": "endpoint 是存业务数据的 mongodb 链接，必填。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-020",
+    "category": "multi_turn",
+    "question": "推不上去是不是权限没开 write",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/configureFile.md",
+        "heading": "文件配置 > 简介",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "令牌权限需要 write 和 read，否则 push 镜像失败"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "vkube 的登录信息写在哪个文件"
+      },
+      {
+        "role": "assistant",
+        "content": "~/.vkube/config.yaml 里写 DockerhubToken 或 GHCRToken。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-021",
+    "category": "multi_turn",
+    "question": "回车是查全部吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 查询通知信息",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "可以直接回车查询全部通知，也可以填某个 user service id"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "CLI 里通知信息在哪个菜单"
+      },
+      {
+        "role": "assistant",
+        "content": "用户服务菜单第 5 项是 Show Notice Message。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-022",
+    "category": "multi_turn",
+    "question": "点了删除，机器上的容器还在吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Delete",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "不会改动服务器上的容器",
+      "恢复时重新 Import Token"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Containers 页面上的 Delete 是什么意思"
+      },
+      {
+        "role": "assistant",
+        "content": "Delete 是页面上的移除操作。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-023",
+    "category": "multi_turn",
+    "question": "100 小时那个系数样例是多少",
+    "relevant": [
+      {
+        "source": "zh/supplier/config-product-templates.md",
+        "heading": "yaml商品模板配置说明 > yaml 文件配置样例",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "样例里 100 对应 0.9，200 对应 0.85"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "商品模板的 durationToPrice 里 duration 怎么写"
+      },
+      {
+        "role": "assistant",
+        "content": "duration 是时长到打折系数的映射，旁边还有 price 和 chargingOptions。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-024",
+    "category": "multi_turn",
+    "question": "过期了还能当登录凭证吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/accessToken.md",
+        "heading": "令牌",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "过期的访问令牌不能再作为服务凭证"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "访问令牌和买来就有的那个令牌有什么不一样"
+      },
+      {
+        "role": "assistant",
+        "content": "访问令牌可以设过期时间，也能停用或删除。默认令牌没有这些开关。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-025",
+    "category": "multi_turn",
+    "question": "助手没说测试网的时候走哪张网",
+    "relevant": [
+      {
+        "source": "zh/guide/vcloud-skills.md",
+        "heading": "在AI中使用 > 使用 skill",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "默认使用主网",
+      "只有明确指定测试网才会用测试网"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "装好 vcloud skill 之后怎么让它帮我查余额"
+      },
+      {
+        "role": "assistant",
+        "content": "直接用自然语言说要查 V Cloud 钱包余额。涉及付款时它会先跟你确认。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-026",
+    "category": "multi_turn",
+    "question": "重启之后原来的日志还在吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Restart",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "重启后原来的 log 和其他数据会被删除",
+      "想保留数据要用持久化"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "网页上 Restart 会把这个服务的容器都重启吗"
+      },
+      {
+        "role": "assistant",
+        "content": "会先全部关掉再启动。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-027",
+    "category": "multi_turn",
+    "question": "id 和 name 是不是同一个值",
+    "relevant": [
+      {
+        "source": "zh/developers/platform_api.md",
+        "heading": "V Cloud 平台 API 指南 > 概述 > 请求body",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "id 与服务商名称相同，并且必填"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "创建服务商要 POST 哪个路径"
+      },
+      {
+        "role": "assistant",
+        "content": "POST /api/v1/service/provider，body 里有名称、钱包和 apiHost。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-028",
+    "category": "multi_turn",
+    "question": "两个都用星号行不行",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 使用流程",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Sender 和 Recipient 必须保证至少一个是有效值"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "订阅 VSYS 转账时 Transaction Type 选什么"
+      },
+      {
+        "role": "assistant",
+        "content": "选 PaymentTransaction，再用 Sender 和 Recipient 过滤。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-029",
+    "category": "multi_turn",
+    "question": "批量改完大概要多久才到容器里",
+    "relevant": [
+      {
+        "source": "zh/VKservice/configuration.md",
+        "heading": "配置文件托管 > 对服务内配置文件的批量更新",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "批量更新不是实时的，大约有一分钟延迟",
+      "过程会重启服务"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "更新托管配置时怎样让引用它的服务一起变"
+      },
+      {
+        "role": "assistant",
+        "content": "打开覆盖引用服务并重启的开关，再点 Update Config。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-030",
+    "category": "multi_turn",
+    "question": "没热加载的话改完内容要怎么让程序读到",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中使用多个配置文件",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "程序没有热加载时，要在 Actions 里执行 Restart"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "一个容器里挂了好几个配置文件，后来只想改内容"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Config 里可以改内容，不能增删文件或改路径。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-031",
+    "category": "multi_turn",
+    "question": "香港在选项里的英文名是什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/assetsDetail.md",
+        "heading": "ServiceOption说明 > region",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "香港对应的名字是 Hongkong"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "部署服务时 region 能选哪些地方"
+      },
+      {
+        "role": "assistant",
+        "content": "现在有北美、欧洲、东京和香港四个。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-032",
+    "category": "multi_turn",
+    "question": "验证码那一步按钮叫什么",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Full-V-Kube.md",
+        "heading": "VKube使用手册 > 如何使用v-kube服务 > Container相关操作 > Contact",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "填写验证码后点 Verify Code",
+      "之后 Notice 的新消息会同步发到这个邮箱"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "服务异常时想收到邮件，网页上怎么绑"
+      },
+      {
+        "role": "assistant",
+        "content": "用 Contact 填邮箱。系统会把验证码发到邮箱。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-033",
+    "category": "multi_turn",
+    "question": "免费额度没用完时会先扣账户余额吗",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/README.md",
+        "heading": "功能介绍",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "免费额度没用完时不会从账户扣款，而是扣免费额度",
+      "每月 1 号还会再给 1000 次"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Node Watcher 一次通知多少钱"
+      },
+      {
+        "role": "assistant",
+        "content": "目前每次 webhook 是 1 美分，新用户有 1000 次免费额度。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-034",
+    "category": "multi_turn",
+    "question": "确认清除时要输入 y 吗",
+    "relevant": [
+      {
+        "source": "zh/VKservice/getting-started.md",
+        "heading": "快速上手 > 域名清除",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "提示 clean up all domain names 时输入 y"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "一个服务上绑了很多域名，想一次清光"
+      },
+      {
+        "role": "assistant",
+        "content": "在运行中服务的 Domain Name 里可以清除全部域名。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-035",
+    "category": "multi_turn",
+    "question": "action 的版本标签是 v1 吗",
+    "relevant": [
+      {
+        "source": "zh/vkube_cli/workflows.md",
+        "heading": "用工作流持续部署 > 创建工作流",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "uses 的示例是 certram/vkube-cli-action@v1"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "自动部署的 workflow 放在仓库哪个路径"
+      },
+      {
+        "role": "assistant",
+        "content": "放在 .github/workflows/deploy.yaml，里面引用 vkube 的 action。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-036",
+    "category": "multi_turn",
+    "question": "生成新地址是菜单里的第 2 项吗",
+    "relevant": [
+      {
+        "source": "zh/guide/getting-started.md",
+        "heading": "快速上手 > 准备v账户 > 2. 生成新账户",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "没有旧钱包时选 Generate New Wallet"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "CLI 里已经有 seed 的钱包怎么导入"
+      },
+      {
+        "role": "assistant",
+        "content": "选 Recover Wallet From Seed，把 seed 输进去。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-037",
+    "category": "multi_turn",
+    "question": "os 库也被禁了吗",
+    "relevant": [
+      {
+        "source": "zh/supplier/advanced.md",
+        "heading": "进阶 > Lua 脚本中禁用语法",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "os、debug、io、package 都在禁用列表里"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "供应商 Lua 里 while 不能用，还有哪些也不能用"
+      },
+      {
+        "role": "assistant",
+        "content": "禁用列表里还有 coroutine、dofile、loadstring 这些。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-038",
+    "category": "multi_turn",
+    "question": "这个字段在文档里是怎么拼写的",
+    "relevant": [
+      {
+        "source": "zh/node-watcher/sub-topic.md",
+        "heading": "主题（Topic）与订阅快速指南 > 3. 过滤字段建议",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "文档写的接收人字段是 contract_receipient"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "订阅合约事件时接收人用哪个过滤字段"
+      },
+      {
+        "role": "assistant",
+        "content": "可以用 contract_sender、function、caller 这些字段。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-039",
+    "category": "multi_turn",
+    "question": "Save 之前身份验证方法要选哪一种",
+    "relevant": [
+      {
+        "source": "zh/log-hosting/view-logs.md",
+        "heading": "日志查询和分析 > 配置数据源链接",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "Authentication method 设为 No Authentication",
+      "再添加名为 Secret 的 header"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Grafana 里日志数据源的地址从哪看"
+      },
+      {
+        "role": "assistant",
+        "content": "在 Log Host 的管理页复制 url。查询还要带令牌。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-turn-040",
+    "category": "multi_turn",
+    "question": "同一台机器上两个容器走回环，最少要买几份资源",
+    "relevant": [
+      {
+        "source": "zh/VKservice/Example.md",
+        "heading": "示例 > 在`VKUBE`中多个服务进行网络请求的可能性 > 一个用户服务中，部署两个容器，使用localhost网络",
+        "grade": 2
+      }
+    ],
+    "key_points": [
+      "一个容器至少占一个 resource-unit，所以至少买两个"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "一个订单里把数据库和应用放一起，它们怎么互相访问"
+      },
+      {
+        "role": "assistant",
+        "content": "可以放在同一个 pod，用 localhost。数据库数据目录示例是 /data/db。"
+      }
+    ]
+  },
+  {
+    "id": "gen2-oos-001",
+    "category": "out_of_scope",
+    "question": "明天深圳会下雨吗"
+  },
+  {
+    "id": "gen2-oos-002",
+    "category": "out_of_scope",
+    "question": "贵州茅台现在股价多少"
+  },
+  {
+    "id": "gen2-oos-003",
+    "category": "out_of_scope",
+    "question": "比特币这一个小时涨了多少"
+  },
+  {
+    "id": "gen2-oos-004",
+    "category": "out_of_scope",
+    "question": "宫保鸡丁怎么做"
+  },
+  {
+    "id": "gen2-oos-005",
+    "category": "out_of_scope",
+    "question": "帮我把这段话翻译成法语：你好，见到你很高兴"
+  },
+  {
+    "id": "gen2-oos-006",
+    "category": "out_of_scope",
+    "question": "最近的地铁站怎么走"
+  },
+  {
+    "id": "gen2-oos-007",
+    "category": "out_of_scope",
+    "question": "Python 列表和元组有什么区别"
+  },
+  {
+    "id": "gen2-oos-008",
+    "category": "out_of_scope",
+    "question": "世界杯冠军是哪一届的巴西"
+  },
+  {
+    "id": "gen2-oos-009",
+    "category": "out_of_scope",
+    "question": "帮我写一封辞职信"
+  },
+  {
+    "id": "gen2-oos-010",
+    "category": "out_of_scope",
+    "question": "人体正常体温是多少度"
+  },
+  {
+    "id": "gen2-oos-011",
+    "category": "out_of_scope",
+    "question": "如何申请申根签证"
+  },
+  {
+    "id": "gen2-oos-012",
+    "category": "out_of_scope",
+    "question": "iPhone 17 什么时候发布"
+  },
+  {
+    "id": "gen2-oos-013",
+    "category": "out_of_scope",
+    "question": "今天上证指数收盘是多少"
+  },
+  {
+    "id": "gen2-oos-014",
+    "category": "out_of_scope",
+    "question": "红烧排骨要炖多久"
+  },
+  {
+    "id": "gen2-oos-015",
+    "category": "out_of_scope",
+    "question": "从北京到上海的高铁时刻表"
+  },
+  {
+    "id": "gen2-oos-016",
+    "category": "out_of_scope",
+    "question": "帮我解释量子纠缠"
+  },
+  {
+    "id": "gen2-oos-017",
+    "category": "out_of_scope",
+    "question": "Windows 11 怎么关闭自动更新"
+  },
+  {
+    "id": "gen2-oos-018",
+    "category": "out_of_scope",
+    "question": "哪部电影拿了去年的奥斯卡最佳影片"
+  },
+  {
+    "id": "gen2-oos-019",
+    "category": "out_of_scope",
+    "question": "如何用 Excel 做数据透视表"
+  },
+  {
+    "id": "gen2-oos-020",
+    "category": "out_of_scope",
+    "question": "感冒了能不能吃头孢"
+  },
+  {
+    "id": "gen2-oos-021",
+    "category": "out_of_scope",
+    "question": "帮我起一个咖啡店的名字"
+  },
+  {
+    "id": "gen2-oos-022",
+    "category": "out_of_scope",
+    "question": "太阳系有几颗行星"
+  },
+  {
+    "id": "gen2-oos-023",
+    "category": "out_of_scope",
+    "question": "怎么办理护照换发"
+  },
+  {
+    "id": "gen2-oos-024",
+    "category": "out_of_scope",
+    "question": "今晚欧冠谁对谁"
+  },
+  {
+    "id": "gen2-oos-025",
+    "category": "out_of_scope",
+    "question": "帮我把 3/7 化成小数"
+  },
+  {
+    "id": "gen2-oos-026",
+    "category": "out_of_scope",
+    "question": "租赁合同法里押金最多收几个月"
+  },
+  {
+    "id": "gen2-oos-027",
+    "category": "out_of_scope",
+    "question": "怎么煮溏心蛋"
+  },
+  {
+    "id": "gen2-oos-028",
+    "category": "out_of_scope",
+    "question": "Git 的 rebase 和 merge 哪个好"
+  },
+  {
+    "id": "gen2-oos-029",
+    "category": "out_of_scope",
+    "question": "附近哪家医院能看牙"
+  },
+  {
+    "id": "gen2-oos-030",
+    "category": "out_of_scope",
+    "question": "美元兑日元现在的汇率"
+  },
+  {
+    "id": "gen2-oos-031",
+    "category": "out_of_scope",
+    "question": "帮我写一个冒泡排序"
+  },
+  {
+    "id": "gen2-oos-032",
+    "category": "out_of_scope",
+    "question": "马拉松全马多少公里"
+  },
+  {
+    "id": "gen2-oos-033",
+    "category": "out_of_scope",
+    "question": "如何清理洗衣机霉味"
+  },
+  {
+    "id": "gen2-oos-034",
+    "category": "out_of_scope",
+    "question": "ChatGPT 和 Claude 哪个更聪明"
+  },
+  {
+    "id": "gen2-oos-035",
+    "category": "out_of_scope",
+    "question": "明天杭州限行尾号是多少"
+  },
+  {
+    "id": "gen2-oos-036",
+    "category": "out_of_scope",
+    "question": "怎么给猫驱虫"
+  },
+  {
+    "id": "gen2-oos-037",
+    "category": "out_of_scope",
+    "question": "红楼梦的作者是谁"
+  },
+  {
+    "id": "gen2-oos-038",
+    "category": "out_of_scope",
+    "question": "帮我计算复利，本金一万、年化百分之五、三年"
+  },
+  {
+    "id": "gen2-oos-039",
+    "category": "out_of_scope",
+    "question": "机场大巴几点停运"
+  },
+  {
+    "id": "gen2-oos-040",
+    "category": "out_of_scope",
+    "question": "如何用 PS 抠图"
+  },
+  {
+    "id": "gen2-oos-041",
+    "category": "out_of_scope",
+    "question": "Nginx 和 Caddy 哪个好"
+  },
+  {
+    "id": "gen2-oos-042",
+    "category": "out_of_scope",
+    "question": "今天农历几月几号"
+  },
+  {
+    "id": "gen2-oos-043",
+    "category": "out_of_scope",
+    "question": "帮我推荐一款入门相机"
+  },
+  {
+    "id": "gen2-oos-044",
+    "category": "out_of_scope",
+    "question": "怎么申投诉到 12315"
+  },
+  {
+    "id": "gen2-oos-045",
+    "category": "out_of_scope",
+    "question": "海底捞人均大概多少"
+  }
+]
